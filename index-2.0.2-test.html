@@ -1184,7 +1184,12 @@ async function submitGuildTask(){
       }else{
         toast('任务已加入本公会，并提交给小妙审核');
       }
-      if(activeTab==='search'){renderSearchPage();searchQuery=name;renderSearchResults()}
+      if(activeTab==='search'){
+        searchQuery=name;
+        if(taskId)selectedTaskId=taskId;
+        renderSearchPage();
+        if(taskId)requestAnimationFrame(()=>document.getElementById('taskDecision')?.scrollIntoView({behavior:'smooth',block:'start'}));
+      }
       if(activeTab==='record'){
         if(recordMode==='single'&&taskId){recordOnlyAbilities=false;recordTaskId=taskId;recordSearchQuery='';renderSingleRecordPanel()}
         else renderBatchRecordPanel();
