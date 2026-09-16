@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>公会竞标赛助手 2.0.2</title>
+<title>公会竞标赛助手 2.0</title>
 <style>
 :root{
   --bg:#fff9f7;--paper:#fffefd;--paper-2:#fffafc;--ink:#3f3547;--muted:#817686;
@@ -76,6 +76,18 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.hidden{display:
 .guild-admin-item{padding:18px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;margin-bottom:12px}.guild-admin-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.danger-menu{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
 .admin-guild-tools{padding:16px;margin-bottom:16px}.admin-guild-filter-grid{display:grid;grid-template-columns:minmax(240px,1.4fr) minmax(150px,.65fr) minmax(150px,.65fr) auto;gap:10px;align-items:end}.admin-guild-summary{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:12px 2px 14px}.channel-pill{background:linear-gradient(135deg,#fff2f8,#f0ebff);color:#745a9a;border:1px solid #e6d7ef}.channel-pill.empty{background:#f7f2f5;color:#887c87;border-color:#eadfe6}.guild-card-title{font-size:16px;overflow-wrap:anywhere}.guild-card-meta{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:8px}.guild-admin-note{margin-top:8px;overflow-wrap:anywhere}
 
+.guard-admin-tools{padding:16px;margin-bottom:16px}
+.guard-admin-filter-grid{display:grid;grid-template-columns:minmax(220px,1.35fr) minmax(150px,.65fr) minmax(150px,.65fr) auto;gap:10px;align-items:end}
+.guard-admin-item{padding:18px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center;margin-bottom:12px}
+.guard-admin-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.guard-code-box{padding:14px 16px;border:1px dashed #d8c5df;border-radius:16px;background:linear-gradient(135deg,#fff7fb,#f4efff);font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:17px;font-weight:800;letter-spacing:.5px;overflow-wrap:anywhere}
+.guard-meta{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:8px}
+.guard-title{font-size:16px;overflow-wrap:anywhere}
+.guard-sub{margin-top:8px;color:var(--muted);font-size:12px;line-height:1.65;overflow-wrap:anywhere}
+.guard-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:16px}
+@media(max-width:900px){.guard-admin-item{grid-template-columns:1fr}.guard-admin-actions{justify-content:flex-start}.guard-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.guard-admin-filter-grid{grid-template-columns:1fr 1fr}.guard-admin-filter-grid .guard-search-field{grid-column:1/-1}.guard-admin-filter-grid .guard-clear-filter{grid-column:1/-1;width:100%}}
+@media(max-width:580px){.guard-kpis{grid-template-columns:1fr}.guard-admin-filter-grid{grid-template-columns:1fr}.guard-admin-filter-grid .guard-search-field,.guard-admin-filter-grid .guard-clear-filter{grid-column:auto}}
+
 /* 主应用 */
 .app-shell{display:grid;grid-template-columns:246px minmax(0,1fr);min-height:100vh}.sidebar{padding:18px 14px;border-right:1px solid var(--line);background:rgba(255,253,251,.88);backdrop-filter:blur(15px);position:sticky;top:0;height:100vh;display:flex;flex-direction:column;z-index:30}
 .app-brand{padding:8px 10px 20px;display:flex;gap:11px;align-items:center}.app-brand-logo{width:44px;height:44px;border-radius:16px;background:linear-gradient(135deg,var(--pink),var(--lav));color:#fff;display:grid;place-items:center;font-weight:850;box-shadow:var(--shadow-sm)}.app-brand strong{display:block}.app-brand small{color:var(--muted)}
@@ -108,27 +120,6 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.hidden{display:
 .member-ability-section{padding:21px}.task-toolbar{display:grid;grid-template-columns:minmax(220px,1fr) auto auto auto;gap:9px;align-items:center}.batch-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:11px 0 14px}.task-groups{display:grid;gap:15px;margin-top:15px}.task-group h4{margin:0 0 9px;font-size:14px;color:#685d6c}.task-card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.task-check{border:1px solid var(--line);border-radius:15px;background:#fffdfd;padding:12px;display:flex;gap:10px;align-items:flex-start;cursor:pointer;transition:.15s}.task-check:hover{border-color:#dfc6dc;transform:translateY(-1px)}.task-check.checked{background:linear-gradient(135deg,var(--pink-soft),var(--lav-soft));border-color:#d9bddf}.task-check input{margin-top:3px;accent-color:var(--pink-deep);width:18px;height:18px}.task-check strong{font-size:13px;display:block;line-height:1.45}.task-check small{color:var(--muted);display:block;margin-top:4px}
 .task-save-bar{position:sticky;bottom:10px;z-index:12;margin-top:16px;padding:13px 15px;background:rgba(255,253,253,.96);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;gap:12px;backdrop-filter:blur(12px)}
 .ability-mobile-trigger{display:none}.ability-sheet{display:none}
-
-/* 登记：单次 / 批量 */
-.record-mode-tabs{display:flex;gap:7px;padding:5px;background:#f7f0f5;border-radius:16px;margin:14px 0 18px;max-width:360px}
-.record-mode-tabs button{flex:1;border:0;background:transparent;border-radius:12px;padding:9px 14px;color:var(--muted);font-weight:760}
-.record-mode-tabs button.active{background:#fff;color:var(--pink-deep);box-shadow:var(--shadow-sm)}
-.batch-record-list{display:grid;gap:12px;margin-top:14px}
-.batch-record-card{padding:15px;border:1px solid var(--line);border-radius:18px;background:#fffdfd;transition:.16s}
-.batch-record-card.error{border-color:#e8aebb;background:var(--danger-soft)}
-.batch-record-card.success{border-color:#badcc3;background:var(--mint-soft)}
-.batch-record-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:11px}
-.batch-record-head b{display:flex;align-items:center;gap:8px}
-.batch-record-grid{display:grid;grid-template-columns:minmax(150px,.85fr) minmax(135px,.65fr) minmax(160px,.8fr) minmax(240px,1.5fr);gap:10px;align-items:end}
-.batch-task-field{display:grid;grid-template-columns:minmax(120px,.7fr) minmax(180px,1.3fr);gap:8px}
-.batch-record-actions{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end;margin-top:11px}
-.batch-summary{padding:13px 15px;border-radius:16px;margin:12px 0;border:1px solid var(--line);line-height:1.65}
-.batch-summary.good{background:var(--mint-soft);color:#477451;border-color:#cfe7d5}
-.batch-summary.warn{background:var(--amber-soft);color:#7e5e1f;border-color:#efdeaa}
-.batch-summary.bad{background:var(--danger-soft);color:#9d4455;border-color:#f1ccd5}
-.batch-submit-bar{position:sticky;bottom:10px;z-index:14;margin-top:14px;padding:12px 14px;background:rgba(255,253,253,.97);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;gap:12px;backdrop-filter:blur(12px)}
-@media(max-width:1100px){.batch-record-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.batch-record-grid .batch-task-wrap{grid-column:1/-1}}
-@media(max-width:700px){.record-mode-tabs{max-width:none}.batch-record-grid{grid-template-columns:1fr}.batch-record-grid .batch-task-wrap{grid-column:auto}.batch-task-field{grid-template-columns:1fr}.batch-record-actions{justify-content:flex-start}.batch-submit-bar{align-items:stretch;flex-direction:column}.batch-submit-bar .btn{width:100%}}
 
 /* 模式和趋势 */
 .mode-scroller{display:flex;gap:11px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 10px;scrollbar-width:thin}.mode-card{scroll-snap-align:start;min-width:210px;flex:1;border:1px solid var(--line);background:#fffdfd;border-radius:18px;padding:15px;text-align:left;color:var(--ink);transition:.16s}.mode-card b,.mode-card small{display:block}.mode-card small{margin-top:6px;color:var(--muted);line-height:1.55}.mode-card.active{border-color:#d8b9e3;background:linear-gradient(135deg,var(--pink-soft),var(--lav-soft));box-shadow:0 8px 22px rgba(126,91,153,.09)}
@@ -172,230 +163,6 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.hidden{display:
   .topbar{align-items:center}.topbar h1{font-size:17px;line-height:1.3;overflow-wrap:anywhere}.top-meta .cloud-badge{display:none}.preview-banner{align-items:flex-start;flex-direction:column}.section-title{flex-direction:column}.section-title>div:last-child{width:100%}.section-title .btn{width:100%}.task-title-row{display:block}.task-title-row .btn{margin-top:12px}.result-item{align-items:flex-start}.result-side{flex-direction:column;align-items:flex-end}.result-main small{white-space:normal}.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}.person-head{display:block}.person-head .pill{margin-top:8px}.modal{padding:19px;border-radius:22px}.admin-shell{padding:18px 13px}.footer-note{font-size:11px}.kpi b{font-size:25px}.mode-card{min-width:84vw}.trend-row{grid-template-columns:1fr 1fr}.trend-row>:first-child{grid-column:1/-1}.rank-number{font-size:58px}.home-main,.home-side{padding:20px}.guild-admin-actions .btn{flex:0 1 auto}.table{min-width:620px}.admin-guild-filter-grid{grid-template-columns:1fr}.admin-guild-filter-grid .admin-search-field,.admin-guild-filter-grid .admin-clear-filter{grid-column:auto}.guild-admin-item{padding:15px}.guild-admin-actions .btn{min-height:40px}
 }
 
-
-
-/* 2.0.2 手机端体验重做：保留电脑端结构，只重排手机端 */
-.member-page-tabs,.mobile-member-shell{display:none}
-.task-card-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
-.task-check{min-width:0;padding:10px 11px;border-radius:14px;align-items:center}
-.task-check strong{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;overflow-wrap:anywhere}
-
-@media(min-width:1500px){.task-card-grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
-
-@media(max-width:900px){
-  body{background:linear-gradient(180deg,#fffaf8 0%,#fffdfc 40%,#fbf7ff 100%)}
-  .app-shell{min-height:var(--app-vh)}
-  .main{min-height:var(--app-vh)}
-  .topbar{min-height:58px;padding:9px 12px;padding-top:max(9px,env(safe-area-inset-top,0px));background:rgba(255,252,251,.96);border-bottom:1px solid rgba(230,218,230,.9);box-shadow:0 5px 18px rgba(82,61,92,.045)}
-  .topbar h1{font-size:18px;line-height:1.25}
-  .topbar>div:first-child .tiny{display:none}
-  .top-meta{gap:6px;flex-wrap:nowrap}
-  .top-meta .pill.high{max-width:112px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:5px 8px}
-  .mobile-more-btn{min-width:58px;padding:7px 10px;border-radius:12px}
-  .content{padding:12px 11px calc(88px + var(--safe-bottom));max-width:none}
-  .content>.card,.content section.card{border-radius:20px;box-shadow:0 9px 28px rgba(84,62,94,.06)}
-  .footer-note{margin-top:18px;padding-bottom:calc(98px + var(--safe-bottom))}
-
-  .mobile-nav{left:0;right:0;bottom:0;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;padding:6px 5px calc(5px + var(--safe-bottom));border-width:1px 0 0;border-radius:22px 22px 0 0;background:rgba(255,253,253,.97);box-shadow:0 -10px 28px rgba(78,57,89,.11);transition:transform .2s ease,opacity .2s ease}
-  .mobile-nav button{min-width:0;min-height:54px;padding:6px 2px 5px;border-radius:14px;font-size:10.5px;gap:2px}
-  .mobile-nav button .icon{width:21px;height:21px}
-  .mobile-nav button span:first-child{font-size:0;line-height:1}
-  .mobile-nav button.active{background:linear-gradient(145deg,#fff0f7,#f0eaff);box-shadow:inset 0 0 0 1px rgba(214,188,225,.45)}
-  .keyboard-open .mobile-nav{transform:translateY(110%);opacity:0;pointer-events:none}
-  .keyboard-open .content{padding-bottom:20px}
-
-  .section-title{margin-bottom:13px;gap:9px}
-  .section-title h2{font-size:20px;line-height:1.3}
-  .section-title h3{font-size:17px}
-  .section-title p{font-size:12.5px;margin-top:3px}
-  .card{--radius:20px}
-  .soft-panel{padding:16px}
-  .home-main,.home-side{padding:17px}
-  .rank-line{margin:13px 0 9px}
-  .rank-number{font-size:50px}
-  .battle-gap b{font-size:24px;margin-top:3px}
-  .progress-ribbon{height:9px}
-  .home-search{padding:15px}
-  .quick-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
-  .quick-action{min-width:0;min-height:96px;padding:11px 5px;flex-direction:column;justify-content:center;text-align:center;gap:6px;border-radius:16px}
-  .quick-action .quick-icon{width:38px;height:38px;border-radius:13px}
-  .quick-action b{font-size:13px;white-space:nowrap}
-  .quick-action small{display:none}
-  .home-search-row{grid-template-columns:1fr auto}
-  .home-search-row .btn{width:auto;padding-left:14px;padding-right:14px}
-  .result-item{padding:12px;border-radius:15px}
-  .search-hero{padding:17px}
-
-  .grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .person-stat{padding:9px;border-radius:12px}
-  .person-stat b{font-size:16px}
-  .kpi{padding:14px}
-  .kpi b{font-size:23px;margin-top:5px}
-
-  /* 成员页：名单与能力明确分开 */
-  .mobile-member-shell{display:block}
-  .mobile-member-heading{padding:2px 2px 10px}
-  .mobile-member-heading h2{font-size:24px;margin:8px 0 2px}
-  .mobile-member-heading p{margin:0;color:var(--muted);font-size:13px}
-  .member-page-tabs{display:grid;grid-template-columns:1fr 1fr;gap:5px;padding:5px;margin-bottom:10px;background:#f5edf4;border:1px solid #eadde9;border-radius:16px}
-  .member-page-tabs button{border:0;background:transparent;color:#776c7c;border-radius:12px;min-height:43px;font-weight:780;display:flex;align-items:center;justify-content:center;gap:6px}
-  .member-page-tabs button.active{background:#fff;color:var(--lav-deep);box-shadow:0 5px 16px rgba(89,65,98,.08)}
-  .member-page-tabs .icon{width:18px;height:18px}
-  .mobile-member-progress{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:10px}
-  .mobile-member-progress>div{padding:10px 6px;text-align:center;background:rgba(255,255,255,.84);border:1px solid var(--line);border-radius:14px}
-  .mobile-member-progress b,.mobile-member-progress span{display:block}
-  .mobile-member-progress b{font-size:18px;color:var(--lav-deep)}
-  .mobile-member-progress span{font-size:10.5px;color:var(--muted);margin-top:1px}
-  .mobile-member-list-card{padding:10px}
-  .mobile-list-tools{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;margin-bottom:8px}
-  .mobile-list-tools .search-box input{padding-top:12px;padding-bottom:12px}
-  .mobile-import-btn{padding-left:13px;padding-right:13px}
-  .mobile-member-rows{display:grid;gap:5px}
-  .mobile-member-row{width:100%;border:0;background:#fffdfd;border-radius:15px;padding:10px 8px;display:grid;grid-template-columns:39px minmax(0,1fr) 48px 55px 12px;gap:7px;align-items:center;text-align:left;color:var(--ink)}
-  .mobile-member-row:active{background:linear-gradient(135deg,var(--pink-soft),var(--lav-soft))}
-  .mobile-member-row.inactive{opacity:.62}
-  .mobile-member-avatar{width:37px;height:37px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,#ffeaf4,#eee8ff);color:var(--lav-deep);font-weight:850}
-  .mobile-member-row-main{min-width:0}
-  .mobile-member-row-main b,.mobile-member-row-main small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .mobile-member-row-main b{font-size:14px}
-  .mobile-member-row-main small{font-size:10.5px;color:var(--muted);margin-top:2px}
-  .mobile-member-row-data{text-align:center}
-  .mobile-member-row-data b,.mobile-member-row-data small{display:block}
-  .mobile-member-row-data b{font-size:14px}
-  .mobile-member-row-data small{font-size:9.5px;color:var(--muted);white-space:nowrap}
-  .mobile-row-arrow{font-size:20px;color:#a89cab}
-  .mobile-back-link{border:0;background:transparent;color:var(--lav-deep);font-weight:760;padding:7px 2px 10px}
-  .mobile-profile-card{padding:16px}
-  .mobile-profile-title{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:13px}
-  .mobile-profile-title h2{margin:7px 0 1px;font-size:22px}
-  .mobile-profile-title p{margin:0;color:var(--muted);font-size:12px}
-  .mobile-profile-grid{grid-template-columns:1fr 1fr}
-  .mobile-number-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:12px}
-  .mobile-number-grid .input{padding-left:9px;padding-right:9px;text-align:center}
-  .mobile-profile-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
-  .mobile-profile-actions .btn-danger{grid-column:1/-1}
-  .mobile-ability-member{padding:14px;margin-bottom:9px}
-  .mobile-member-mini-stats{display:flex;gap:6px;overflow-x:auto;margin-top:9px;padding-bottom:1px}
-  .mobile-member-mini-stats span{flex:0 0 auto;padding:6px 9px;border-radius:999px;background:#f8f1f7;color:var(--muted);font-size:11px}
-  .mobile-member-mini-stats b{color:var(--ink)}
-  .mobile-ability-card{padding:14px 10px 3px}
-  .mobile-ability-card .section-title{padding:0 3px}
-  .mobile-ability-card .task-toolbar{display:block}
-  .mobile-ability-card .ability-filter-row{margin-top:8px;display:flex;gap:6px;overflow-x:auto}
-  .mobile-ability-card .batch-toolbar{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;margin:8px 0 10px}
-  .mobile-ability-card .batch-toolbar .btn{min-width:0;padding:6px 3px;font-size:11px;min-height:36px;white-space:normal;line-height:1.2}
-  .mobile-ability-card .task-save-bar{position:sticky;bottom:calc(70px + var(--safe-bottom));margin:10px -2px 0;padding:9px 10px;border-radius:17px;z-index:35}
-  .mobile-ability-card .task-save-bar .small{display:none}
-  .mobile-ability-card .task-save-bar .btn{min-height:42px;padding:8px 13px}
-  .task-groups{gap:11px;margin-top:11px}
-  .task-group h4{font-size:12px;margin:0 3px 6px}
-  .task-card-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
-  .task-check{min-height:82px;padding:8px 7px;display:grid;grid-template-columns:17px minmax(0,1fr);gap:5px;align-content:start;border-radius:13px}
-  .task-check input{width:17px;height:17px;margin:1px 0 0}
-  .task-check strong{font-size:11.5px;line-height:1.35;-webkit-line-clamp:3}
-  .task-check small{font-size:10px;line-height:1.25;margin-top:3px}
-
-  /* 登记页仍沿用已通过逻辑，只优化触控尺寸和层级 */
-  .record-mode-tabs{position:sticky;top:64px;z-index:18;max-width:none;margin:10px 0 13px;background:rgba(247,240,245,.96);backdrop-filter:blur(12px)}
-  .batch-record-card{padding:13px;border-radius:16px}
-  .batch-record-actions{gap:5px}
-  .batch-record-actions .btn{min-height:36px;padding:6px 9px;font-size:12px}
-  .batch-submit-bar{bottom:calc(70px + var(--safe-bottom));z-index:34}
-  .task-save-bar{bottom:calc(70px + var(--safe-bottom))}
-}
-
-@media(max-width:580px){
-  .section-title{flex-direction:column}
-  .section-title .btn{width:auto}
-  .grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .mobile-profile-grid{grid-template-columns:1fr 1fr}
-  .home-search-row{grid-template-columns:minmax(0,1fr) auto}
-}
-
-@media(max-width:380px){
-  .task-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .mobile-member-row{grid-template-columns:36px minmax(0,1fr) 46px 11px}
-  .mobile-member-row-data:nth-of-type(4){display:none}
-  .mobile-number-grid{grid-template-columns:1fr 1fr}
-  .mobile-number-grid>div:first-child{grid-column:1/-1}
-  .quick-grid{gap:5px}
-  .quick-action{padding-left:3px;padding-right:3px}
-}
-
-
-/* ===== 2.0.2 完整补丁：任务审核、战况决策、导出与手机端细节 ===== */
-.setup-path{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:18px}
-.setup-step{border:1px solid var(--line);background:#fffefd;border-radius:18px;padding:15px;text-align:left;color:var(--ink);display:flex;gap:12px;align-items:center}
-.setup-step.done{background:linear-gradient(135deg,var(--mint-soft),#fff);border-color:#cfe4d4}
-.setup-step .step-no{width:34px;height:34px;border-radius:12px;background:var(--lav-soft);color:var(--lav-deep);display:grid;place-items:center;font-weight:850;flex:0 0 auto}
-.setup-step.done .step-no{background:#dff0e4;color:#4f7e5c}
-.setup-step b,.setup-step small{display:block}.setup-step small{color:var(--muted);margin-top:3px}
-.task-origin{margin-left:5px}
-.task-origin.pending{background:var(--amber-soft);color:#8d661f}
-.task-origin.guild{background:var(--lav-soft);color:var(--lav-deep)}
-.task-origin.merged{background:var(--blue-soft);color:#4e7590}
-.missing-task-box{padding:17px;border:1px dashed #d9c7df;border-radius:18px;background:linear-gradient(135deg,#fffafd,#f7f2ff);text-align:center;margin-top:12px}
-.missing-task-box b{display:block;margin-bottom:5px}.missing-task-box .btn{margin-top:10px}
-.duplicate-hints{display:grid;gap:7px;margin-top:10px}
-.duplicate-hint{padding:10px 12px;border:1px solid var(--line);border-radius:13px;background:#fffdfd;font-size:13px}
-.admin-task-toolbar{display:grid;grid-template-columns:minmax(220px,1fr) 170px auto;gap:9px;align-items:end}
-.admin-task-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px}
-.admin-task-mobile-list{display:none}
-.admin-task-actions{display:flex;gap:6px;flex-wrap:wrap}
-.task-review-list{display:grid;gap:10px}
-.task-review-item{padding:16px;border:1px solid var(--line);border-radius:18px;background:#fffefd;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:center}
-.task-review-item h3{margin:0 0 5px;font-size:16px}.task-review-item p{margin:0;color:var(--muted);font-size:12.5px;line-height:1.6}
-.task-review-actions{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
-.task-audit-line{padding:10px 12px;border-bottom:1px solid var(--line)}.task-audit-line:last-child{border-bottom:0}
-.battle-decision{padding:22px;margin-bottom:14px;background:linear-gradient(145deg,#fff8fc,#f3efff)}
-.battle-decision h2{font-size:27px;margin:8px 0}.battle-decision .lead{font-size:15px;line-height:1.8;color:#5d5263}
-.battle-summary-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-top:15px}
-.battle-summary-cell{padding:11px 12px;border-radius:14px;background:rgba(255,255,255,.78);border:1px solid rgba(226,211,232,.8)}
-.battle-summary-cell b,.battle-summary-cell span{display:block}.battle-summary-cell b{font-size:18px}.battle-summary-cell span{font-size:11px;color:var(--muted);margin-top:2px}
-.battle-actions-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
-.battle-action-panel{padding:19px}.battle-action-panel h2{margin:0 0 6px}
-.branch-list{display:grid;gap:9px;margin-top:12px}
-.branch-item{padding:12px 13px;border-radius:15px;border:1px solid var(--line);background:#fffefd;line-height:1.65}
-.branch-item b{display:block;margin-bottom:3px}
-.member-plan-list{display:grid;gap:8px;margin-top:12px}
-.member-plan-item{padding:12px;border:1px solid var(--line);border-radius:15px;background:#fffefd;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px}
-.member-plan-item b,.member-plan-item small{display:block}.member-plan-item small{color:var(--muted);margin-top:4px;line-height:1.5}
-.battle-details{border:1px solid var(--line);border-radius:20px;background:#fffefd;margin-bottom:14px;overflow:hidden}
-.battle-details>summary{padding:16px 18px;font-weight:800;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between}
-.battle-details>summary::-webkit-details-marker{display:none}.battle-details>summary:after{content:"展开";font-size:12px;color:var(--muted)}
-.battle-details[open]>summary:after{content:"收起"}.battle-details-body{padding:0 18px 18px}
-.resource-plan-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.resource-plan{padding:15px;border:1px solid var(--line);border-radius:17px;background:#fff}
-.resource-plan.recommended{border-color:#d7bee3;background:linear-gradient(135deg,var(--pink-soft),var(--lav-soft))}
-.resource-plan b,.resource-plan span{display:block}.resource-plan b{font-size:18px;margin:6px 0}.resource-plan span{font-size:12px;color:var(--muted);line-height:1.55}
-.data-quality{padding:12px 14px;border-radius:15px;background:var(--blue-soft);color:#4c7188;line-height:1.65}
-.observe-select{max-width:160px}
-.simple-divider{height:1px;background:var(--line);margin:14px 0}
-.export-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
-.inline-note{font-size:12px;color:var(--muted);line-height:1.6}
-@media(max-width:900px){
-  .setup-path{grid-template-columns:1fr;gap:7px}
-  .setup-step{padding:12px;border-radius:15px}
-  .admin-task-toolbar{grid-template-columns:1fr 1fr}.admin-task-toolbar .admin-task-search{grid-column:1/-1}
-  .admin-task-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .admin-task-table{display:none}.admin-task-mobile-list{display:grid;gap:8px}
-  .admin-task-mobile-card{padding:13px;border:1px solid var(--line);border-radius:16px;background:#fffefd}
-  .admin-task-mobile-card h3{font-size:14px;margin:0 0 5px;overflow-wrap:anywhere}
-  .admin-task-mobile-card .admin-task-actions{margin-top:9px}
-  .task-review-item{grid-template-columns:1fr}.task-review-actions{justify-content:flex-start}
-  .battle-decision{padding:17px}.battle-decision h2{font-size:23px}
-  .battle-summary-row{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .battle-actions-grid{grid-template-columns:1fr}
-  .battle-action-panel{padding:16px}
-  .resource-plan-grid{grid-template-columns:1fr}
-  .export-grid{grid-template-columns:1fr 1fr}
-}
-@media(max-width:520px){
-  .admin-task-toolbar{grid-template-columns:1fr}.admin-task-toolbar .admin-task-search{grid-column:auto}
-  .export-grid{grid-template-columns:1fr}
-  .battle-summary-row{grid-template-columns:1fr 1fr}
-}
-
 </style>
 </head>
 <body>
@@ -420,9 +187,9 @@ const TARGET_MODES=[
   {value:'inactive',label:'本轮不参与',desc:'不进入任务推荐，长期能力资料仍保留'}
 ];
 const DISCLAIMER_TEXT=`<p>本工具仅用于公会竞标赛的数据整理、积分测算和任务分配参考，不代表游戏官方立场。</p><p>所有计算结果均基于用户录入的成员能力、任务积分、剩余次数及公会积分等信息。若录入数据不完整、游戏规则发生调整，或实际任务状态发生变化，测算和推荐结果可能存在偏差。</p><p>任务领取、删除、翻倍及成员分配等操作，请以游戏内实际情况和公会管理人员的最终判断为准。本工具不对因数据填写错误、操作失误或规则变化造成的游戏损失承担责任。</p><p>本工具仅供获得授权的公会内部使用，未经许可，请勿复制、修改、转售或以其他形式重新发布。</p>`;
-const NAVS=[['home','首页'],['search','任务查询'],['members','成员管理'],['record','完成登记'],['personal','个人测算'],['guild','公会目标'],['settings','设置与记录']];
-let app={session:null,context:null,role:null,adminGuilds:[],tasks:[],taskLibrary:{version:'2026.06',updatedAt:null},taskWorkflowReady:false,taskAudits:[],guild:null,round:null,members:[],abilities:[],stats:[],competitors:[],logs:[],audits:[],snapshots:[],archivedCount:0,previewGuildId:null};
-let activeTab='home',landingTab='guild',adminTab='guilds',adminGuildSearch='',adminGuildStatusFilter='all',adminGuildChannelFilter='all',adminTaskView='library',adminTaskSearch='',adminTaskStatusFilter='all',adminTaskScrollY=0,selectedMemberId=null,selectedTaskId=null,searchQuery='',homeSearchQuery='',abilityQuery='',abilityFilter='all',abilityDraft=null,abilityDraftMemberId=null,abilityDirty=false,abilitySheetOpen=false,adminPreviewMode='view',recordMemberId=null,recordTaskId=null,recordOnlyAbilities=true,recordAttemptType='free',recordDoubled=true,recordSearchQuery='',recordIdempotencyKey=null,recordMode='single',batchRecordRows=[],batchOnlyAbilities=true,batchSubmitting=false,batchSubmitProgress='',batchSubmitSummary=null,taskStrategy='auto',deadlineHours=6,battleObserveHours=2,memberNearThreshold=200,deleteCooldown=0,submitLocked=false,busy=false,bulkTaskPreviewRows=[],leaderboardOcrRows=[],leaderboardOcrImageUrl='',leaderboardOcrBusy=false,memberSection='list',mobileMemberView='list',memberSearchQuery='';
+const NAVS=[['home','首页'],['search','任务查询'],['members','成员能力'],['record','完成登记'],['personal','个人测算'],['guild','公会目标'],['settings','设置与记录']];
+let app={session:null,context:null,role:null,adminGuilds:[],guardAdmin:{loaded:false,loading:false,invites:[],guilds:[],leases:[]},tasks:[],taskLibrary:{version:'2026.06',updatedAt:null},guild:null,round:null,members:[],abilities:[],stats:[],competitors:[],logs:[],audits:[],snapshots:[],archivedCount:0,previewGuildId:null};
+let activeTab='home',landingTab='guild',adminTab='guilds',adminGuildSearch='',adminGuildStatusFilter='all',adminGuildChannelFilter='all',adminGuardSearch='',adminGuardPlatformFilter='all',adminGuardStatusFilter='all',selectedMemberId=null,selectedTaskId=null,searchQuery='',homeSearchQuery='',abilityQuery='',abilityFilter='all',abilityDraft=null,abilityDraftMemberId=null,abilityDirty=false,abilitySheetOpen=false,adminPreviewMode='view',recordMemberId=null,recordTaskId=null,recordOnlyAbilities=true,taskStrategy='auto',deadlineHours=6,deleteCooldown=0,submitLocked=false,busy=false,bulkTaskPreviewRows=[],leaderboardOcrRows=[],leaderboardOcrImageUrl='',leaderboardOcrBusy=false;
 
 function esc(s){return String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
 function norm(s){return String(s??'').toLowerCase().replace(/[\s\-—–·_（）()【】\[\]、，,。.：:；;＋+]/g,'')}
@@ -438,18 +205,15 @@ function normalizedStageNames(raw){
 
 function fmt(n){return Number(n||0).toLocaleString('zh-CN',{maximumFractionDigits:1})}
 function fmtTime(v){if(!v)return'—';return new Date(v).toLocaleString('zh-CN',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'})}
+function platformLabel(v){return v==='official'?'官服':v==='channel'?'渠道服':'未分类'}
+function isWithinDays(v,days){if(!v)return false;const t=new Date(v).getTime();return Number.isFinite(t)&&Date.now()-t<=days*86400000}
+async function copyText(v){try{await navigator.clipboard.writeText(String(v||''));toast('已复制到剪贴板')}catch(e){const ta=document.createElement('textarea');ta.value=String(v||'');ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();toast('已复制到剪贴板')}}
 function clamp(v,min,max){return Math.min(max,Math.max(min,Number(v||0)))}
 function uuid(){return crypto.randomUUID?crypto.randomUUID():`${Date.now()}-${Math.random()}`}
 function operatorName(){return localStorage.getItem(OPERATOR_KEY)||'公会管理员'}
 
 function isMobile(){return window.matchMedia('(max-width:900px)').matches}
-let viewportBaseline=window.visualViewport?.height||window.innerHeight,viewportWidth=window.innerWidth;
-function syncVisualViewport(){
-  const h=window.visualViewport?.height||window.innerHeight,w=window.innerWidth;
-  if(Math.abs(w-viewportWidth)>80){viewportWidth=w;viewportBaseline=h}else viewportBaseline=Math.max(viewportBaseline,h);
-  document.documentElement.style.setProperty('--app-vh',`${Math.round(h)}px`);
-  document.documentElement.classList.toggle('keyboard-open',isMobile()&&viewportBaseline-h>140);
-}
+function syncVisualViewport(){const h=window.visualViewport?.height||window.innerHeight;document.documentElement.style.setProperty('--app-vh',`${Math.round(h)}px`)}
 if(window.visualViewport){window.visualViewport.addEventListener('resize',syncVisualViewport);window.visualViewport.addEventListener('scroll',syncVisualViewport)}window.addEventListener('resize',syncVisualViewport);syncVisualViewport();
 function icon(name){
   const paths={
@@ -488,7 +252,7 @@ function footerHtml(){return`<footer class="footer-note">一位因公会竞标�
 function showDisclaimer(auto=false){openModal(`<div class="modal-head"><div><span class="pill high">使用前请阅读</span><h2 style="margin-top:10px">免责声明</h2></div><button class="modal-close" onclick="closeModal()">×</button></div><div style="line-height:1.85;color:#655b66">${DISCLAIMER_TEXT}</div><button class="btn btn-primary" style="width:100%;margin-top:10px" onclick="ackDisclaimer()">我已知悉，进入工具</button>`);if(!auto)return}
 function ackDisclaimer(){sessionStorage.setItem(DISCLAIMER_KEY,'1');closeModal();if(app.role==='guild'&&localStorage.getItem(GUIDE_KEY)!=='1')setTimeout(()=>showGuide(),120)}
 function showGuide(){openModal(`<div class="modal-head"><div><span class="pill lav">2.0 使用导览</span><h2 style="margin-top:9px">四步开始使用</h2></div><button class="modal-close" onclick="closeModal()">×</button></div><div class="admin-guide"><div><b>导入成员</b><br><span class="small muted">一行一个名字，快速建立公会名单。</span></div><div><b>登记能力</b><br><span class="small muted">从完整任务库中多选成员可完成的任务。</span></div><div><b>搜索任务</b><br><span class="small muted">例如，输入“夏雨荷”“夏”或“画境”，都能找到相关任务和人选。</span></div><div><b>登记完成</b><br><span class="small muted">个人积分、使用次数和公会进度会同步更新。</span></div></div><div class="row" style="margin-top:15px"><button class="btn btn-ghost grow" onclick="closeModal()">稍后再看</button><button class="btn btn-primary grow" onclick="localStorage.setItem(GUIDE_KEY,'1');closeModal()">知道了，开始使用</button></div>`)}
-function showError(err,prefix='操作失败'){console.error(err);const raw=err?.message||err?.error_description||String(err||'未知错误');const map={Invalid_login_credentials:'账号或密码不正确',Email_not_confirmed:'邮箱尚未确认',ADMIN_ONLY:'仅总管理员可以执行',ACCESS_DENIED:'没有权限访问这项数据',ABILITY_VERSION_CONFLICT:'能力清单已被其他人修改，请刷新后重试',MEMBER_VERSION_CONFLICT:'成员资料已被其他人修改，请刷新后重试',GUILD_VERSION_CONFLICT:'公会资料已被其他人修改，请刷新后重试',FREE_ATTEMPTS_EXHAUSTED:'免费次数已经用完',PAID_ATTEMPTS_EXHAUSTED:'购买次数已经用完',AUTH_USER_NOT_FOUND:'没有找到该登录账号，请先在 Supabase 的 Authentication → Users 中创建',GUILD_CODE_ALREADY_EXISTS:'这个公会码已经被使用',AUTH_USER_ALREADY_LINKED:'这个登录账号已经绑定过公会',TASK_LIBRARY_EMPTY:'任务库读取为空，请不要保存成员能力，联系小妙检查任务库读取接口',INVALID_TARGET_MODE:'个人目标模式不正确',MEMBER_HAS_HISTORY_USE_DISABLE:'该成员已有任务历史，请改用停用',MEMBER_HAS_PROGRESS_USE_DISABLE:'该成员已有积分或次数记录，请改用停用',MEMBER_CONFIRM_NAME_MISMATCH:'确认姓名不一致',GUILD_CONFIRM_CODE_MISMATCH:'确认公会码不一致',GUILD_HAS_DATA_CANNOT_DELETE:'该公会已有正式数据，只能暂停，不能撤销',PASSWORD_TOO_SHORT:'新密码至少需要8位',USER_ID_REQUIRED:'没有找到登录账号UID',MEMBER_NAME_REQUIRED:'成员名字不能为空',ACTIVE_MEMBER_NAME_ALREADY_EXISTS:'已有同名有效成员',FREE_ATTEMPTS_EXCEED_LIMIT:'免费已用次数超过本轮上限',PAID_ATTEMPTS_EXCEED_LIMIT:'购买已用次数超过本轮上限',TASK_NAME_REQUIRED:'任务名称不能为空',TASK_POINTS_INVALID:'任务基础分必须在1至99之间',TASK_NAME_ALREADY_EXISTS:'任务库中已有同名任务',TASK_SUBMISSION_NOT_FOUND:'没有找到这条待审核任务',TASK_REVIEW_ACTION_INVALID:'审核操作不正确',TASK_NOT_ACCESSIBLE:'当前公会无权使用这项任务',TASK_WORKFLOW_NOT_READY:'任务补充功能尚未完成数据库升级',TASK_VERSION_CONFLICT:'任务资料已被其他人修改，请刷新后重试'};const key=Object.keys(map).find(k=>raw.includes(k));toast(`${prefix}：${key?map[key]:raw}`)}
+function showError(err,prefix='操作失败'){console.error(err);const raw=err?.message||err?.error_description||String(err||'未知错误');const map={Invalid_login_credentials:'账号或密码不正确',Email_not_confirmed:'邮箱尚未确认',ADMIN_ONLY:'仅总管理员可以执行',ACCESS_DENIED:'没有权限访问这项数据',ABILITY_VERSION_CONFLICT:'能力清单已被其他人修改，请刷新后重试',MEMBER_VERSION_CONFLICT:'成员资料已被其他人修改，请刷新后重试',GUILD_VERSION_CONFLICT:'公会资料已被其他人修改，请刷新后重试',FREE_ATTEMPTS_EXHAUSTED:'免费次数已经用完',PAID_ATTEMPTS_EXHAUSTED:'购买次数已经用完',AUTH_USER_NOT_FOUND:'没有找到该登录账号，请先在 Supabase 的 Authentication → Users 中创建',GUILD_CODE_ALREADY_EXISTS:'这个公会码已经被使用',AUTH_USER_ALREADY_LINKED:'这个登录账号已经绑定过公会',TASK_LIBRARY_EMPTY:'任务库读取为空，请不要保存成员能力，联系小妙检查任务库读取接口',INVALID_TARGET_MODE:'个人目标模式不正确',MEMBER_HAS_HISTORY_USE_DISABLE:'该成员已有任务历史，请改用停用',MEMBER_HAS_PROGRESS_USE_DISABLE:'该成员已有积分或次数记录，请改用停用',MEMBER_CONFIRM_NAME_MISMATCH:'确认姓名不一致',GUILD_CONFIRM_CODE_MISMATCH:'确认公会码不一致',GUILD_HAS_DATA_CANNOT_DELETE:'该公会已有正式数据，只能暂停，不能撤销',PASSWORD_TOO_SHORT:'新密码至少需要8位',USER_ID_REQUIRED:'没有找到登录账号UID',MEMBER_NAME_REQUIRED:'成员名字不能为空',ACTIVE_MEMBER_NAME_ALREADY_EXISTS:'已有同名有效成员',FREE_ATTEMPTS_EXCEED_LIMIT:'免费已用次数超过本轮上限',PAID_ATTEMPTS_EXCEED_LIMIT:'购买已用次数超过本轮上限'};const key=Object.keys(map).find(k=>raw.includes(k));toast(`${prefix}：${key?map[key]:raw}`)}
 async function withBusy(fn){if(busy)return;busy=true;try{await fn()}finally{busy=false}}
 
 async function boot(){showLoading();try{const {data:{session}}=await db.auth.getSession();app.session=session;if(session)await enterFromSession();else renderLanding()}catch(e){console.error(e);renderLanding('无法连接云端，请检查网络后刷新。')}}
@@ -521,39 +285,22 @@ function renderLanding(error=''){
 }
 async function guildLogin(){await withBusy(async()=>{const code=document.getElementById('loginCode').value.trim().toUpperCase(),password=document.getElementById('loginPass').value;if(!code||!password)return toast('请填写公会码和密码');showLoading('正在验证公会码…');try{const {data:email,error:e1}=await db.rpc('resolve_guild_login',{p_code:code});if(e1)throw e1;if(!email)throw new Error('公会码不存在或已暂停');const {data,error}=await db.auth.signInWithPassword({email,password});if(error)throw error;app.session=data.session;localStorage.setItem(LAST_CODE_KEY,code);await enterFromSession()}catch(e){await db.auth.signOut();renderLanding();showError(e,'登录失败')}})}
 async function adminLogin(){await withBusy(async()=>{const email=document.getElementById('adminEmail').value.trim(),password=document.getElementById('adminPass').value;if(!email||!password)return toast('请填写管理员邮箱和密码');showLoading('正在进入小妙管理端…');try{const {data,error}=await db.auth.signInWithPassword({email,password});if(error)throw error;app.session=data.session;const {data:ctx,error:e2}=await db.rpc('get_app_context');if(e2)throw e2;if(!ctx.is_admin){await db.auth.signOut();throw new Error('这个账号不是小妙总管理员')}app.context=ctx;app.role='admin';await loadAdminData();renderAdmin()}catch(e){renderLanding();showError(e,'登录失败')}})}
-async function logout(){await db.auth.signOut();app={...app,session:null,context:null,role:null,guild:null,round:null,members:[],abilities:[],stats:[],competitors:[],logs:[],audits:[]};sessionStorage.removeItem(DISCLAIMER_KEY);activeTab='home';renderLanding()}
+async function logout(){await db.auth.signOut();app={...app,session:null,context:null,role:null,guild:null,round:null,members:[],abilities:[],stats:[],competitors:[],logs:[],audits:[],guardAdmin:{loaded:false,loading:false,invites:[],guilds:[],leases:[]}};sessionStorage.removeItem(DISCLAIMER_KEY);activeTab='home';adminTab='guilds';renderLanding()}
 
 async function loadTaskLibrary(includeInactive=false){
-  let taskRows=null,taskError=null;
-  const v3=await db.rpc('get_accessible_tasks_v3',{p_include_inactive:!!includeInactive});
-  if(!v3.error){
-    taskRows=v3.data;
-    app.taskWorkflowReady=true;
-  }else{
-    const fallback=await db.rpc('get_active_tasks_v2',{p_include_inactive:!!includeInactive});
-    taskRows=fallback.data;
-    taskError=fallback.error;
-    app.taskWorkflowReady=false;
-  }
-  const {data:setting,error:e2}=await db.from('app_settings').select('*').eq('key','task_library').maybeSingle();
-  if(taskError)throw taskError;
+  const [{data:taskRows,error:e1},{data:setting,error:e2}]=await Promise.all([
+    db.rpc('get_active_tasks_v2',{p_include_inactive:!!includeInactive}),
+    db.from('app_settings').select('*').eq('key','task_library').maybeSingle()
+  ]);
+  if(e1)throw e1;
   if(e2)throw e2;
   if(!Array.isArray(taskRows)||taskRows.length===0)throw new Error('TASK_LIBRARY_EMPTY');
   app.tasks=taskRows;
   const v=setting?.value||{};
   app.taskLibrary={version:v.version||'2026.06',updatedAt:v.updated_at||setting?.updated_at||null};
 }
-async function loadAdminData(){
-  await loadTaskLibrary(true);
-  const [{data:guilds,error:guildError},auditResult]=await Promise.all([
-    db.from('guilds').select('*').order('created_at',{ascending:false}),
-    app.taskWorkflowReady?db.rpc('get_task_library_audits_v3',{p_limit:100}):Promise.resolve({data:[],error:null})
-  ]);
-  if(guildError)throw guildError;
-  app.adminGuilds=guilds||[];
-  app.taskAudits=auditResult.error?[]:(auditResult.data||[]);
-}
-async function loadGuildData(guildId,silent=false){if(!silent)showLoading('正在同步公会数据…');const [{data:g,error:eg},{data:r,error:er}]=await Promise.all([db.from('guilds').select('*').eq('id',guildId).single(),db.from('competition_rounds').select('*').eq('guild_id',guildId).eq('status','current').single()]);if(eg)throw eg;if(er)throw er;app.guild=g;app.round=r;await loadTaskLibrary(app.role==='admin');const [m,a,s,c,l,u,h,ss]=await Promise.all([
+async function loadAdminData(){await loadTaskLibrary(true);const {data,error}=await db.from('guilds').select('*').order('created_at',{ascending:false});if(error)throw error;app.adminGuilds=data||[]}
+async function loadGuildData(guildId){showLoading('正在同步公会数据…');const [{data:g,error:eg},{data:r,error:er}]=await Promise.all([db.from('guilds').select('*').eq('id',guildId).single(),db.from('competition_rounds').select('*').eq('guild_id',guildId).eq('status','current').single()]);if(eg)throw eg;if(er)throw er;app.guild=g;app.round=r;await loadTaskLibrary(app.role==='admin');const [m,a,s,c,l,u,h,ss]=await Promise.all([
  db.from('guild_members').select('*').eq('guild_id',guildId).order('active',{ascending:false}).order('name'),
  db.from('member_abilities').select('*').eq('guild_id',guildId),
  db.from('member_round_stats').select('*').eq('round_id',r.id),
@@ -563,64 +310,7 @@ async function loadGuildData(guildId,silent=false){if(!silent)showLoading('正�
  db.from('competition_rounds').select('*',{count:'exact',head:true}).eq('guild_id',guildId).eq('status','archived'),
  db.from('leaderboard_snapshots').select('*').eq('round_id',r.id).order('captured_at',{ascending:false}).limit(30)
 ]);for(const x of [m,a,s,c,l,u,h,ss])if(x.error)throw x.error;app.members=m.data||[];app.abilities=a.data||[];app.stats=s.data||[];app.competitors=c.data||[];app.logs=l.data||[];app.audits=u.data||[];app.archivedCount=h.count||0;app.snapshots=ss.data||[];app.previewGuildId=guildId}
-function tasks(includeInactive=false){
-  const currentGuildId=app.guild?.id||app.previewGuildId||null;
-  return app.tasks.map(t=>{
-    const visibility=t.visibility||'public';
-    const reviewStatus=t.review_status||'approved';
-    const ownerGuildId=t.owner_guild_id||null;
-    const ownPending=visibility==='guild'&&reviewStatus==='pending'&&currentGuildId&&String(ownerGuildId)===String(currentGuildId);
-    const usable=!!t.active||ownPending;
-    return{id:Number(t.id),name:t.name,points:Number(t.base_points),disabled:!usable,dbActive:!!t.active,visibility,reviewStatus,ownerGuildId,submittedNote:t.submitted_note||'',submittedBy:t.submitted_by||'',reviewNote:t.review_note||'',mergedIntoTaskId:t.merged_into_task_id?Number(t.merged_into_task_id):null,sourceSeq:t.source_seq,rowVersion:t.row_version,createdAt:t.created_at,updatedAt:t.updated_at};
-  }).filter(t=>includeInactive||!t.disabled);
-}
-
-function taskOriginBadge(t){
-  if(t.reviewStatus==='merged')return`<span class="pill task-origin merged">已合并</span>`;
-  if(t.visibility==='guild'&&t.reviewStatus==='pending')return`<span class="pill task-origin pending">本公会补充 · 待审核</span>`;
-  if(t.visibility==='guild'&&t.reviewStatus==='approved')return`<span class="pill task-origin guild">公会补充已通过</span>`;
-  return'';
-}
-function csvCell(v){const s=String(v??'');return/[",\n]/.test(s)?`"${s.replace(/"/g,'""')}"`:s}
-function downloadCsv(filename,headers,rows){
-  const body=[headers, ...rows].map(row=>row.map(csvCell).join(',')).join('\r\n');
-  const blob=new Blob(['\uFEFF'+body],{type:'text/csv;charset=utf-8'}),a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
-}
-function taskSimilarityList(name,excludeId=null){
-  const key=norm(name);if(!key)return[];
-  return tasks(true).filter(t=>t.id!==Number(excludeId)).map(t=>{
-    const tk=norm(t.name);let score=0;
-    if(tk===key)score=100;
-    else if(tk.includes(key)||key.includes(tk))score=80;
-    else{
-      const chars=[...new Set(key)],same=chars.filter(c=>tk.includes(c)).length;
-      score=chars.length?Math.round(60*same/chars.length):0;
-    }
-    return{task:t,score};
-  }).filter(x=>x.score>=45).sort((a,b)=>b.score-a.score||a.task.name.localeCompare(b.task.name,'zh-CN')).slice(0,6);
-}
-async function refreshTaskDataOnly(includeInactive=app.role==='admin'){
-  await loadTaskLibrary(includeInactive);
-}
-function restoreAdminTaskPosition(){
-  requestAnimationFrame(()=>window.scrollTo({top:adminTaskScrollY,behavior:'auto'}));
-}
-async function reloadAdminTasksKeepState(message='任务库已更新'){
-  adminTaskScrollY=window.scrollY;
-  await loadTaskLibrary(true);
-  if(app.taskWorkflowReady){
-    const {data}=await db.rpc('get_task_library_audits_v3',{p_limit:100});
-    app.taskAudits=data||[];
-  }
-  renderAdminTasks();
-  restoreAdminTaskPosition();
-  if(message)toast(message);
-}
-function goMemberSection(section='list'){
-  memberSection=section;mobileMemberView='list';activeTab='members';renderApp(app.role==='admin');
-}
-
+function tasks(includeInactive=false){return app.tasks.filter(t=>includeInactive||t.active).map(t=>({id:Number(t.id),name:t.name,points:t.base_points,disabled:!t.active,sourceSeq:t.source_seq,rowVersion:t.row_version,updatedAt:t.updated_at}))}
 function currentGuild(){if(!app.guild||!app.round)return null;const sm=new Map(app.stats.map(x=>[x.member_id,x])),am=new Map();for(const x of app.abilities){if(!am.has(x.member_id))am.set(x.member_id,[]);am.get(x.member_id).push(Number(x.task_id))}const r=app.round;return{id:app.guild.id,code:app.guild.code,name:app.guild.name,enabled:app.guild.enabled,stageNames:normalizedStageNames(app.guild.stage_names),updatedAt:app.guild.updated_at,rowVersion:app.guild.row_version,members:app.members.map(m=>{const s=sm.get(m.id)||{};return{id:m.id,name:m.name,note:m.note||'',active:m.active,rowVersion:m.row_version,abilitiesVersion:m.abilities_version||1,abilitiesUpdatedAt:m.abilities_updated_at,abilities:am.get(m.id)||[],currentPoints:s.current_points||0,freeUsed:s.free_used||0,paidUsed:s.paid_used||0,goal:s.target_points??r.personal_target,targetMode:s.target_mode||'sprint_1400',status:s.status||'可接任务',statVersion:s.row_version||1,updatedAt:m.updated_at}}),logs:app.logs.map(x=>({id:x.id,memberId:x.member_id,taskId:Number(x.task_id),taskName:x.task_name_snapshot,points:x.award_points,basePoints:x.base_points,doubled:x.doubled,attemptType:x.attempt_type,countsForGuild:x.counts_for_guild,time:x.created_at,operator:x.operator_name,reversedAt:x.reversed_at,reversedBy:x.reversed_by})),auditLogs:app.audits.map(x=>({id:x.id,action:x.action,detail:x.detail,operator:x.operator_name,time:x.created_at})),roundArchives:Array(app.archivedCount).fill(0),competition:{id:r.id,rowVersion:r.row_version,season:r.season_no,round:r.round_no,currentStage:r.current_stage,targetStage:r.target_stage,goalMode:r.goal_mode,customGoalScore:r.custom_goal_score,safetyMargin:r.safety_margin,avgBase:Number(r.estimated_avg_base),doubleRate:Number(r.estimated_double_rate),freeLimit:r.free_limit,paidLimit:r.paid_limit,personalTarget:r.personal_target,taskCap:r.guild_task_cap,guildTasksCompleted:r.guild_tasks_completed,scheduledEndAt:r.scheduled_end_at,competitors:app.competitors.map(x=>({id:x.id,name:x.name,score:x.score,arrival:x.arrival_order,isSelf:x.is_self,rowVersion:x.row_version}))}}}
 function taskById(id){return tasks(true).find(t=>String(t.id)===String(id))}
 function memberById(id){return currentGuild()?.members.find(m=>m.id===id)}
@@ -632,167 +322,59 @@ function snapshotTrend(){
   const endAt=currentGuild()?.competition?.scheduledEndAt;
   const hoursLeft=endAt?Math.max(0,(new Date(endAt)-Date.now())/3600000):null;
   if(snaps.length<2)return{available:false,hours:0,hoursLeft,changes:[],lastAt:snaps.at(-1)?.captured_at||null};
-  const currentA=snaps.at(-2),currentB=snaps.at(-1);
-  const currentHours=Math.max(.05,(new Date(currentB.captured_at)-new Date(currentA.captured_at))/3600000);
-  const previousA=snaps.length>=3?snaps.at(-3):null,previousB=snaps.length>=3?snaps.at(-2):null;
-  const previousHours=previousA?Math.max(.05,(new Date(previousB.captured_at)-new Date(previousA.captured_at))/3600000):null;
-  const findOld=(rows,row)=>rows.find(x=>x.id&&row.id&&x.id===row.id)||rows.find(x=>x.is_self===row.is_self&&x.is_self)||rows.find(x=>x.name===row.name);
-  const changes=(currentB.competitors||[]).map(row=>{
-    const old=findOld(currentA.competitors||[],row);
+  const a=snaps[snaps.length-2],b=snaps[snaps.length-1];
+  const hours=Math.max(.05,(new Date(b.captured_at)-new Date(a.captured_at))/3600000);
+  const oldRows=a.competitors||[],newRows=b.competitors||[];
+  const changes=newRows.map(row=>{
+    const old=oldRows.find(x=>x.id&&row.id&&x.id===row.id)||oldRows.find(x=>x.is_self===row.is_self&&x.is_self)||oldRows.find(x=>x.name===row.name);
     const add=Math.max(0,Number(row.score||0)-Number(old?.score||0));
-    const perHour=add/currentHours;
-    let previousPerHour=null,accelerationLabel='数据不足';
-    if(previousA){
-      const prevEnd=findOld(previousB.competitors||[],row),prevStart=findOld(previousA.competitors||[],row);
-      const prevAdd=Math.max(0,Number(prevEnd?.score||0)-Number(prevStart?.score||0));
-      previousPerHour=prevAdd/previousHours;
-      if(previousPerHour<1&&perHour<1)accelerationLabel='基本稳定';
-      else if(perHour>=previousPerHour*1.5&&perHour-previousPerHour>=50)accelerationLabel='明显加速';
-      else if(perHour>previousPerHour*1.12)accelerationLabel='开始加速';
-      else if(perHour<=previousPerHour*.55&&previousPerHour-perHour>=50)accelerationLabel='明显放缓';
-      else if(perHour<previousPerHour*.88)accelerationLabel='有所放缓';
-      else accelerationLabel='基本稳定';
-    }
+    const perHour=add/hours;
     const projectedScore=hoursLeft===null?null:Math.round(Number(row.score||0)+perHour*hoursLeft);
-    return{...row,add,perHour,previousPerHour,accelerationLabel,projectedScore};
+    return{...row,add,perHour,projectedScore};
   });
-  return{available:true,hours:currentHours,hoursLeft,changes,lastAt:currentB.captured_at,snapshotCount:snaps.length};
+  return{available:true,hours,hoursLeft,changes,lastAt:b.captured_at};
 }
 function competitionCalc(){
   const g=currentGuild(),c=g.competition;
   const rows=[...c.competitors].sort((a,b)=>b.score-a.score||a.arrival-b.arrival);
   const self=c.competitors.find(x=>x.isSelf);
-  if(!self)return{rows,rank:0,targetGap:0,totalRem:0,capRem:0,effectiveRem:0,scenarios:[],risk:'未知',freePotential:0,paidNeeded:0,plans:[]};
-
-  const rank=rows.findIndex(x=>x.id===self.id)+1;
-  const first=rows[0],second=rows[1],fourth=rows[3],fifth=rows[4],next=rows[rank]||null;
-  const tiePoint=opponent=>opponent&&opponent.arrival<self.arrival?1:0;
-  let opponent=null,targetLabel='',targetScore=Number(self.score),buffer=Number(c.safetyMargin||0);
-  if(c.goalMode==='promote'){
-    opponent=rank===1?second:first;
-    targetScore=opponent?Number(opponent.score)+buffer+tiePoint(opponent):Number(self.score);
-    targetLabel=rank===1?'第一名参考领先线还差':'冲第一参考目标还差';
-  }else if(c.goalMode==='avoid'){
-    opponent=rank===5?fourth:fifth;
-    targetScore=opponent?Number(opponent.score)+buffer+tiePoint(opponent):Number(self.score);
-    targetLabel=rank===5?'脱离第五参考线还差':'避免第五参考线还差';
-  }else if(c.goalMode==='steady'||c.goalMode==='save'){
-    opponent=next;
-    targetScore=opponent?Number(opponent.score)+buffer+tiePoint(opponent):Number(self.score);
-    targetLabel=c.goalMode==='save'?'免费守位参考线还差':'稳住当前名次还差';
-  }else{
-    targetScore=Math.max(0,Number(c.customGoalScore||0)+buffer);
-    targetLabel='自定义参考目标还差';
-  }
-  const targetGap=Math.max(0,targetScore-Number(self.score));
-
-  const liveLogs=g.logs.filter(l=>!l.reversedAt);
-  const sampleCount=liveLogs.length;
-  const avgBase=sampleCount?liveLogs.reduce((n,l)=>n+Number(l.basePoints||0),0)/sampleCount:Number(c.avgBase||24);
-  const doubledCount=liveLogs.filter(l=>l.doubled).length;
-  const doubleRate=sampleCount?doubledCount/sampleCount:Number(c.doubleRate||0)/100;
-  const avgAward=sampleCount?liveLogs.reduce((n,l)=>n+Number(l.points||0),0)/sampleCount:avgBase*(1+doubleRate);
-  const averageSource=sampleCount===0?'手动估值':sampleCount<10?'本轮真实记录 · 样本较少':'本轮真实记录';
-
+  if(!self)return{rows,rank:0,targetGap:0,totalRem:0,capRem:0,effectiveRem:0,scenarios:[],risk:'未知',freePotential:0,paidNeeded:0};
+  const rank=rows.findIndex(x=>x.id===self.id)+1,first=rows[0],second=rows[1],fourth=rows[3],fifth=rows[4],next=rows[rank]||null;
+  const leadNeed=(opponent,margin=0)=>opponent?Math.max(0,Number(opponent.score)+Number(margin)+(opponent.arrival<self.arrival?1:0)-Number(self.score)):0;
+  const promoteGap=rank===1?leadNeed(second,c.safetyMargin):leadNeed(first,0);
+  const avoidGap=rank===5?leadNeed(fourth,c.safetyMargin):leadNeed(fifth,c.safetyMargin);
+  const steadyGap=leadNeed(next,c.safetyMargin);
+  const saveGap=rank===5?avoidGap:steadyGap;
+  let targetGap=promoteGap,targetLabel=rank===1?'第一名安全线还差':'冲第一还差';
+  if(c.goalMode==='avoid'){targetGap=avoidGap;targetLabel=rank===5?'脱离第五还差':'保级安全线还差'}
+  if(c.goalMode==='steady'){targetGap=steadyGap;targetLabel='稳住名次还差'}
+  if(c.goalMode==='save'){targetGap=saveGap;targetLabel='仅免费次数守位还差'}
+  if(c.goalMode==='custom'){targetGap=Math.max(0,c.customGoalScore-self.score);targetLabel='自定义目标还差'}
   const active=g.members.filter(m=>m.active&&m.targetMode!=='inactive');
+  const totalRem=active.reduce((n,m)=>n+memberProgress(m).rem,0);
   const freeRem=active.reduce((n,m)=>n+Math.max(0,c.freeLimit-m.freeUsed),0);
   const paidRem=active.reduce((n,m)=>n+Math.max(0,c.paidLimit-m.paidUsed),0);
-  const totalRem=freeRem+paidRem;
-  const capRem=Math.max(0,c.taskCap-c.guildTasksCompleted);
-
-  const freeCount=Math.min(freeRem,capRem);
-  const freeAdd=Math.floor(freeCount*avgAward);
-  const freePlan={key:'free',label:'只用剩余免费次数',count:freeCount,freeCount,paidCount:0,add:freeAdd,final:Number(self.score)+freeAdd};
-
-  let personalFree=0,personalPaid=0;
-  for(const m of active){
-    const mf=Math.max(0,c.freeLimit-m.freeUsed),mp=Math.max(0,c.paidLimit-m.paidUsed);
-    if(m.targetMode==='free_only'||m.targetMode==='normal'){
-      personalFree+=mf;
-      continue;
-    }
-    const target=m.targetMode==='custom'?Number(m.goal||0):Number(c.personalTarget||1400);
-    const need=Math.max(0,target-Number(m.currentPoints||0));
-    let attempts=need>0?Math.ceil(need/Math.max(1,avgAward)):0;
-    const useFree=Math.min(mf,attempts);attempts-=useFree;
-    const usePaid=Math.min(mp,attempts);
-    personalFree+=useFree;personalPaid+=usePaid;
+  const capRem=Math.max(0,c.taskCap-c.guildTasksCompleted),effectiveRem=Math.min(totalRem,capRem),freeEffective=Math.min(freeRem,capRem);
+  const avgAward=Math.max(1,c.avgBase*(1+c.doubleRate/100));
+  const scenarios=[.7,.85,1].map(rate=>({add:Math.floor(effectiveRem*avgAward*rate),final:self.score+Math.floor(effectiveRem*avgAward*rate)}));
+  const freePotential=Math.floor(freeEffective*avgAward*.85);
+  const paidNeeded=Math.min(paidRem,Math.max(0,Math.ceil((targetGap-freePotential)/avgAward)));
+  const chances=5-c.round,maxStage=Math.min(8,c.currentStage+chances),needPromotions=Math.max(0,c.targetStage-c.currentStage),trend=snapshotTrend();
+  const normalPotential=scenarios[1]?.add||0;
+  let risk=targetGap===0?'低':targetGap>normalPotential?'高':targetGap>normalPotential*.65?'中':'低';
+  if(trend.available&&trend.hoursLeft!==null){
+    const fastest=Math.max(0,...trend.changes.filter(x=>!x.is_self).map(x=>x.perHour));
+    const projectedThreat=fastest*trend.hoursLeft;
+    const currentLead=rank===1?Math.max(0,self.score-(second?.score||0)):0;
+    if((rank===1&&projectedThreat>currentLead+c.safetyMargin)||(rank>1&&targetGap+projectedThreat>normalPotential))risk='高';
+    else if(risk==='低'&&projectedThreat>Math.max(c.safetyMargin,targetGap))risk='中';
   }
-  let personalCount=Math.min(capRem,personalFree+personalPaid);
-  const personalFreeCount=Math.min(personalFree,personalCount);
-  const personalPaidCount=Math.min(personalPaid,Math.max(0,personalCount-personalFreeCount));
-  const personalAdd=Math.floor(personalCount*avgAward);
-  const personalPlan={key:'personal',label:'按成员个人目标执行',count:personalCount,freeCount:personalFreeCount,paidCount:personalPaidCount,add:personalAdd,final:Number(self.score)+personalAdd};
-
-  const allCount=Math.min(capRem,totalRem);
-  const allFreeCount=Math.min(freeRem,allCount);
-  const allPaidCount=Math.min(paidRem,Math.max(0,allCount-allFreeCount));
-  const allAdd=Math.floor(allCount*avgAward);
-  const allPlan={key:'all',label:'全部剩余次数估算',count:allCount,freeCount:allFreeCount,paidCount:allPaidCount,add:allAdd,final:Number(self.score)+allAdd};
-
-  const paidNeeded=Math.max(0,Math.ceil(Math.max(0,targetScore-freePlan.final)/Math.max(1,avgAward)));
-  const paidAvailable=Math.min(paidRem,Math.max(0,capRem-freeCount));
-  let conclusion='free',actionTitle='先清剩余免费次数，暂不购买';
-  let actionText=`剩余免费资源预计可以推进到 ${fmt(freePlan.final)} 分。`;
-  if(targetGap===0){
-    conclusion='hold';actionTitle='当前已经达到参考目标，先观察对手';
-    actionText='无需为了“刚好领先”立即继续投入，可先保存快照并按观察时间复查。';
-  }else if(freePlan.final>=targetScore){
-    conclusion='free';actionTitle='先清剩余免费次数，暂不购买';
-    actionText=`免费资源预计覆盖参考目标，并保留约 ${fmt(freePlan.final-targetScore)} 分缓冲。`;
-  }else if(allPlan.final>=targetScore){
-    conclusion='paid';actionTitle=`免费次数不足，先分批使用约${paidNeeded}次购买任务`;
-    actionText=`完成免费次数后仍缺 ${fmt(targetScore-freePlan.final)} 分。按当前平均每次 ${fmt(avgAward)} 分估算。`;
-  }else{
-    conclusion='insufficient';actionTitle='全部剩余次数预计仍不足';
-    actionText=`即使使用全部剩余次数，仍预计缺少 ${fmt(targetScore-allPlan.final)} 分。需要调整目标、提高平均分或增加参与成员。`;
-  }
-
-  const freeBuffer=Math.max(0,Math.floor(freePlan.final-targetScore));
-  const personalBuffer=Math.max(freeBuffer,Math.floor(personalPlan.final-targetScore));
-  const trend=snapshotTrend();
-  const opponentTrend=opponent?trend.changes?.find(x=>x.id===opponent.id||x.name===opponent.name):null;
-  const recommendedObserve=trend.hoursLeft!==null?(trend.hoursLeft<=4?1:trend.hoursLeft<=14?2:4):battleObserveHours;
-  const observeHours=[1,2,4].includes(Number(battleObserveHours))?Number(battleObserveHours):recommendedObserve;
-
-  const coverage=new Map();
-  for(const m of active)for(const id of m.abilities)coverage.set(id,(coverage.get(id)||0)+1);
-  const memberRecommendations=active.map(m=>{
-    const p=memberProgress(m),mf=Math.max(0,c.freeLimit-m.freeUsed),mp=Math.max(0,c.paidLimit-m.paidUsed);
-    const rare=m.abilities.map(taskById).filter(Boolean).filter(t=>(coverage.get(t.id)||0)<=2);
-    const highRare=rare.filter(t=>t.points>=28);
-    let score=0;const reasons=[];
-    if((p.mode==='sprint_1400'||p.mode==='custom')&&p.need>0&&p.need<=memberNearThreshold&&mf>0){score+=80;reasons.push(`距目标还差${fmt(p.need)}分`)}
-    if(highRare.length){score+=55;reasons.push(`可做${highRare.length}项高分稀缺任务`)}
-    else if(rare.length){score+=30;reasons.push(`可做${rare.length}项稀缺任务`)}
-    if(mf>0){score+=Math.min(35,mf*4);reasons.push(`免费剩余${mf}次`)}
-    if(p.need>memberNearThreshold&&p.mode!=='normal'&&p.mode!=='free_only'){score+=12;reasons.push('个人目标尚未完成')}
-    if(p.need<=0&&(p.mode==='sprint_1400'||p.mode==='custom')){score-=15;reasons.push('个人目标已完成')}
-    if(m.status==='暂时不在线')score-=25;
-    if(m.status==='任务进行中')score-=8;
-    if(!reasons.length)reasons.push('按剩余免费次数正常安排');
-    return{member:m,score,reasons,freeRem:mf,paidRem:mp,need:p.need,rare,highRare};
-  }).sort((a,b)=>b.score-a.score||b.freeRem-a.freeRem).slice(0,8);
-
-  const goalConfigured=active.filter(m=>m.targetMode&&m.targetMode!=='normal').length;
-  const abilityConfigured=active.filter(m=>m.abilities.length>0).length;
-  const risk=conclusion==='insufficient'?'高':conclusion==='paid'?'中':'低';
-  const chances=5-c.round,maxStage=Math.min(8,c.currentStage+chances),needPromotions=Math.max(0,c.targetStage-c.currentStage);
-
-  return{
-    rows,self,rank,first,second,fourth,fifth,next,opponent,targetScore,targetGap,targetLabel,buffer,
-    totalRem,freeRem,paidRem,capRem,effectiveRem:allCount,freeEffective:freeCount,
-    freePotential:freeAdd,paidNeeded,paidAvailable,plans:[freePlan,personalPlan,allPlan],
-    freePlan,personalPlan,allPlan,avgBase,avgAward,doubleRate,sampleCount,averageSource,
-    conclusion,actionTitle,actionText,freeBuffer,personalBuffer,trend,opponentTrend,
-    observeHours,recommendedObserve,risk,memberRecommendations,goalConfigured,abilityConfigured,
-    activeCount:active.length,chances,maxStage,needPromotions,
-    scenarios:[freePlan,personalPlan,allPlan]
-  };
+  return{rows,self,rank,promoteGap,avoidGap,steadyGap,saveGap,targetGap,targetLabel,totalRem,freeRem,paidRem,capRem,effectiveRem,freeEffective,freePotential,paidNeeded,scenarios,chances,maxStage,needPromotions,trend,risk,avgAward};
 }
 function goalModeLabel(v){return({promote:'冲第一升段',avoid:'避免第五降段',steady:'稳住当前名次',save:'节省钻石',custom:'自定义目标'})[v]||v}
 
-function renderAdmin(){document.getElementById('root').innerHTML=`<div class="admin-shell"><div class="admin-head"><div><span class="pill lav">仅小妙可见</span><h1 style="margin-top:9px">小妙管理端</h1><p class="muted">授权公会、公共任务库和跨公会维护均已连接 Supabase。</p></div><div class="row"><span class="cloud-badge"><i class="cloud-dot"></i>云端已连接</span><button class="btn btn-ghost" onclick="logout()">退出管理</button></div></div><div class="admin-tabs"><button class="btn btn-ghost ${adminTab==='guilds'?'active':''}" onclick="adminTab='guilds';renderAdmin()">公会授权</button><button class="btn btn-ghost ${adminTab==='tasks'?'active':''}" onclick="adminTab='tasks';renderAdmin()">任务库维护</button></div><div id="adminContent"></div>${footerHtml()}</div>`;adminTab==='tasks'?renderAdminTasks():renderAdminGuilds()}
+function renderAdmin(){document.getElementById('root').innerHTML=`<div class="admin-shell"><div class="admin-head"><div><span class="pill lav">仅小妙可见</span><h1 style="margin-top:9px">小妙管理端</h1><p class="muted">授权公会、公共任务库、竞标保安授权与跨公会维护均已连接 Supabase。</p></div><div class="row"><span class="cloud-badge"><i class="cloud-dot"></i>云端已连接</span><button class="btn btn-ghost" onclick="logout()">退出管理</button></div></div><div class="admin-tabs"><button class="btn btn-ghost ${adminTab==='guilds'?'active':''}" onclick="switchAdminTab('guilds')">公会授权</button><button class="btn btn-ghost ${adminTab==='tasks'?'active':''}" onclick="switchAdminTab('tasks')">任务库维护</button><button class="btn btn-ghost ${adminTab==='guard'?'active':''}" onclick="switchAdminTab('guard')">保安管理</button></div><div id="adminContent"></div>${footerHtml()}</div>`;if(adminTab==='tasks')renderAdminTasks();else if(adminTab==='guard')renderAdminGuard();else renderAdminGuilds()}
+function switchAdminTab(tab){adminTab=tab;renderAdmin();if(tab==='guard'&&!app.guardAdmin.loaded&&!app.guardAdmin.loading)loadGuardAdminData()}
 function adminGuildChannels(){
   return [...new Set(app.adminGuilds.map(g=>String(g.channel_category||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'zh-CN'));
 }
@@ -862,59 +444,104 @@ async function bindGuildAccount(){await withBusy(async()=>{const email=document.
 async function toggleGuild(id,enabled){await withBusy(async()=>{try{const {error}=await db.rpc('admin_set_guild_enabled',{p_guild_id:id,p_enabled:enabled});if(error)throw error;await loadAdminData();toast(enabled?'公会已恢复':'公会已暂停');renderAdmin()}catch(e){showError(e)}})}
 async function adminPreviewGuild(id,mode='view'){await withBusy(async()=>{try{adminPreviewMode=mode;await loadGuildData(id);activeTab='home';renderApp(true)}catch(e){showError(e,'载入公会失败');renderAdmin()}})}
 async function exitAdminPreview(){await loadAdminData();app.guild=null;app.round=null;app.previewGuildId=null;renderAdmin()}
-function renderAdminTasks(){
-  const all=tasks(true),pending=all.filter(t=>t.visibility==='guild'&&t.reviewStatus==='pending'),active=all.filter(t=>!t.disabled),inactive=all.filter(t=>t.disabled);
-  const workflowWarning=app.taskWorkflowReady?'':`<div class="advice bad"><b>任务补充数据库尚未升级</b><br>请先运行随补丁提供的 Supabase 升级SQL。公共任务维护仍可使用，但公会新增与审核暂不可用。</div>`;
-  document.getElementById('adminContent').innerHTML=`${workflowWarning}
-  <section class="card paper" style="padding:21px;margin-bottom:16px"><div class="section-title"><div><h2>任务库维护</h2><p>修改名称或积分时保留原任务ID，不影响成员能力和历史记录。</p></div><div class="row"><button class="btn btn-ghost" onclick="exportAdminTasks('all')">导出全部</button><button class="btn btn-ghost" onclick="exportAdminTasks('active')">导出启用</button><button class="btn btn-ghost" onclick="exportAdminTasks('inactive')">导出停用</button></div></div><div class="admin-task-stats"><div class="card kpi"><span>全部任务</span><b>${all.length}</b></div><div class="card kpi"><span>正在使用</span><b>${active.length}</b></div><div class="card kpi"><span>已停用</span><b>${inactive.length}</b></div><div class="card kpi"><span>待审核</span><b>${pending.length}</b></div></div><div class="tabs" style="margin:0"><button class="${adminTaskView==='library'?'active':''}" onclick="adminTaskView='library';renderAdminTasks()">公共任务库</button><button class="${adminTaskView==='pending'?'active':''}" onclick="adminTaskView='pending';renderAdminTasks()">待审核${pending.length?`（${pending.length}）`:''}</button><button class="${adminTaskView==='audit'?'active':''}" onclick="adminTaskView='audit';renderAdminTasks()">修改记录</button></div></section>
-  <div id="adminTaskMain"></div>`;
-  if(adminTaskView==='pending')return renderPendingTaskReviews();
-  if(adminTaskView==='audit')return renderTaskAuditList();
-  document.getElementById('adminTaskMain').innerHTML=`<section class="card paper" style="padding:21px;margin-bottom:16px"><div class="section-title"><div><h2>任务库版本</h2><p>完成一批修改后再统一更新版本号。</p></div></div><div class="grid grid-3"><div><label class="label">版本号</label><input id="taskVersion" class="input" value="${esc(app.taskLibrary.version)}"></div><div><label class="label">最后更新时间</label><div class="input" style="background:#fbf5f8">${fmtTime(app.taskLibrary.updatedAt)}</div></div><div style="display:flex;align-items:flex-end"><button class="btn btn-primary" style="width:100%" onclick="saveTaskVersion()">保存版本</button></div></div></section>
-  <section class="card" style="padding:21px;margin-bottom:16px"><div class="section-title"><div><h2>新增公共任务</h2><p>小妙直接新增的任务会立即同步给全部授权公会。</p></div></div><div class="grid grid-3"><input id="customTaskName" class="input" placeholder="任务名称"><input id="customTaskPoints" class="input" type="number" min="1" max="99" placeholder="基础积分"><button class="btn btn-soft" onclick="addCustomTask()">新增任务</button></div><div class="divider"></div><div class="section-title"><div><h3>批量导入任务与积分</h3><p>每行一个任务，最后一列填写基础积分。</p></div><div><input id="bulkTaskFile" type="file" accept=".csv,.txt,text/csv,text/plain" class="hidden" onchange="loadBulkTaskFile(this)"><button class="btn btn-ghost" onclick="document.getElementById('bulkTaskFile').click()">载入CSV / TXT</button></div></div><textarea id="bulkTaskText" class="textarea" placeholder="夏雨荷·画境生欢    24&#10;小倩·兰若旧梦    28"></textarea><div class="row" style="margin-top:11px"><select id="bulkTaskMode" class="select" style="max-width:280px"><option value="skip">跳过同名任务（推荐）</option><option value="update">更新同名任务积分</option></select><button class="btn btn-primary" onclick="previewBulkTasks()">预览批量导入</button></div></section>
-  <section class="card" style="padding:21px"><div class="section-title"><div><h2>全部任务</h2><p>编辑、停用或恢复后会留在当前搜索位置。</p></div></div><div class="admin-task-toolbar"><div class="admin-task-search"><label class="label">搜索任务</label><input id="adminTaskSearch" class="input" value="${esc(adminTaskSearch)}" placeholder="输入任务名称" oninput="adminTaskSearch=this.value;renderAdminTaskRows()"></div><div><label class="label">筛选状态</label><select class="select" onchange="adminTaskStatusFilter=this.value;renderAdminTaskRows()"><option value="all" ${adminTaskStatusFilter==='all'?'selected':''}>全部</option><option value="active" ${adminTaskStatusFilter==='active'?'selected':''}>正在使用</option><option value="inactive" ${adminTaskStatusFilter==='inactive'?'selected':''}>已停用</option><option value="submitted" ${adminTaskStatusFilter==='submitted'?'selected':''}>公会补充</option></select></div><button class="btn btn-ghost" onclick="adminTaskSearch='';adminTaskStatusFilter='all';renderAdminTasks()">清除筛选</button></div><div id="adminTaskRows" style="margin-top:12px"></div></section>`;
-  renderAdminTaskRows();
-}
-function renderAdminTaskRows(q=adminTaskSearch){
-  adminTaskSearch=String(q??adminTaskSearch);
-  const host=document.getElementById('adminTaskRows');if(!host)return;
-  const list=tasks(true).filter(t=>{
-    if(adminTaskSearch&&!norm(t.name).includes(norm(adminTaskSearch)))return false;
-    if(adminTaskStatusFilter==='active'&&t.disabled)return false;
-    if(adminTaskStatusFilter==='inactive'&&!t.disabled)return false;
-    if(adminTaskStatusFilter==='submitted'&&t.visibility!=='guild')return false;
-    return t.reviewStatus!=='pending';
-  }).sort((a,b)=>b.points-a.points||a.name.localeCompare(b.name,'zh-CN'));
-  const rows=list.map(t=>`<tr><td><b>${esc(t.name)}</b>${taskOriginBadge(t)}</td><td>${t.points}</td><td>${t.points*2}</td><td><span class="pill ${t.disabled?'bad':'good'}">${t.disabled?'已停用':'使用中'}</span></td><td><div class="admin-task-actions"><button class="btn btn-sm btn-soft" onclick="openEditTaskModal(${t.id})">编辑</button><button class="btn btn-sm ${t.disabled?'btn-success':'btn-danger'}" onclick="adminToggleTask(${t.id},${t.disabled})">${t.disabled?'恢复':'停用'}</button></div></td></tr>`).join('');
-  const cards=list.map(t=>`<div class="admin-task-mobile-card"><h3>${esc(t.name)} ${taskOriginBadge(t)}</h3><div class="row"><span class="pill blue">基础${t.points}</span><span class="pill ${t.disabled?'bad':'good'}">${t.disabled?'已停用':'使用中'}</span></div><div class="admin-task-actions"><button class="btn btn-sm btn-soft" onclick="openEditTaskModal(${t.id})">编辑名称与积分</button><button class="btn btn-sm ${t.disabled?'btn-success':'btn-danger'}" onclick="adminToggleTask(${t.id},${t.disabled})">${t.disabled?'恢复':'停用'}</button></div></div>`).join('');
-  host.innerHTML=list.length?`<div class="table-wrap admin-task-table" style="max-height:610px"><table class="table"><thead><tr><th>任务名称</th><th>基础分</th><th>翻倍</th><th>状态</th><th>操作</th></tr></thead><tbody>${rows}</tbody></table></div><div class="admin-task-mobile-list">${cards}</div>`:`<div class="empty">没有符合当前条件的任务。</div>`;
-}
-async function saveTaskVersion(){
-  const version=document.getElementById('taskVersion')?.value.trim();if(!version)return toast('请输入版本号');
+
+async function loadGuardAdminData(silent=false){
+  if(app.guardAdmin.loading)return;
+  app.guardAdmin.loading=true;
+  if(!silent&&adminTab==='guard')renderAdminGuard();
   try{
-    const now=new Date().toISOString(),{error}=await db.from('app_settings').update({value:{version,updated_at:now}}).eq('key','task_library');
+    const {data,error}=await db.rpc('xm_guard_admin',{p_action:'list',p_args:{}});
     if(error)throw error;
-    await reloadAdminTasksKeepState('版本已保存');
-  }catch(e){showError(e)}
+    app.guardAdmin={loaded:true,loading:false,invites:Array.isArray(data?.invites)?data.invites:[],guilds:Array.isArray(data?.guilds)?data.guilds:[],leases:Array.isArray(data?.leases)?data.leases:[]};
+    if(adminTab==='guard')renderAdminGuard();
+  }catch(e){
+    app.guardAdmin.loading=false;
+    if(adminTab==='guard')document.getElementById('adminContent').innerHTML=`<div class="error-box">保安管理接口尚未部署或读取失败。请先执行配套 SQL：06_guard_admin_console.sql。<br><span class="tiny">${esc(e?.message||e)}</span></div>`;
+    else showError(e,'保安管理读取失败');
+  }
 }
-async function addCustomTask(){
-  const name=document.getElementById('customTaskName')?.value.trim(),points=Number(document.getElementById('customTaskPoints')?.value);
-  if(!name||!points)return toast('请填写任务名称和积分');
-  const exact=taskSimilarityList(name).find(x=>x.score===100);
-  if(exact&&!confirm(`任务库中已有“${exact.task.name}”。仍要继续新增吗？`))return;
+function filteredGuardInvites(){
+  const q=norm(adminGuardSearch),now=Date.now();
+  return [...(app.guardAdmin.invites||[])].filter(i=>{
+    const platform=String(i.platform_type||'').trim();
+    const haystack=norm([i.label,i.guild_name,i.server_name,i.leader_name,i.code_hint,i.app_version].join(' '));
+    if(q&&!haystack.includes(q))return false;
+    if(adminGuardPlatformFilter==='official'&&platform!=='official')return false;
+    if(adminGuardPlatformFilter==='channel'&&platform!=='channel')return false;
+    if(adminGuardPlatformFilter==='unclassified'&&platform)return false;
+    const registered=!!i.guild_name&&!!i.server_name;
+    const expired=i.expires_at&&new Date(i.expires_at).getTime()<=now;
+    if(adminGuardStatusFilter==='registered'&&!registered)return false;
+    if(adminGuardStatusFilter==='unregistered'&&registered)return false;
+    if(adminGuardStatusFilter==='enabled'&&(!i.enabled||expired))return false;
+    if(adminGuardStatusFilter==='disabled'&&i.enabled&&!expired)return false;
+    if(adminGuardStatusFilter==='active7'&&!isWithinDays(i.last_seen_at,7))return false;
+    return true;
+  }).sort((a,b)=>new Date(b.registered_at||b.created_at||0)-new Date(a.registered_at||a.created_at||0));
+}
+function clearAdminGuardFilters(){adminGuardSearch='';adminGuardPlatformFilter='all';adminGuardStatusFilter='all';renderAdminGuard()}
+function renderAdminGuard(){
+  const box=document.getElementById('adminContent');if(!box)return;
+  const ga=app.guardAdmin||{loaded:false,loading:false,invites:[],guilds:[],leases:[]};
+  if(!ga.loaded){
+    box.innerHTML=`<div class="loading-card card" style="margin:0 auto"><div class="spinner"></div><h2>${ga.loading?'正在读取保安授权…':'准备读取保安授权'}</h2><p class="muted">这里与公会授权、任务库共用同一个小妙管理员账号。</p></div>`;
+    if(!ga.loading)setTimeout(()=>loadGuardAdminData(),0);
+    return;
+  }
+  const invites=ga.invites||[],registered=invites.filter(i=>i.guild_name&&i.server_name),active7=registered.filter(i=>isWithinDays(i.last_seen_at,7)),guild2=invites.filter(i=>i.guild_allowed);
+  box.innerHTML=`<section class="card paper" style="padding:21px;margin-bottom:18px"><div class="section-title"><div><h2>生成保安邀请码</h2><p>邀请码与公会竞标赛助手授权分开管理。生成后请立即复制；系统只保留邀请码尾号用于核对。</p></div><button class="btn btn-ghost" onclick="loadGuardAdminData()">刷新数据</button></div><div class="grid grid-4"><div><label class="label">邀请码备注</label><input id="guardIssueLabel" class="input" maxlength="100" placeholder="例如：妙不可言 / 测试授权"></div><div><label class="label">有效天数</label><input id="guardIssueDays" class="input" type="number" min="1" max="3650" value="90"></div><div><label class="label">公会2.0权限</label><select id="guardIssueGuildAllowed" class="select" onchange="toggleGuardGuildSelect()"><option value="false">普通保安</option><option value="true">允许公会2.0</option></select></div><div><label class="label">关联2.0公会</label><select id="guardIssueGuildId" class="select" disabled><option value="">请选择公会</option>${(ga.guilds||[]).map(g=>`<option value="${esc(g.id)}">${esc(g.name)} · ${esc(g.code||'')}</option>`).join('')}</select></div></div><button class="btn btn-primary" style="margin-top:15px" onclick="generateGuardInvite()">生成邀请码</button></section>
+  <div class="guard-kpis"><div class="card kpi"><span>邀请码记录</span><b>${invites.length}</b></div><div class="card kpi"><span>已注册公会</span><b>${registered.length}</b></div><div class="card kpi"><span>近7日活跃</span><b>${active7.length}</b></div><div class="card kpi"><span>公会2.0授权</span><b>${guild2.length}</b></div></div>
+  <section class="card guard-admin-tools"><div class="section-title"><div><h2>查询保安注册情况</h2><p>支持按公会名、区服、会长、邀请码备注或版本搜索。官服/渠道服分类将在新版注册页填写后自动进入对应分类。</p></div></div><div class="guard-admin-filter-grid"><div class="guard-search-field"><label class="label">搜索</label><input class="input" value="${esc(adminGuardSearch)}" placeholder="输入公会、区服、会长、备注或版本" oninput="adminGuardSearch=this.value;renderGuardAdminList()"></div><div><label class="label">类型</label><select class="select" onchange="adminGuardPlatformFilter=this.value;renderGuardAdminList()"><option value="all" ${adminGuardPlatformFilter==='all'?'selected':''}>全部类型</option><option value="official" ${adminGuardPlatformFilter==='official'?'selected':''}>官服</option><option value="channel" ${adminGuardPlatformFilter==='channel'?'selected':''}>渠道服</option><option value="unclassified" ${adminGuardPlatformFilter==='unclassified'?'selected':''}>未分类</option></select></div><div><label class="label">状态</label><select class="select" onchange="adminGuardStatusFilter=this.value;renderGuardAdminList()"><option value="all" ${adminGuardStatusFilter==='all'?'selected':''}>全部状态</option><option value="registered" ${adminGuardStatusFilter==='registered'?'selected':''}>已注册公会</option><option value="unregistered" ${adminGuardStatusFilter==='unregistered'?'selected':''}>未注册邀请码</option><option value="enabled" ${adminGuardStatusFilter==='enabled'?'selected':''}>授权有效</option><option value="disabled" ${adminGuardStatusFilter==='disabled'?'selected':''}>停用/过期</option><option value="active7" ${adminGuardStatusFilter==='active7'?'selected':''}>近7日活跃</option></select></div><button class="btn btn-ghost guard-clear-filter" onclick="clearAdminGuardFilters()">清除筛选</button></div></section>
+  <div class="admin-guild-summary"><div><h2 style="margin:0">保安授权记录</h2><p id="guardAdminCountText" class="muted" style="margin:5px 0 0"></p></div><span class="pill lav">官服 / 渠道服可切换</span></div><div id="guardAdminList"></div>`;
+  renderGuardAdminList();
+}
+function renderGuardAdminList(){
+  const box=document.getElementById('guardAdminList');if(!box)return;
+  const list=filteredGuardInvites(),total=(app.guardAdmin.invites||[]).length,count=document.getElementById('guardAdminCountText');
+  if(count)count.textContent=`显示 ${list.length} 条，共 ${total} 条。已注册公会按区服、公会名和会长展示。`;
+  const now=Date.now();
+  box.innerHTML=list.length?list.map(i=>{
+    const registered=!!i.guild_name&&!!i.server_name,expired=i.expires_at&&new Date(i.expires_at).getTime()<=now,enabled=i.enabled&&!expired;
+    const platform=platformLabel(i.platform_type),hint=i.code_hint?`BA-••••${esc(i.code_hint)}`:'旧邀请码';
+    const title=registered?`${esc(i.server_name)} · ${esc(i.guild_name)}`:`${esc(i.label||'未命名邀请码')}`;
+    const lease=(app.guardAdmin.leases||[]).find(x=>x.invite_id===i.id);
+    return `<div class="guard-admin-item card"><div><strong class="guard-title">${title}</strong><div class="guard-meta"><span class="pill ${i.platform_type?'lav':'empty'}">${esc(platform)}</span><span class="pill ${enabled?'good':'bad'}">${enabled?'授权有效':expired?'已过期':'已停用'}</span><span class="pill ${registered?'blue':'high'}">${registered?'已注册':'待注册'}</span>${i.guild_allowed?'<span class="pill high">公会2.0</span>':''}${i.device_bound?'<span class="pill good">已绑设备</span>':'<span class="pill empty">未绑设备</span>'}${lease?`<span class="pill ${lease.state==='RUNNING'?'good':'empty'}">${esc(lease.state||'')}</span>`:''}</div><div class="guard-sub">${registered?`会长：${esc(i.leader_name||'—')} · 注册：${fmtTime(i.registered_at)} · 最近使用：${fmtTime(i.last_seen_at)} · 版本：${esc(i.app_version||'—')}`:`备注：${esc(i.label||'—')} · 创建：${fmtTime(i.created_at)} · 到期：${fmtTime(i.expires_at)}`}<br>邀请码：${hint}${registered&&i.label?` · 备注：${esc(i.label)}`:''}</div></div><div class="guard-admin-actions"><button class="btn btn-sm ${i.enabled?'btn-danger':'btn-success'}" onclick="toggleGuardInvite('${i.id}',${!i.enabled})">${i.enabled?'停用邀请码':'恢复邀请码'}</button><button class="btn btn-sm btn-ghost" onclick="resetGuardDevice('${i.id}')">重置设备</button></div></div>`;
+  }).join(''):`<div class="empty">没有符合当前筛选条件的保安授权记录。</div>`;
+}
+function toggleGuardGuildSelect(){
+  const enabled=document.getElementById('guardIssueGuildAllowed')?.value==='true',sel=document.getElementById('guardIssueGuildId');if(sel)sel.disabled=!enabled;
+}
+async function generateGuardInvite(){
   await withBusy(async()=>{
+    const label=document.getElementById('guardIssueLabel')?.value.trim()||'',days=clamp(document.getElementById('guardIssueDays')?.value||90,1,3650),guildAllowed=document.getElementById('guardIssueGuildAllowed')?.value==='true',guildId=document.getElementById('guardIssueGuildId')?.value||'';
+    if(!label)return toast('请填写邀请码备注，方便以后查询');
+    if(guildAllowed&&!guildId)return toast('开启公会2.0权限时，请先选择关联公会');
     try{
-      if(app.taskWorkflowReady){
-        const {error}=await db.rpc('admin_create_task_v3',{p_name:name,p_base_points:points,p_operator_name:operatorName()});
-        if(error)throw error;
-      }else{
-        const {error}=await db.from('tasks').insert({name,base_points:points,sort_order:9999,active:true});
-        if(error)throw error;
-      }
-      await reloadAdminTasksKeepState('公共任务已新增');
-    }catch(e){showError(e,'新增失败')}
+      const {data,error}=await db.rpc('xm_guard_admin',{p_action:'issue',p_args:{label,days,guild_allowed:guildAllowed,guild_id:guildId}});
+      if(error)throw error;
+      const code=data?.code;if(!code)throw new Error('没有收到邀请码');
+      await loadGuardAdminData(true);
+      openModal(`<div class="modal-head"><div><span class="pill good">生成成功</span><h3 style="margin-top:9px">保安邀请码</h3><p class="muted">请现在复制保存。为了安全，刷新页面后只显示尾号，不能还原完整邀请码。</p></div><button class="modal-close" onclick="closeModal()">×</button></div><div class="guard-code-box">${esc(code)}</div><button class="btn btn-primary" style="width:100%;margin-top:14px" onclick="copyText('${esc(code)}')">复制邀请码</button>`);
+    }catch(e){showError(e,'生成邀请码失败')}
   });
 }
+async function toggleGuardInvite(id,value){
+  await withBusy(async()=>{try{const {error}=await db.rpc('xm_guard_admin',{p_action:'toggle',p_args:{id,value}});if(error)throw error;await loadGuardAdminData(true);toast(value?'邀请码已恢复':'邀请码已停用')}catch(e){showError(e,'授权操作失败')}})
+}
+async function resetGuardDevice(id){
+  if(!confirm('确认重置这条保安授权的设备绑定？公会注册资料会保留。'))return;
+  await withBusy(async()=>{try{const {error}=await db.rpc('xm_guard_admin',{p_action:'reset',p_args:{id}});if(error)throw error;await loadGuardAdminData(true);toast('设备绑定已重置')}catch(e){showError(e,'重置设备失败')}})
+}
+
+function renderAdminTasks(){
+  document.getElementById('adminContent').innerHTML=`<section class="card paper" style="padding:21px;margin-bottom:18px"><div class="section-title"><div><h2>任务库版本</h2><p>新增、修改或停用任务后，建议同步更新版本号。</p></div></div><div class="grid grid-3"><div><label class="label">版本号</label><input id="taskVersion" class="input" value="${esc(app.taskLibrary.version)}"></div><div><label class="label">最后更新时间</label><div class="input" style="background:#fbf5f8">${fmtTime(app.taskLibrary.updatedAt)}</div></div><div style="display:flex;align-items:flex-end"><button class="btn btn-primary" style="width:100%" onclick="saveTaskVersion()">保存版本</button></div></div></section>
+  <section class="card" style="padding:21px;margin-bottom:18px"><div class="section-title"><div><h2>新增任务</h2><p>新增后会进入所有授权公会的任务清单。</p></div></div><div class="grid grid-3"><input id="customTaskName" class="input" placeholder="任务名称"><input id="customTaskPoints" class="input" type="number" min="1" max="99" placeholder="基础积分"><button class="btn btn-soft" onclick="addCustomTask()">新增任务</button></div><div class="divider"></div><div class="section-title"><div><h3>批量导入任务与积分</h3><p>可直接粘贴，也可载入 CSV/TXT。每行一个任务，最后一列填写基础积分。</p></div><div><input id="bulkTaskFile" type="file" accept=".csv,.txt,text/csv,text/plain" class="hidden" onchange="loadBulkTaskFile(this)"><button class="btn btn-ghost" onclick="document.getElementById('bulkTaskFile').click()">载入CSV / TXT</button></div></div><textarea id="bulkTaskText" class="textarea" placeholder="夏雨荷·画境生欢    24&#10;小倩·兰若旧梦    28&#10;紫霞·月下良缘    30"></textarea><div class="row" style="margin-top:11px"><select id="bulkTaskMode" class="select" style="max-width:280px"><option value="skip">跳过同名任务（推荐）</option><option value="update">更新同名任务积分</option></select><button class="btn btn-primary" onclick="previewBulkTasks()">预览批量导入</button></div></section>
+  <section class="card" style="padding:21px"><div class="section-title"><div><h2>全部任务</h2><p>${tasks(true).length}项，可修改积分或停用。历史记录不会因停用而消失。</p></div></div><input id="adminTaskSearch" class="input" placeholder="搜索任务" oninput="renderAdminTaskRows(this.value)"><div id="adminTaskRows" class="table-wrap" style="max-height:610px;margin-top:12px"></div></section>`;
+  renderAdminTaskRows('');
+}
+function renderAdminTaskRows(q){const list=tasks(true).filter(t=>norm(t.name).includes(norm(q))).sort((a,b)=>b.points-a.points||a.name.localeCompare(b.name,'zh-CN'));document.getElementById('adminTaskRows').innerHTML=`<table class="table"><thead><tr><th>任务名称</th><th>基础分</th><th>翻倍</th><th>状态</th><th>操作</th></tr></thead><tbody>${list.map(t=>`<tr><td>${esc(t.name)}</td><td><input type="number" min="1" max="99" value="${t.points}" onchange="adminSetTaskPoint(${t.id},this.value)"></td><td>${t.points*2}</td><td><span class="pill ${t.disabled?'bad':'good'}">${t.disabled?'已停用':'使用中'}</span></td><td><button class="btn btn-sm ${t.disabled?'btn-success':'btn-danger'}" onclick="adminToggleTask(${t.id},${t.disabled})">${t.disabled?'恢复':'停用'}</button></td></tr>`).join('')}</tbody></table>`}
+async function saveTaskVersion(){const version=document.getElementById('taskVersion').value.trim();if(!version)return toast('请输入版本号');try{const now=new Date().toISOString(),{error}=await db.from('app_settings').update({value:{version,updated_at:now}}).eq('key','task_library');if(error)throw error;await loadTaskLibrary(true);toast('版本已保存');renderAdminTasks()}catch(e){showError(e)}}
+async function addCustomTask(){const name=document.getElementById('customTaskName').value.trim(),points=Number(document.getElementById('customTaskPoints').value);if(!name||!points)return toast('请填写任务名称和积分');try{const {error}=await db.from('tasks').insert({name,base_points:points,sort_order:9999,active:true});if(error)throw error;await loadTaskLibrary(true);toast('任务已新增');renderAdminTasks()}catch(e){showError(e)}}
 
 function loadBulkTaskFile(input){
   const file=input.files?.[0];if(!file)return;
@@ -932,134 +559,17 @@ function previewBulkTasks(){
 }
 async function confirmBulkTasks(){
   const rows=bulkTaskPreviewRows;if(!rows.length)return toast('没有待导入内容');
-  await withBusy(async()=>{try{
-    const mode=document.getElementById('bulkTaskMode')?.value||'skip';
-    const {data,error}=await db.rpc('admin_bulk_import_tasks',{p_rows:rows,p_mode:mode});
-    if(error)throw error;
-    closeModal();bulkTaskPreviewRows=[];
-    await reloadAdminTasksKeepState(`新增${data.inserted}项，更新${data.updated}项，跳过${data.skipped}项`);
-  }catch(e){showError(e,'批量导入失败')}});
+  await withBusy(async()=>{try{const mode=document.getElementById('bulkTaskMode')?.value||'skip';const {data,error}=await db.rpc('admin_bulk_import_tasks',{p_rows:rows,p_mode:mode});if(error)throw error;closeModal();bulkTaskPreviewRows=[];await loadTaskLibrary(true);toast(`新增${data.inserted}项，更新${data.updated}项，跳过${data.skipped}项`);renderAdminTasks()}catch(e){showError(e,'批量导入失败')}});
 }
-async function adminSetTaskPoint(id,value){
-  const t=taskById(id);if(!t)return;
-  await saveTaskEdit(id,t.name,clamp(value,1,99));
-}
-async function adminToggleTask(id,restore){
-  await withBusy(async()=>{
-    try{
-      if(app.taskWorkflowReady){
-        const {error}=await db.rpc('admin_set_task_active_v3',{p_task_id:id,p_active:!!restore,p_operator_name:operatorName()});
-        if(error)throw error;
-      }else{
-        const {error}=await db.from('tasks').update({active:restore}).eq('id',id);
-        if(error)throw error;
-      }
-      await reloadAdminTasksKeepState(restore?'任务已恢复':'任务已停用');
-    }catch(e){showError(e)}
-  });
-}
-
-function openEditTaskModal(id){
-  const t=taskById(id);if(!t)return;
-  openModal(`<div class="modal-head"><div><h3>编辑任务</h3><p class="muted">直接更新原任务ID，不会删除成员能力或历史记录。</p></div><button class="modal-close" onclick="closeModal()">×</button></div><label class="label">任务名称</label><input id="editTaskName" class="input" value="${esc(t.name)}" oninput="renderEditTaskHints(${t.id})"><div id="editTaskHints"></div><div style="height:11px"></div><label class="label">基础积分</label><input id="editTaskPoints" class="input" type="number" min="1" max="99" value="${t.points}"><div class="advice warn"><b>修改提醒</b><br>任务查询、能力登记和今后的完成登记会显示新名称；历史记录仍保留当时的名称快照。</div><div class="row"><button class="btn btn-ghost grow" onclick="closeModal()">取消</button><button class="btn btn-primary grow" onclick="saveTaskEdit(${t.id})">保存修改</button></div>`);
-  renderEditTaskHints(t.id);
-}
-function renderEditTaskHints(id){
-  const box=document.getElementById('editTaskHints');if(!box)return;
-  const name=document.getElementById('editTaskName')?.value||'';
-  const similar=taskSimilarityList(name,id);
-  box.innerHTML=similar.length?`<div class="duplicate-hints">${similar.map(x=>`<div class="duplicate-hint"><b>${x.score===100?'完全同名':'相似任务'}：${esc(x.task.name)}</b><div class="tiny muted">基础${x.task.points}分 · ${x.task.disabled?'已停用':'使用中'}</div></div>`).join('')}</div>`:'';
-}
-async function saveTaskEdit(id,forcedName=null,forcedPoints=null){
-  const t=taskById(id);if(!t)return;
-  const name=(forcedName??document.getElementById('editTaskName')?.value??t.name).trim();
-  const points=Number(forcedPoints??document.getElementById('editTaskPoints')?.value??t.points);
-  if(!name)return toast('任务名称不能为空');
-  if(!Number.isFinite(points)||points<1||points>99)return toast('基础积分必须在1至99之间');
-  const exact=taskSimilarityList(name,id).find(x=>x.score===100);
-  if(exact&&!confirm(`任务库中已有同名任务“${exact.task.name}”。确定仍保存吗？`))return;
-  await withBusy(async()=>{
-    try{
-      if(app.taskWorkflowReady){
-        const {error}=await db.rpc('admin_update_task_v3',{p_task_id:id,p_name:name,p_base_points:points,p_expected_version:t.rowVersion??null,p_operator_name:operatorName()});
-        if(error)throw error;
-      }else{
-        const {error}=await db.from('tasks').update({name,base_points:points}).eq('id',id);
-        if(error)throw error;
-      }
-      closeModal();
-      await reloadAdminTasksKeepState('任务名称和积分已更新');
-    }catch(e){showError(e,'保存失败')}
-  });
-}
-function guildNameById(id){return app.adminGuilds.find(g=>String(g.id)===String(id))?.name||'未知公会'}
-function renderPendingTaskReviews(){
-  const box=document.getElementById('adminTaskMain');if(!box)return;
-  const list=tasks(true).filter(t=>t.visibility==='guild'&&t.reviewStatus==='pending').sort((a,b)=>new Date(a.createdAt)-new Date(b.createdAt));
-  box.innerHTML=`<section class="card" style="padding:21px"><div class="section-title"><div><h2>公会补充任务待审核</h2><p>提交公会已经可以在本公会使用。通过后同步给全部公会；驳回或合并不会删除历史登记。</p></div></div><div class="task-review-list">${list.length?list.map(t=>`<div class="task-review-item"><div><h3>${esc(t.name)} <span class="pill high">基础${t.points}</span></h3><p>${esc(guildNameById(t.ownerGuildId))} · 提交人：${esc(t.submittedBy||'公会管理员')} · ${fmtTime(t.createdAt)}</p>${t.submittedNote?`<p style="margin-top:5px">备注：${esc(t.submittedNote)}</p>`:''}${taskSimilarityList(t.name,t.id).length?`<div class="tiny muted" style="margin-top:7px">可能相似：${taskSimilarityList(t.name,t.id).slice(0,3).map(x=>esc(x.task.name)).join('、')}</div>`:''}</div><div class="task-review-actions"><button class="btn btn-sm btn-success" onclick="reviewGuildTask(${t.id},'approve')">直接通过</button><button class="btn btn-sm btn-soft" onclick="openReviewEditModal(${t.id})">编辑后通过</button><button class="btn btn-sm btn-ghost" onclick="openMergeTaskModal(${t.id})">合并已有任务</button><button class="btn btn-sm btn-danger" onclick="openRejectTaskModal(${t.id})">驳回</button></div></div>`).join(''):`<div class="empty">目前没有待审核任务。</div>`}</div></section>`;
-}
-function openReviewEditModal(id){
-  const t=taskById(id);if(!t)return;
-  openModal(`<div class="modal-head"><div><h3>编辑后通过</h3><p class="muted">通过后将成为全部公会可用的公共任务，并继续使用当前任务ID。</p></div><button class="modal-close" onclick="closeModal()">×</button></div><label class="label">任务名称</label><input id="reviewTaskName" class="input" value="${esc(t.name)}"><div style="height:11px"></div><label class="label">基础积分</label><input id="reviewTaskPoints" class="input" type="number" min="1" max="99" value="${t.points}"><button class="btn btn-primary" style="width:100%;margin-top:14px" onclick="reviewGuildTask(${t.id},'approve_edit')">保存并通过</button>`);
-}
-function openMergeTaskModal(id){
-  const t=taskById(id);if(!t)return;
-  const candidates=tasks(true).filter(x=>x.id!==t.id&&x.reviewStatus==='approved'&&x.visibility==='public').sort((a,b)=>taskSimilarityList(t.name).find(s=>s.task.id===a.id)?.score-taskSimilarityList(t.name).find(s=>s.task.id===b.id)?.score||a.name.localeCompare(b.name,'zh-CN'));
-  openModal(`<div class="modal-head"><div><h3>合并到已有任务</h3><p class="muted">成员能力会转移到目标任务；旧任务会标记为已合并，历史记录继续保留。</p></div><button class="modal-close" onclick="closeModal()">×</button></div><label class="label">待合并任务</label><div class="input" style="background:#fbf5fb">${esc(t.name)}（${t.points}分）</div><div style="height:11px"></div><label class="label">选择目标公共任务</label><input id="mergeTaskSearch" class="input" placeholder="输入名称筛选" oninput="renderMergeTaskOptions(${id})"><select id="mergeTargetTask" class="select" style="margin-top:8px"></select><button class="btn btn-primary" style="width:100%;margin-top:14px" onclick="reviewGuildTask(${id},'merge')">确认合并</button>`);
-  renderMergeTaskOptions(id);
-}
-function renderMergeTaskOptions(sourceId){
-  const select=document.getElementById('mergeTargetTask');if(!select)return;
-  const q=norm(document.getElementById('mergeTaskSearch')?.value||'');
-  const source=taskById(sourceId);
-  const list=tasks(true).filter(x=>x.id!==sourceId&&x.visibility==='public'&&x.reviewStatus==='approved'&&(!q||norm(x.name).includes(q))).sort((a,b)=>{
-    const as=source?taskSimilarityList(source.name,sourceId).find(s=>s.task.id===a.id)?.score||0:0;
-    const bs=source?taskSimilarityList(source.name,sourceId).find(s=>s.task.id===b.id)?.score||0:0;
-    return bs-as||a.name.localeCompare(b.name,'zh-CN');
-  }).slice(0,150);
-  select.innerHTML=list.map(x=>`<option value="${x.id}">${esc(x.name)}（${x.points}分）</option>`).join('');
-}
-function openRejectTaskModal(id){
-  const t=taskById(id);if(!t)return;
-  openModal(`<div class="modal-head"><div><h3>驳回补充任务</h3><p class="muted">该任务将不再出现在提交公会的可选任务中。已经产生的历史记录不会删除。</p></div><button class="modal-close" onclick="closeModal()">×</button></div><div class="advice bad"><b>${esc(t.name)}</b><br>请填写简短原因，便于后续核对。</div><textarea id="rejectTaskNote" class="textarea" style="min-height:82px" placeholder="例如：与已有任务重复、积分填写错误"></textarea><button class="btn btn-danger" style="width:100%;margin-top:14px" onclick="reviewGuildTask(${id},'reject')">确认驳回</button>`);
-}
-async function reviewGuildTask(id,action){
-  if(!app.taskWorkflowReady)return toast('请先完成Supabase任务补充功能升级');
-  const params={p_task_id:id,p_action:action,p_operator_name:operatorName(),p_target_task_id:null,p_name:null,p_base_points:null,p_review_note:null};
-  if(action==='approve_edit'){
-    params.p_name=document.getElementById('reviewTaskName')?.value.trim();
-    params.p_base_points=Number(document.getElementById('reviewTaskPoints')?.value);
-  }
-  if(action==='merge')params.p_target_task_id=Number(document.getElementById('mergeTargetTask')?.value)||null;
-  if(action==='reject')params.p_review_note=document.getElementById('rejectTaskNote')?.value.trim()||'未填写原因';
-  if(action==='approve'&&!confirm('确认通过并同步给全部公会吗？'))return;
-  await withBusy(async()=>{
-    try{
-      const {error}=await db.rpc('admin_review_guild_task_v3',params);
-      if(error)throw error;
-      closeModal();
-      await reloadAdminTasksKeepState(action==='merge'?'任务已合并':action==='reject'?'任务已驳回':'任务已通过并同步');
-    }catch(e){showError(e,'审核失败')}
-  });
-}
-function renderTaskAuditList(){
-  const box=document.getElementById('adminTaskMain');if(!box)return;
-  box.innerHTML=`<section class="card" style="padding:21px"><div class="section-title"><div><h2>任务库修改记录</h2><p>记录新增、编辑、停用、审核与合并前后的内容。</p></div></div>${app.taskAudits.length?`<div class="table-wrap"><div>${app.taskAudits.map(a=>`<div class="task-audit-line"><b>${esc(a.action)} · ${esc(a.task_name||a.after_data?.name||a.before_data?.name||'任务')}</b><div class="small muted">${fmtTime(a.created_at)} · ${esc(a.operator_name||'小妙')}</div></div>`).join('')}</div></div>`:`<div class="empty">还没有任务库修改记录。</div>`}</section>`;
-}
-function exportAdminTasks(mode='all'){
-  let list=tasks(true);
-  if(mode==='active')list=list.filter(t=>!t.disabled);
-  if(mode==='inactive')list=list.filter(t=>t.disabled);
-  downloadCsv(`竞标赛任务库_${mode}_${new Date().toISOString().slice(0,10)}.csv`,['任务ID','任务名称','基础分','翻倍分','状态','来源','审核状态','所属公会','创建时间','修改时间'],list.map(t=>[t.id,t.name,t.points,t.points*2,t.disabled?'停用':'启用',t.visibility==='guild'?'公会补充':'公共任务',t.reviewStatus,t.ownerGuildId?guildNameById(t.ownerGuildId):'',fmtTime(t.createdAt),fmtTime(t.updatedAt)]));
-}
-
+async function adminSetTaskPoint(id,value){const points=clamp(value,1,99);try{const {error}=await db.from('tasks').update({base_points:points}).eq('id',id);if(error)throw error;await loadTaskLibrary(true);toast('积分已更新');renderAdminTasks()}catch(e){showError(e)}}
+async function adminToggleTask(id,restore){try{const {error}=await db.from('tasks').update({active:restore}).eq('id',id);if(error)throw error;await loadTaskLibrary(true);toast(restore?'任务已恢复':'任务已停用');renderAdminTasks()}catch(e){showError(e)}}
 
 function renderApp(adminPreview=false){
   const g=currentGuild(),c=g.competition,titles=Object.fromEntries(NAVS);
   const preview=adminPreview?`<div class="preview-banner"><div><b>当前正在${adminPreviewMode==='maintenance'?'维护':'查看'}：${esc(g.name)}</b><div class="small muted">${adminPreviewMode==='maintenance'?'可以协助修正成员、能力、记录和公会设置，操作会保留日志。':'查看模式不会写入数据；需要修改时请返回后选择“进入维护”。'}</div></div><div class="row"><span class="pill ${adminPreviewMode==='maintenance'?'high':'blue'}">${adminPreviewMode==='maintenance'?'维护模式':'查看模式'}</span><button class="btn btn-sm btn-soft" onclick="exitAdminPreview()">← 返回小妙管理</button></div></div>`:'';
   document.getElementById('root').innerHTML=`<div class="app-shell">
     <aside class="sidebar">
-      <div class="app-brand"><div class="app-brand-logo">妙</div><div><strong>竞标赛助手</strong><small>2.0.2 完整补丁版</small></div></div>
+      <div class="app-brand"><div class="app-brand-logo">妙</div><div><strong>竞标赛助手</strong><small>2.0 正式版</small></div></div>
       <nav class="nav">${NAVS.map(([id,t])=>`<button class="${activeTab===id?'active':''}" onclick="setTab('${id}')"><span class="nav-icon">${icon(id)}</span>${t}</button>`).join('')}</nav>
       <div class="side-bottom"><div class="guild-mini"><strong>${esc(g.name)}</strong><small>${esc(g.code)} · ${esc(operatorName())}</small></div>${adminPreview?`<button class="btn btn-soft btn-sm" style="width:100%;margin-bottom:7px" onclick="exitAdminPreview()">返回小妙管理</button>`:''}<button class="btn btn-ghost btn-sm" style="width:100%" onclick="logout()">退出登录</button></div>
     </aside>
@@ -1067,9 +577,8 @@ function renderApp(adminPreview=false){
       <header class="topbar"><div><h1>${titles[activeTab]||'公会竞标赛助手'}</h1><span class="tiny muted">最后同步 ${fmtTime(g.updatedAt)}</span></div><div class="top-meta"><span class="cloud-badge"><i class="cloud-dot"></i>已同步</span><span class="pill blue hide-phone">第${c.season}赛季 · 第${c.round}轮</span><span class="pill high">${esc(g.stageNames[c.currentStage-1])}</span>${adminPreview?`<button class="btn btn-sm btn-soft hide-phone" onclick="exitAdminPreview()">← 返回小妙管理</button>`:''}<button class="btn btn-sm btn-ghost mobile-more-btn" onclick="openMobileMore()">更多</button><button class="btn btn-sm btn-ghost hide-phone" onclick="openOperatorModal()">${esc(operatorName())}</button></div></header>
       <div class="content">${preview}<div id="page"></div></div>${footerHtml()}
     </main>
-    <nav class="mobile-nav" aria-label="手机端主要导航">
+    <nav class="mobile-nav">
       <button class="${activeTab==='home'?'active':''}" onclick="setTab('home')"><span>${icon('home')}</span><span>首页</span></button>
-      <button class="${activeTab==='members'?'active':''}" onclick="setTab('members')"><span>${icon('members')}</span><span>成员</span></button>
       <button class="${activeTab==='search'?'active':''}" onclick="setTab('search')"><span>${icon('search')}</span><span>查任务</span></button>
       <button class="${activeTab==='record'?'active':''}" onclick="setTab('record')"><span>${icon('record')}</span><span>登记</span></button>
       <button class="${activeTab==='guild'?'active':''}" onclick="setTab('guild')"><span>${icon('guild')}</span><span>战况</span></button>
@@ -1103,7 +612,7 @@ function applyReadOnlyMode(){
 }
 
 function openMobileMore(){
-  openModal(`<div class="modal-head"><div><h3>更多功能</h3><p class="muted">高频操作已固定在底部，这里只放低频设置。</p></div><button class="modal-close" onclick="closeModal()">×</button></div><div class="grid grid-2 mobile-more-grid"><button class="btn btn-soft" onclick="closeModal();setTab('personal')">${icon('personal')} 个人测算</button><button class="btn btn-soft" onclick="closeModal();setTab('settings')">${icon('settings')} 设置与记录</button><button class="btn btn-ghost" onclick="closeModal();showGuide()">使用导览</button><button class="btn btn-ghost" onclick="closeModal();openOperatorModal()">操作者名称</button></div>${app.role==='admin'?`<button class="btn btn-primary" style="width:100%;margin-top:12px" onclick="closeModal();exitAdminPreview()">返回小妙管理</button>`:''}<button class="btn btn-ghost" style="width:100%;margin-top:10px" onclick="closeModal();logout()">退出登录</button>`);
+  openModal(`<div class="modal-head"><div><h3>更多功能</h3><p class="muted">日常入口放在底部，管理功能集中在这里。</p></div><button class="modal-close" onclick="closeModal()">×</button></div><div class="grid grid-2"><button class="btn btn-soft" onclick="closeModal();setTab('members')">${icon('members')} 成员能力</button><button class="btn btn-soft" onclick="closeModal();setTab('personal')">${icon('personal')} 个人测算</button><button class="btn btn-soft" onclick="closeModal();setTab('settings')">${icon('settings')} 设置与记录</button><button class="btn btn-ghost" onclick="closeModal();showGuide()">使用导览</button></div>${app.role==='admin'?`<button class="btn btn-primary" style="width:100%;margin-top:12px" onclick="closeModal();exitAdminPreview()">返回小妙管理</button>`:''}<button class="btn btn-ghost" style="width:100%;margin-top:10px" onclick="closeModal();openOperatorModal()">修改本机操作者名称</button><button class="btn btn-ghost" style="width:100%;margin-top:10px" onclick="closeModal();logout()">退出登录</button>`);
 }
 function openOperatorModal(){openModal(`<div class="modal-head"><div><h3>本机操作者名称</h3><p class="muted">共用公会账号时，用于操作记录区分会长和副会长。</p></div><button class="modal-close" onclick="closeModal()">×</button></div><input id="operatorInput" class="input" value="${esc(operatorName())}" maxlength="30"><button class="btn btn-primary" style="width:100%;margin-top:14px" onclick="saveOperator()">保存</button>`)}
 function saveOperator(){const v=document.getElementById('operatorInput').value.trim()||'公会管理员';localStorage.setItem(OPERATOR_KEY,v);closeModal();renderApp(app.role==='admin')}
@@ -1111,17 +620,13 @@ function saveOperator(){const v=document.getElementById('operatorInput').value.t
 
 function renderHomePage(){
   const g=currentGuild(),c=g.competition,x=competitionCalc(),mode=currentModeMeta();
-  const targetScore=x.targetScore||Number(x.self?.score||0);
+  const targetScore=c.goalMode==='custom'?c.customGoalScore:(x.self?.score||0)+x.targetGap;
   const pct=targetScore>0?Math.min(100,100*(x.self?.score||0)/targetScore):100;
   const recent=g.logs.filter(l=>!l.reversedAt).slice(0,4);
-  const active=g.members.filter(m=>m.active),abilityDone=active.filter(m=>m.abilities.length>0).length,targetDone=active.filter(m=>app.stats.some(s=>s.member_id===m.id&&s.target_mode)).length;
-  const setupComplete=active.length>0&&abilityDone===active.length&&targetDone===active.length;
-  const setupHtml=`<section class="setup-path ${setupComplete?'hidden':''}"><button class="setup-step ${active.length?'done':''}" onclick="goMemberSection('list')"><span class="step-no">${active.length?'✓':'1'}</span><span><b>导入成员</b><small>${active.length?`已导入${active.length}人`:'先建立公会名单'}</small></span></button><button class="setup-step ${abilityDone&&abilityDone===active.length?'done':''}" onclick="goMemberSection('ability')"><span class="step-no">${abilityDone===active.length&&active.length?'✓':'2'}</span><span><b>登记成员能力</b><small>${abilityDone}人已登记能力</small></span></button><button class="setup-step ${targetDone&&targetDone===active.length?'done':''}" onclick="goMemberSection('list')"><span class="step-no">${targetDone===active.length&&active.length?'✓':'3'}</span><span><b>设置个人目标</b><small>${targetDone}人已明确目标</small></span></button></section>`;
   document.getElementById('page').innerHTML=`
-    ${setupHtml}
     <section class="card home-hero"><div class="home-hero-inner">
       <div class="home-main"><span class="round-chip">${icon('flag')} 第${c.season}赛季 · 第${c.round}轮 · ${esc(g.stageNames[c.currentStage-1])}</span><div class="rank-line"><div class="rank-number">${x.rank||'—'}</div><div class="rank-label">当前排名 / 5</div></div><div class="battle-gap">${esc(x.targetLabel)}<b>${fmt(x.targetGap)} 分</b></div><div class="progress-ribbon"><i style="width:${pct}%"></i></div><div class="helper" style="margin-top:9px">当前公会积分 ${fmt(x.self?.score||0)} · 风险判断：${x.risk}</div></div>
-      <div class="home-side"><div class="section-title"><div><h3>现在怎么做</h3><p>根据当前目标、成员资源和真实登记记录生成。</p></div></div><div class="mode-mini"><button class="active" onclick="setTab('guild')"><b>${icon(mode.icon)} ${esc(x.actionTitle)}</b><small>${esc(x.actionText)}</small></button></div><div class="grid grid-2" style="margin-top:13px"><div class="person-stat"><b>${x.freeRem}</b><span>剩余免费次数</span></div><div class="person-stat"><b>${x.capRem}</b><span>公会有效任务余量</span></div></div><button class="btn btn-soft" style="width:100%;margin-top:13px" onclick="setTab('guild')">查看完整战况</button></div>
+      <div class="home-side"><div class="section-title"><div><h3>当前打榜模式</h3><p>模式会影响任务推荐的排序依据。</p></div></div><div class="mode-mini"><button class="active" onclick="setTab('guild')"><b>${icon(mode.icon)} ${mode.label}</b><small>${mode.desc}</small></button></div><div class="grid grid-2" style="margin-top:13px"><div class="person-stat"><b>${x.totalRem}</b><span>成员剩余次数</span></div><div class="person-stat"><b>${x.capRem}</b><span>公会有效任务余量</span></div></div><button class="btn btn-soft" style="width:100%;margin-top:13px" onclick="setTab('guild')">查看完整战况</button></div>
     </div></section>
     <section class="card home-search"><div class="section-title"><div><h2>任务刷出来了，先查谁能做</h2><p>例如，输入“夏雨荷”“夏”或“画境”等关键词。</p></div></div><div class="home-search-row"><input id="homeSearch" class="input" value="${esc(homeSearchQuery)}" placeholder="输入任务、人物或关键词" onkeydown="if(event.key==='Enter')goHomeSearch()" oninput="homeSearchQuery=this.value"><button class="btn btn-primary" onclick="goHomeSearch()">${icon('search')} 开始查询</button></div></section>
     <div class="quick-grid" style="margin-bottom:18px"><button class="quick-action" onclick="setTab('search')"><span class="quick-icon">${icon('search')}</span><span><b>查任务</b><small>找可完成人员和推荐顺序</small></span></button><button class="quick-action" onclick="setTab('record')"><span class="quick-icon">${icon('record')}</span><span><b>登记完成</b><small>同步个人积分、次数和公会进度</small></span></button><button class="quick-action" onclick="setTab('personal')"><span class="quick-icon">${icon('personal')}</span><span><b>看个人进度</b><small>检查目标、剩余次数和所需平均分</small></span></button></div>
@@ -1134,71 +639,7 @@ function renderSearchPage(){
   document.getElementById('page').innerHTML=`<div class="grid grid-4" style="margin-bottom:16px"><div class="card kpi"><span>有效成员</span><b>${activeMembers.length}</b></div><div class="card kpi"><span>可用任务</span><b>${tasks().length}</b></div><div class="card kpi"><span>本轮任务记录</span><b>${g.logs.filter(x=>!x.reversedAt).length}</b></div><div class="card kpi"><span>公会有效任务余量</span><b>${capRemain}</b></div></div><section class="search-hero card paper"><div class="section-title"><div><h2>今天刷到了什么任务？</h2><p>例如，输入“夏雨荷”“夏”或“画境”；也可以直接搜索成员名字。</p></div></div><div class="search-box"><span class="search-icon">⌕</span><input id="globalSearch" class="input" value="${esc(searchQuery)}" placeholder="搜索任务或成员" oninput="searchQuery=this.value;renderSearchResults()"></div><div id="searchResults" style="margin-top:14px"></div></section><div id="taskDecision" style="margin-top:16px"></div>`;
   renderSearchResults();renderTaskDecision();
 }
-function renderSearchResults(){
-  const box=document.getElementById('searchResults');if(!box)return;
-  const q=norm(searchQuery);
-  if(!q){
-    box.innerHTML=`<div class="helper">搜索结果会同时显示任务和成员。点击任务查看推荐人，点击成员查看能力清单。</div><div class="row" style="margin-top:12px"><button class="btn btn-sm btn-soft" onclick="openGuildTaskSubmissionModal('')">任务库里没有？补充新任务</button></div>`;
-    return;
-  }
-  const ts=tasks().filter(t=>norm(t.name).includes(q)).slice(0,30),ms=currentGuild().members.filter(m=>m.active&&norm(m.name).includes(q)).slice(0,20);
-  box.innerHTML=`${ts.length?`<h3>相关任务</h3><div class="result-list">${ts.map(t=>{const count=currentGuild().members.filter(m=>m.active&&m.abilities.includes(t.id)).length;return`<button class="result-item" style="width:100%;text-align:left" onclick="selectTask(${t.id})"><div class="result-main"><strong>${esc(t.name)} ${taskOriginBadge(t)}</strong><small>基础${t.points}分 · 翻倍${t.points*2}分</small></div><div class="result-side"><span class="pill ${t.points>=29?'high':'blue'}">${count}人能做</span><span>›</span></div></button>`}).join('')}</div>`:''}${ms.length?`<h3 style="margin-top:16px">相关成员</h3><div class="result-list">${ms.map(m=>`<button class="result-item" style="width:100%;text-align:left" onclick="openMember('${m.id}')"><div class="result-main"><strong>${esc(m.name)}</strong><small>可做${m.abilities.length}项 · ${esc(m.status)}</small></div><span>›</span></button>`).join('')}</div>`:''}${!ts.length&&!ms.length?`<div class="missing-task-box"><b>没有找到“${esc(searchQuery)}”</b><span class="small muted">确认名称和基础分后，可以补充为本公会任务，不需要再联系小妙。</span><br><button class="btn btn-primary" onclick="openGuildTaskSubmissionModal('${esc(searchQuery)}')">新增这个任务</button></div>`:`<div class="row" style="margin-top:12px"><button class="btn btn-sm btn-ghost" onclick="openGuildTaskSubmissionModal('${esc(searchQuery)}')">仍然没找到？补充任务</button></div>`}`;
-}
-
-function openGuildTaskSubmissionModal(prefill=''){
-  if(!app.taskWorkflowReady)return openModal(`<div class="modal-head"><div><h3>暂时无法新增</h3><p class="muted">当前页面尚未完成任务补充数据库升级。</p></div><button class="modal-close" onclick="closeModal()">×</button></div><div class="advice warn">请由小妙先运行2.0.2补丁附带的Supabase升级SQL，再上传新版 index.html。</div>`);
-  openModal(`<div class="modal-head"><div><span class="pill lav">本公会补充任务</span><h3 style="margin-top:9px">新增缺失任务</h3><p class="muted">提交后本公会立即可以查询、登记能力和完成任务；小妙审核通过后才会同步给其他公会。</p></div><button class="modal-close" onclick="closeModal()">×</button></div><label class="label">任务名称</label><input id="guildTaskName" class="input" value="${esc(prefill)}" maxlength="120" placeholder="请填写游戏内完整任务名称" oninput="renderGuildTaskHints()"><div id="guildTaskHints"></div><div style="height:11px"></div><label class="label">基础积分</label><input id="guildTaskPoints" class="input" type="number" min="1" max="99" placeholder="不翻倍时的积分"><div style="height:11px"></div><label class="label">备注（可选）</label><textarea id="guildTaskNote" class="textarea" style="min-height:76px" maxlength="300" placeholder="例如：任务来自哪位人才、名称容易混淆的地方"></textarea><div class="advice warn"><b>请核对基础分</b><br>翻倍分由系统自动按基础分×2计算。公会不能删除或修改公共任务，只能补充自己缺少的任务。</div><button class="btn btn-primary" style="width:100%" onclick="submitGuildTask()">确认新增并立即使用</button>`);
-  renderGuildTaskHints();
-}
-function renderGuildTaskHints(){
-  const box=document.getElementById('guildTaskHints');if(!box)return;
-  const name=document.getElementById('guildTaskName')?.value||'';
-  const similar=taskSimilarityList(name);
-  box.innerHTML=similar.length?`<div class="duplicate-hints">${similar.map(x=>`<button class="duplicate-hint" style="width:100%;text-align:left" onclick="closeModal();selectExistingTaskAfterDuplicate(${x.task.id})"><b>${x.score===100?'任务库中已有':'可能相似'}：${esc(x.task.name)}</b><div class="tiny muted">基础${x.task.points}分 · 点击直接使用已有任务</div></button>`).join('')}</div>`:'';
-}
-function selectExistingTaskAfterDuplicate(id){
-  if(activeTab==='record'){
-    if(recordMode==='single'){recordTaskId=Number(id);recordSearchQuery='';renderSingleRecordPanel()}
-    else toast('请在批量登记的任务下拉框中选择该任务');
-  }else{
-    selectedTaskId=Number(id);renderTaskDecision();document.getElementById('taskDecision')?.scrollIntoView({behavior:'smooth'});
-  }
-}
-async function submitGuildTask(){
-  if(!ensureMaintain())return;
-  const name=document.getElementById('guildTaskName')?.value.trim(),points=Number(document.getElementById('guildTaskPoints')?.value),note=document.getElementById('guildTaskNote')?.value.trim()||'';
-  if(!name)return toast('请填写任务名称');
-  if(!Number.isFinite(points)||points<1||points>99)return toast('基础积分必须在1至99之间');
-  const exact=taskSimilarityList(name).find(x=>x.score===100);
-  if(exact&&!confirm(`任务库中已经有“${exact.task.name}”。确定仍要提交新任务吗？`))return;
-  await withBusy(async()=>{
-    try{
-      const {data,error}=await db.rpc('submit_guild_task_v3',{p_name:name,p_base_points:points,p_note:note,p_operator_name:operatorName(),p_guild_id:app.role==='admin'?app.guild.id:null});
-      if(error)throw error;
-      closeModal();
-      await refreshTaskDataOnly(app.role==='admin');
-      const row=data?.task||data;
-      const taskId=Number(row?.id||data?.task_id||0);
-      if(data?.duplicate){
-        toast('已找到同名任务，直接使用现有任务');
-      }else{
-        toast('任务已加入本公会，并提交给小妙审核');
-      }
-      if(activeTab==='search'){
-        searchQuery=name;
-        if(taskId)selectedTaskId=taskId;
-        renderSearchPage();
-        if(taskId)requestAnimationFrame(()=>document.getElementById('taskDecision')?.scrollIntoView({behavior:'smooth',block:'start'}));
-      }
-      if(activeTab==='record'){
-        if(recordMode==='single'&&taskId){recordOnlyAbilities=false;recordTaskId=taskId;recordSearchQuery='';renderSingleRecordPanel()}
-        else renderBatchRecordPanel();
-      }
-      if(activeTab==='members')renderMembersPage();
-    }catch(e){showError(e,'新增任务失败')}
-  });
-}
-
+function renderSearchResults(){const box=document.getElementById('searchResults');if(!box)return;const q=norm(searchQuery);if(!q){box.innerHTML=`<div class="helper">搜索结果会同时显示任务和成员。点击任务查看推荐人，点击成员查看能力清单。</div>`;return}const ts=tasks().filter(t=>norm(t.name).includes(q)).slice(0,30),ms=currentGuild().members.filter(m=>m.active&&norm(m.name).includes(q)).slice(0,20);box.innerHTML=`${ts.length?`<h3>相关任务</h3><div class="result-list">${ts.map(t=>{const count=currentGuild().members.filter(m=>m.active&&m.abilities.includes(t.id)).length;return`<button class="result-item" style="width:100%;text-align:left" onclick="selectTask(${t.id})"><div class="result-main"><strong>${esc(t.name)}</strong><small>基础${t.points}分 · 翻倍${t.points*2}分</small></div><div class="result-side"><span class="pill ${t.points>=29?'high':'blue'}">${count}人能做</span><span>›</span></div></button>`}).join('')}</div>`:''}${ms.length?`<h3 style="margin-top:16px">相关成员</h3><div class="result-list">${ms.map(m=>`<button class="result-item" style="width:100%;text-align:left" onclick="openMember('${m.id}')"><div class="result-main"><strong>${esc(m.name)}</strong><small>可做${m.abilities.length}项 · ${esc(m.status)}</small></div><span>›</span></button>`).join('')}</div>`:''}${!ts.length&&!ms.length?`<div class="empty">没有找到匹配内容。</div>`:''}`}
 function selectTask(id){selectedTaskId=Number(id);renderTaskDecision();document.getElementById('taskDecision')?.scrollIntoView({behavior:'smooth',block:'start'})}
 function candidateInfo(task,m){
   const p=memberProgress(m),c=currentGuild().competition;
@@ -1248,14 +689,13 @@ function renderTaskDecision(){
   else advice=`<div class="advice lav"><b>推荐依据</b><br>排序综合参考成员状态、个人目标、剩余次数、任务分值、能力稀缺度和当前公会模式。结果是分配参考，不代表最终胜负。</div>`;
   box.innerHTML=`<section class="card task-detail"><div class="task-title-row"><div><span class="pill ${task.points>=29?'high':'blue'}">基础${task.points} · 翻倍${task.points*2}</span><h2 style="margin-top:9px">${esc(task.name)}</h2><p class="muted">共${all.length}名成员登记为可完成。</p></div><button class="btn btn-ghost" onclick="selectedTaskId=null;renderTaskDecision()">关闭</button></div><div class="grid grid-2" style="margin-top:14px"><div><label class="label">距离任务截止约几小时</label><input class="input" type="number" min="0" value="${deadlineHours}" onchange="deadlineHours=Number(this.value);renderTaskDecision()"></div><div><label class="label">当前公会模式</label><div class="input" style="background:#fbf5fb">${esc(goalModeLabel(currentGuild().competition.goalMode))}</div></div></div>${advice}<div class="candidate-list">${ranked.length?ranked.map((x,i)=>`<div class="candidate ${i===0&&x.score>-999?'primary':''}"><div class="candidate-rank">${i+1}</div><div><strong>${esc(x.m.name)} <span class="pill ${x.label==='首选'?'high':x.label==='备选'?'lav':'bad'}">${x.label}</span></strong><div class="candidate-reason">${esc(x.reasons)}；当前${fmt(x.p.current)}分，剩余${x.p.rem}次</div></div><div><span class="pill ${x.m.status==='可接任务'?'good':'blue'}">${esc(x.m.status)}</span></div></div>`).join(''):`<div class="empty">无人具备该任务条件。</div>`}</div></section>`;
 }
-function openMember(id){if(abilityDirty&&!confirm('当前成员的能力清单尚未保存，确定放弃修改吗？'))return;selectedMemberId=id;abilityDraft=null;abilityDraftMemberId=null;abilityDirty=false;abilityQuery='';abilityFilter='all';abilitySheetOpen=false;memberSection='list';mobileMemberView='profile';activeTab='members';renderApp(app.role==='admin')}
+function openMember(id){if(abilityDirty&&!confirm('当前成员的能力清单尚未保存，确定放弃修改吗？'))return;selectedMemberId=id;abilityDraft=null;abilityDraftMemberId=null;abilityDirty=false;abilityQuery='';abilityFilter='all';abilitySheetOpen=false;activeTab='members';renderApp(app.role==='admin')}
 
 function renderMembersPage(){
-  if(isMobile())return renderMobileMembersPage();
   const g=currentGuild(),active=g.members.filter(m=>m.active);
   if(!selectedMemberId&&active.length)selectedMemberId=active[0].id;
   const selected=memberById(selectedMemberId);
-  document.getElementById('page').innerHTML=`<div class="section-title"><div><h2>成员管理</h2><p>左侧维护成员资料，右侧直接登记完整能力清单。</p></div><button class="btn btn-primary" onclick="openImportMembersModal()">批量导入成员</button></div><div class="member-layout"><section class="card member-list"><input class="input" placeholder="搜索成员" oninput="renderMemberList(this.value)" style="margin-bottom:8px"><div id="memberList"></div></section><section id="memberDetail" class="member-editor"></section></div>`;
+  document.getElementById('page').innerHTML=`<div class="section-title"><div><h2>成员能力库</h2><p>成员资料长期保存。完整清单负责勾选能力，搜索只用于缩小范围。</p></div><button class="btn btn-primary" onclick="openImportMembersModal()">批量导入成员</button></div><div class="member-layout"><section class="card member-list"><input class="input" placeholder="搜索成员" oninput="renderMemberList(this.value)" style="margin-bottom:8px"><div id="memberList"></div></section><section id="memberDetail" class="member-editor"></section></div>`;
   renderMemberList('');renderMemberDetail(selected);
 }
 function renderMemberList(q){const box=document.getElementById('memberList');if(!box)return;const list=currentGuild().members.filter(m=>norm(m.name).includes(norm(q)));box.innerHTML=list.length?list.map(m=>`<button class="${m.id===selectedMemberId?'active':''}" onclick="selectMember('${m.id}')"><b>${esc(m.name)}</b><small>${m.active?'有效成员':'已停用'} · 可做${m.abilities.length}项 · ${esc(m.status)}</small></button>`).join(''):`<div class="empty" style="padding:18px">没有匹配成员。</div>`}
@@ -1263,64 +703,12 @@ function selectMember(id){
   if(abilityDirty&&!confirm('当前成员的能力清单尚未保存，确定放弃修改并切换吗？'))return;
   selectedMemberId=id;abilityDraft=null;abilityDraftMemberId=null;abilityDirty=false;abilityQuery='';abilityFilter='all';abilitySheetOpen=false;renderMembersPage();
 }
-function mobileMemberTabsHtml(){
-  return `<div class="member-page-tabs"><button class="${memberSection==='list'?'active':''}" onclick="setMemberSection('list')">${icon('members')} 成员名单</button><button class="${memberSection==='ability'?'active':''}" onclick="setMemberSection('ability')">${icon('record')} 能力登记</button></div>`;
-}
-function setMemberSection(section){
-  if(!['list','ability'].includes(section)||memberSection===section)return;
-  if(abilityDirty&&memberSection==='ability'&&!confirm('当前成员的能力清单尚未保存，确定离开吗？'))return;
-  memberSection=section;mobileMemberView='list';memberSearchQuery='';abilityQuery='';abilityFilter='all';
-  if(section!=='ability'){abilityDraft=null;abilityDraftMemberId=null;abilityDirty=false}
-  renderMembersPage();
-}
-function renderMobileMembersPage(){
-  const g=currentGuild(),active=g.members.filter(m=>m.active),abilityDone=active.filter(m=>m.abilities.length>0).length,targetDone=active.filter(m=>app.stats.some(s=>s.member_id===m.id&&s.target_mode)).length;
-  if(!selectedMemberId||!g.members.some(m=>m.id===selectedMemberId))selectedMemberId=active[0]?.id||g.members[0]?.id||null;
-  document.getElementById('page').innerHTML=`<section class="mobile-member-shell"><div class="mobile-member-heading"><div><span class="pill lav">${active.length}名有效成员</span><h2>成员管理</h2><p>名单和能力分开处理，手机上不用来回翻找。</p></div></div>${mobileMemberTabsHtml()}<div class="mobile-member-progress"><div><b>${active.length}</b><span>已导入</span></div><div><b>${abilityDone}</b><span>已登记能力</span></div><div><b>${targetDone}</b><span>已设置目标</span></div></div><div id="mobileMemberPanel"></div></section>`;
-  memberSection==='ability'?renderMobileAbilityPanel():renderMobileMemberListPanel();
-}
-function renderMobileMemberListPanel(){
-  const panel=document.getElementById('mobileMemberPanel');if(!panel)return;
-  if(mobileMemberView==='profile')return renderMobileMemberProfile();
-  panel.innerHTML=`<section class="card mobile-member-list-card"><div class="mobile-list-tools"><div class="search-box"><span class="search-icon">⌕</span><input id="mobileMemberSearch" class="input" value="${esc(memberSearchQuery)}" placeholder="搜索成员" oninput="memberSearchQuery=this.value;renderMobileMemberRows()"></div><button class="btn btn-primary mobile-import-btn" onclick="openImportMembersModal()">＋ 导入</button></div><div id="mobileMemberRows" class="mobile-member-rows"></div></section>`;
-  renderMobileMemberRows();
-}
-function renderMobileMemberRows(){
-  const box=document.getElementById('mobileMemberRows');if(!box)return;
-  const g=currentGuild(),c=g.competition,list=g.members.filter(m=>norm(m.name).includes(norm(memberSearchQuery))).sort((a,b)=>Number(b.active)-Number(a.active)||a.name.localeCompare(b.name,'zh-CN'));
-  box.innerHTML=list.length?list.map(m=>{const free=Math.max(0,c.freeLimit-m.freeUsed);return `<button class="mobile-member-row ${m.active?'':'inactive'}" onclick="openMobileMemberProfile('${m.id}')"><span class="mobile-member-avatar">${esc(m.name.slice(0,1)||'员')}</span><span class="mobile-member-row-main"><b>${esc(m.name)}</b><small>${m.active?'在会':'已停用'} · ${esc(targetModeLabel(m.targetMode))}</small></span><span class="mobile-member-row-data"><b>${m.abilities.length}</b><small>项能力</small></span><span class="mobile-member-row-data"><b>${free}</b><small>免费剩余</small></span><span class="mobile-row-arrow">›</span></button>`}).join(''):`<div class="empty">没有匹配成员。</div>`;
-}
-function openMobileMemberProfile(id){
-  if(abilityDirty&&!confirm('当前能力清单尚未保存，确定切换成员吗？'))return;
-  selectedMemberId=id;mobileMemberView='profile';abilityDraft=null;abilityDraftMemberId=null;abilityDirty=false;renderMobileMemberListPanel();
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-function backMobileMemberList(){mobileMemberView='list';renderMobileMemberListPanel()}
-function renderMobileMemberProfile(){
-  const panel=document.getElementById('mobileMemberPanel'),m=memberById(selectedMemberId);if(!panel||!m)return;
-  const canDelete=!(m.currentPoints||m.freeUsed||m.paidUsed||currentGuild().logs.some(l=>l.memberId===m.id));
-  panel.innerHTML=`<button class="mobile-back-link" onclick="backMobileMemberList()">‹ 返回成员名单</button><section class="card mobile-profile-card"><div class="mobile-profile-title"><div><span class="member-editing-label">正在编辑</span><h2>${esc(m.name)}</h2><p>基础资料、本轮目标和次数记录。</p></div><span class="pill ${m.active?'good':'bad'}">${m.active?'在会':'已停用'}</span></div><div class="grid grid-2 mobile-profile-grid"><div><label class="label">成员名字</label><input id="memberName" class="input" value="${esc(m.name)}"></div><div><label class="label">当前状态</label><select id="memberStatus" class="select">${STATUS_OPTIONS.map(s=>`<option ${s===m.status?'selected':''}>${s}</option>`).join('')}</select></div><div><label class="label">个人目标模式</label><select id="memberTargetMode" class="select" onchange="toggleCustomTarget()">${TARGET_MODES.map(x=>`<option value="${x.value}" ${x.value===(m.targetMode||'sprint_1400')?'selected':''}>${x.label}</option>`).join('')}</select></div><div><label class="label">是否在会</label><select id="memberActive" class="select"><option value="true" ${m.active?'selected':''}>在会</option><option value="false" ${!m.active?'selected':''}>停用</option></select></div></div><div id="customTargetWrap" style="margin-top:12px;${(m.targetMode||'sprint_1400')==='custom'?'':'display:none'}"><label class="label">自定义目标积分</label><input id="memberGoal" class="input" type="number" min="0" value="${m.goal}"></div><div class="mobile-number-grid"><div><label class="label">当前积分</label><input id="memberPoints" class="input" type="number" min="0" value="${m.currentPoints}"></div><div><label class="label">免费已用</label><input id="memberFree" class="input" type="number" min="0" value="${m.freeUsed}"></div><div><label class="label">购买已用</label><input id="memberPaid" class="input" type="number" min="0" value="${m.paidUsed}"></div></div><div style="margin-top:12px"><label class="label">备注</label><input id="memberNote" class="input" value="${esc(m.note)}" placeholder="原名、资源情况或联络备注"></div><div class="mobile-profile-actions"><button class="btn btn-primary" onclick="saveMemberProfile('${m.id}')">保存成员资料</button><button class="btn btn-soft" onclick="memberSection='ability';mobileMemberView='list';abilityDraft=null;abilityDraftMemberId=null;abilityDirty=false;renderMembersPage()">登记TA的能力</button>${canDelete?`<button class="btn btn-danger btn-sm" onclick="openDeleteMemberModal('${m.id}')">删除误加成员</button>`:''}</div></section>`;
-}
-function selectMobileAbilityMember(id){
-  if(abilityDirty&&!confirm('当前成员的能力清单尚未保存，确定切换吗？')){renderMembersPage();return}
-  selectedMemberId=id;abilityDraft=null;abilityDraftMemberId=null;abilityDirty=false;abilityQuery='';abilityFilter='all';renderMobileAbilityPanel();
-}
-function renderMobileAbilityPanel(){
-  const panel=document.getElementById('mobileMemberPanel');if(!panel)return;
-  const active=currentGuild().members.filter(m=>m.active);
-  if(!active.length){panel.innerHTML='<div class="empty">还没有有效成员，请先导入成员。</div>';return}
-  if(!active.some(m=>m.id===selectedMemberId))selectedMemberId=active[0].id;
-  const m=memberById(selectedMemberId);ensureAbilityDraft(m);
-  panel.innerHTML=`<section class="card mobile-ability-member"><label class="label">正在为谁登记能力</label><select class="select" onchange="selectMobileAbilityMember(this.value)">${active.map(x=>`<option value="${x.id}" ${x.id===m.id?'selected':''}>${esc(x.name)} · 已有${x.abilities.length}项</option>`).join('')}</select><div class="mobile-member-mini-stats"><span>当前积分 <b>${fmt(m.currentPoints)}</b></span><span>免费剩余 <b>${Math.max(0,currentGuild().competition.freeLimit-m.freeUsed)}</b></span><span>购买剩余 <b>${Math.max(0,currentGuild().competition.paidLimit-m.paidUsed)}</b></span></div></section><section class="card mobile-ability-card">${abilityEditorHtml(m,false)}</section>`;
-  renderAbilityList(m.id,false);syncAbilityCount();
-}
-
 function renderMemberDetail(m){
   const box=document.getElementById('memberDetail');if(!box)return;
   if(!m){box.innerHTML=`<div class="card empty">还没有成员资料。先批量导入成员，才能开始登记能力。</div>`;return}
   ensureAbilityDraft(m);
   const canDelete=!(m.currentPoints||m.freeUsed||m.paidUsed||currentGuild().logs.some(l=>l.memberId===m.id));const deleteHint=canDelete?'仅误加且无任何记录时可永久删除':'已有积分、次数或历史记录，只能停用';
-  box.innerHTML=`<section class="card paper member-profile"><div class="section-title"><div><span class="member-editing-label">正在编辑：${esc(m.name)}</span><h2 style="margin-top:9px">${esc(m.name)}</h2><p>修改成员资料、本轮目标、积分和状态。</p></div><span class="pill ${m.active?'good':'bad'}">${m.active?'在会':'已停用'}</span></div><div class="grid grid-3"><div><label class="label">成员名字</label><input id="memberName" class="input" value="${esc(m.name)}"></div><div><label class="label">当前状态</label><select id="memberStatus" class="select">${STATUS_OPTIONS.map(s=>`<option ${s===m.status?'selected':''}>${s}</option>`).join('')}</select></div><div><label class="label">个人目标模式</label><select id="memberTargetMode" class="select" onchange="toggleCustomTarget()">${TARGET_MODES.map(x=>`<option value="${x.value}" ${x.value===(m.targetMode||'sprint_1400')?'selected':''}>${x.label}</option>`).join('')}</select></div></div><div id="customTargetWrap" style="margin-top:12px;${(m.targetMode||'sprint_1400')==='custom'?'':'display:none'}"><label class="label">自定义目标积分</label><input id="memberGoal" class="input" type="number" min="0" value="${m.goal}"></div><div class="grid grid-4" style="margin-top:12px"><div><label class="label">当前积分</label><input id="memberPoints" class="input" type="number" min="0" value="${m.currentPoints}"></div><div><label class="label">免费已用</label><input id="memberFree" class="input" type="number" min="0" value="${m.freeUsed}"></div><div><label class="label">购买已用</label><input id="memberPaid" class="input" type="number" min="0" value="${m.paidUsed}"></div><div><label class="label">是否在会</label><select id="memberActive" class="select"><option value="true" ${m.active?'selected':''}>在会</option><option value="false" ${!m.active?'selected':''}>停用</option></select></div></div><div style="margin-top:12px"><label class="label">备注</label><input id="memberNote" class="input" value="${esc(m.note)}" placeholder="例如：原名、资源情况或联络备注"></div><div class="row" style="margin-top:14px"><button class="btn btn-primary" onclick="saveMemberProfile('${m.id}')">保存成员资料</button>${canDelete?`<button class="btn btn-danger" title="${esc(deleteHint)}" onclick="openDeleteMemberModal('${m.id}')">永久删除误加成员</button>`:`<span class="helper">${esc(deleteHint)}</span>`}</div><button class="btn btn-soft ability-mobile-trigger" onclick="openAbilitySheet('${m.id}')">查看并编辑 <span data-ability-count>${abilityDraft.size}</span> 项能力</button></section><section class="card member-ability-section">${abilityEditorHtml(m,false)}</section>`;
+  box.innerHTML=`<section class="card paper member-profile"><div class="section-title"><div><span class="member-editing-label">正在编辑：${esc(m.name)}</span><h2 style="margin-top:9px">${esc(m.name)}</h2><p>修改成员资料、本轮目标、积分和状态。</p></div><span class="pill ${m.active?'good':'bad'}">${m.active?'在会':'已停用'}</span></div><div class="grid grid-3"><div><label class="label">成员名字</label><input id="memberName" class="input" value="${esc(m.name)}"></div><div><label class="label">当前状态</label><select id="memberStatus" class="select">${STATUS_OPTIONS.map(s=>`<option ${s===m.status?'selected':''}>${s}</option>`).join('')}</select></div><div><label class="label">个人目标模式</label><select id="memberTargetMode" class="select" onchange="toggleCustomTarget()">${TARGET_MODES.map(x=>`<option value="${x.value}" ${x.value===(m.targetMode||'sprint_1400')?'selected':''}>${x.label}</option>`).join('')}</select></div></div><div id="customTargetWrap" style="margin-top:12px;${(m.targetMode||'sprint_1400')==='custom'?'':'display:none'}"><label class="label">自定义目标积分</label><input id="memberGoal" class="input" type="number" min="0" value="${m.goal}"></div><div class="grid grid-4" style="margin-top:12px"><div><label class="label">当前积分</label><input id="memberPoints" class="input" type="number" min="0" value="${m.currentPoints}"></div><div><label class="label">免费已用</label><input id="memberFree" class="input" type="number" min="0" value="${m.freeUsed}"></div><div><label class="label">购买已用</label><input id="memberPaid" class="input" type="number" min="0" value="${m.paidUsed}"></div><div><label class="label">是否在会</label><select id="memberActive" class="select"><option value="true" ${m.active?'selected':''}>在会</option><option value="false" ${!m.active?'selected':''}>停用</option></select></div></div><div style="margin-top:12px"><label class="label">备注</label><input id="memberNote" class="input" value="${esc(m.note)}" placeholder="例如：原名、资源情况或联络备注"></div><div class="row" style="margin-top:14px"><button class="btn btn-primary" onclick="saveMemberProfile('${m.id}')">保存成员资料</button>${canDelete?`<button class="btn btn-danger" title="${esc(deleteHint)}" onclick="openDeleteMemberModal('${m.id}')">永久删除误加成员</button>`:`<span class="helper">${esc(deleteHint)}</span>`}</div><button class="btn btn-soft ability-mobile-trigger" onclick="openAbilitySheet('${m.id}')">查看并编辑 ${abilityDraft.size} 项能力</button></section><section class="card member-ability-section">${abilityEditorHtml(m,false)}</section>`;
   renderAbilityList(m.id,false);
   if(abilitySheetOpen&&isMobile())openAbilitySheet(m.id,true);
 }
@@ -1329,14 +717,14 @@ function ensureAbilityDraft(m){
   if(!abilityDraft||abilityDraftMemberId!==m.id){abilityDraft=new Set(m.abilities.map(Number));abilityDraftMemberId=m.id;abilityDirty=false}
 }
 function abilityEditorHtml(m,mobile){
-  return `<div class="section-title"><div><h2>TA 能接这些任务 ✦</h2><p>当前已选<span data-ability-count>${abilityDraft.size}</span>项。搜索只改变显示范围，不会清掉其他勾选。</p></div></div><div class="task-toolbar"><input id="${mobile?'abilitySearchMobile':'abilitySearch'}" class="input wide" value="${esc(abilityQuery)}" placeholder="搜索任务，例如：夏、守护神、画境" oninput="abilityQuery=this.value;syncAbilitySearchInputs();renderAbilityList('${m.id}',${mobile})"><div class="ability-filter-row"><button class="btn btn-sm ${abilityFilter==='all'?'btn-soft':'btn-ghost'}" onclick="abilityFilter='all';renderAbilityViews('${m.id}')">全部</button><button class="btn btn-sm ${abilityFilter==='selected'?'btn-soft':'btn-ghost'}" onclick="abilityFilter='selected';renderAbilityViews('${m.id}')">已选</button><button class="btn btn-sm ${abilityFilter==='high'?'btn-soft':'btn-ghost'}" onclick="abilityFilter='high';renderAbilityViews('${m.id}')">28分以上</button></div></div><div class="batch-toolbar"><button class="btn btn-sm btn-soft" onclick="selectCurrentAbilityResults('${m.id}')">全选当前结果</button><button class="btn btn-sm btn-ghost" onclick="deselectCurrentAbilityResults('${m.id}')">取消当前结果</button><button class="btn btn-sm btn-danger" onclick="clearAllAbilities('${m.id}')">清空全部已选</button></div><div id="${mobile?'abilityListMobile':'abilityList'}"></div>${mobile?'':`<div class="task-save-bar"><div><b>已选择 <span data-ability-count>${abilityDraft.size}</span> 项</b><div class="small muted">能力资料长期保存，新一轮不会清空。</div></div><button class="btn btn-primary" onclick="saveAbilities('${m.id}')">保存能力清单</button></div>`}`;
+  return `<div class="section-title"><div><h2>TA 能接这些任务 ✦</h2><p>当前已选${abilityDraft.size}项。搜索只改变显示范围，不会清掉其他勾选。</p></div></div><div class="task-toolbar"><input id="${mobile?'abilitySearchMobile':'abilitySearch'}" class="input wide" value="${esc(abilityQuery)}" placeholder="搜索任务，例如：夏、守护神、画境" oninput="abilityQuery=this.value;syncAbilitySearchInputs();renderAbilityList('${m.id}',${mobile})"><div class="ability-filter-row"><button class="btn btn-sm ${abilityFilter==='all'?'btn-soft':'btn-ghost'}" onclick="abilityFilter='all';renderAbilityViews('${m.id}')">全部</button><button class="btn btn-sm ${abilityFilter==='selected'?'btn-soft':'btn-ghost'}" onclick="abilityFilter='selected';renderAbilityViews('${m.id}')">已选</button><button class="btn btn-sm ${abilityFilter==='high'?'btn-soft':'btn-ghost'}" onclick="abilityFilter='high';renderAbilityViews('${m.id}')">28分以上</button></div></div><div class="batch-toolbar"><button class="btn btn-sm btn-soft" onclick="selectCurrentAbilityResults('${m.id}')">全选当前结果</button><button class="btn btn-sm btn-ghost" onclick="deselectCurrentAbilityResults('${m.id}')">取消当前结果</button><button class="btn btn-sm btn-danger" onclick="clearAllAbilities('${m.id}')">清空全部已选</button></div><div id="${mobile?'abilityListMobile':'abilityList'}"></div>${mobile?'':`<div class="task-save-bar"><div><b>已选择 ${abilityDraft.size} 项</b><div class="small muted">能力资料长期保存，新一轮不会清空。</div></div><button class="btn btn-primary" onclick="saveAbilities('${m.id}')">保存能力清单</button></div>`}`;
 }
 function openAbilitySheet(memberId,rerender=false){
   syncVisualViewport();
   const m=memberById(memberId);if(!m)return;ensureAbilityDraft(m);abilitySheetOpen=true;
   let sheet=document.getElementById('abilitySheetRoot');
   if(!sheet){sheet=document.createElement('div');sheet.id='abilitySheetRoot';document.body.appendChild(sheet)}
-  sheet.innerHTML=`<section class="ability-sheet"><header class="ability-sheet-head"><div><span class="member-editing-label">正在编辑：${esc(m.name)}</span><div class="small muted" style="margin-top:4px">完整任务清单 · 已选 <span data-ability-count>${abilityDraft.size}</span> 项</div></div><button class="btn btn-sm btn-ghost" onclick="closeAbilitySheet()">关闭</button></header><div class="ability-sheet-tools">${abilityEditorHtml(m,true).replace(/<div id="abilityListMobile"><\/div>[\s\S]*/,'')}</div><div id="abilityListMobile" class="ability-sheet-list"></div><footer class="ability-sheet-save"><div><b>已选择 <span data-ability-count>${abilityDraft.size}</span> 项</b><div class="small muted">保存后同步云端</div></div><button class="btn btn-primary" onclick="saveAbilities('${m.id}')">保存能力清单</button></footer></section>`;
+  sheet.innerHTML=`<section class="ability-sheet"><header class="ability-sheet-head"><div><span class="member-editing-label">正在编辑：${esc(m.name)}</span><div class="small muted" style="margin-top:4px">完整任务清单 · 已选 ${abilityDraft.size} 项</div></div><button class="btn btn-sm btn-ghost" onclick="closeAbilitySheet()">关闭</button></header><div class="ability-sheet-tools">${abilityEditorHtml(m,true).replace(/<div id="abilityListMobile"><\/div>[\s\S]*/,'')}</div><div id="abilityListMobile" class="ability-sheet-list"></div><footer class="ability-sheet-save"><div><b>已选择 ${abilityDraft.size} 项</b><div class="small muted">保存后同步云端</div></div><button class="btn btn-primary" onclick="saveAbilities('${m.id}')">保存能力清单</button></footer></section>`;
   renderAbilityList(memberId,true);
 }
 function closeAbilitySheet(){
@@ -1344,14 +732,8 @@ function closeAbilitySheet(){
   abilitySheetOpen=false;const sheet=document.getElementById('abilitySheetRoot');if(sheet)sheet.remove();
 }
 function syncAbilitySearchInputs(){['abilitySearch','abilitySearchMobile'].forEach(id=>{const el=document.getElementById(id);if(el&&el.value!==abilityQuery)el.value=abilityQuery})}
-function syncAbilityCount(){
-  const count=abilityDraft?.size||0;
-  document.querySelectorAll('[data-ability-count]').forEach(el=>el.textContent=String(count));
-}
 function renderAbilityViews(memberId){
-  renderAbilityList(memberId,false);
-  if(abilitySheetOpen&&document.getElementById('abilityListMobile'))renderAbilityList(memberId,true);
-  syncAbilityCount();
+  renderAbilityList(memberId,false);if(abilitySheetOpen&&document.getElementById('abilityListMobile'))renderAbilityList(memberId,true);
 }
 
 function renderAbilityList(memberId,mobile=false){
@@ -1370,11 +752,11 @@ function filteredAbilityTasks(){
 function toggleAbility(id,checked,memberId){
   if(abilityDraftMemberId!==memberId)return toast('成员已切换，请重新打开能力清单');
   checked?abilityDraft.add(Number(id)):abilityDraft.delete(Number(id));abilityDirty=true;
-  renderAbilityViews(memberId);
+  renderAbilityViews(memberId);if(abilitySheetOpen)openAbilitySheet(memberId,true);
 }
-function selectCurrentAbilityResults(memberId){filteredAbilityTasks().forEach(t=>abilityDraft.add(t.id));abilityDirty=true;renderAbilityViews(memberId)}
-function deselectCurrentAbilityResults(memberId){filteredAbilityTasks().forEach(t=>abilityDraft.delete(t.id));abilityDirty=true;renderAbilityViews(memberId)}
-function clearAllAbilities(memberId){if(!confirm('确定清空该成员已选择的全部任务吗？'))return;abilityDraft.clear();abilityDirty=true;renderAbilityViews(memberId)}
+function selectCurrentAbilityResults(memberId){filteredAbilityTasks().forEach(t=>abilityDraft.add(t.id));abilityDirty=true;renderAbilityViews(memberId);if(abilitySheetOpen)openAbilitySheet(memberId,true)}
+function deselectCurrentAbilityResults(memberId){filteredAbilityTasks().forEach(t=>abilityDraft.delete(t.id));abilityDirty=true;renderAbilityViews(memberId);if(abilitySheetOpen)openAbilitySheet(memberId,true)}
+function clearAllAbilities(memberId){if(!confirm('确定清空该成员已选择的全部任务吗？'))return;abilityDraft.clear();abilityDirty=true;renderAbilityViews(memberId);if(abilitySheetOpen)openAbilitySheet(memberId,true)}
 function toggleCustomTarget(){const mode=document.getElementById('memberTargetMode')?.value;const box=document.getElementById('customTargetWrap');if(box)box.style.display=mode==='custom'?'block':'none'}
 function openDeleteMemberModal(id){const m=memberById(id);if(!m)return;openModal(`<div class="modal-head"><div><h3>永久删除误加成员</h3><p class="muted">只有没有任务历史、没有积分和次数记录的成员才能删除。其他成员请使用“停用”。</p></div><button class="modal-close" onclick="closeModal()">×</button></div><div class="advice bad">请输入成员名字 <b>${esc(m.name)}</b> 确认。</div><input id="confirmMemberName" class="input" placeholder="请输入完整成员名字"><button class="btn btn-danger" style="width:100%;margin-top:14px" onclick="deleteMemberSafely('${m.id}')">确认永久删除</button>`)}
 async function deleteMemberSafely(id){if(!ensureMaintain())return;await withBusy(async()=>{try{const {error}=await db.rpc('delete_guild_member_safely',{p_member_id:id,p_confirm_name:document.getElementById('confirmMemberName').value,p_operator_name:operatorName()});if(error)throw error;closeModal();await loadGuildData(app.guild.id);selectedMemberId=currentGuild().members.find(x=>x.active)?.id||null;abilityDraft=null;abilityDraftMemberId=null;abilityDirty=false;toast('误加成员已删除');renderApp(app.role==='admin')}catch(e){showError(e,'删除失败')}})}
@@ -1417,222 +799,14 @@ async function saveAbilities(id){
   if(ids.length===0&&m.abilities.length>0&&!confirm(`即将把“${m.name}”原有的 ${m.abilities.length} 项能力全部清空。
 
 只有在你确实要清空时才点“确定”。`))return;
-  const saveButtons=[...document.querySelectorAll('button')].filter(btn=>(btn.textContent||'').includes('保存能力清单'));
-  saveButtons.forEach(btn=>{btn.disabled=true;btn.dataset.oldText=btn.textContent;btn.textContent='正在保存…'});
-  await withBusy(async()=>{
-    try{
-      const result=app.taskWorkflowReady
-        ?await db.rpc('save_member_abilities_v3',{p_member_id:id,p_task_ids:ids,p_expected_version:m.abilitiesVersion,p_operator_name:operatorName()})
-        :await db.rpc('save_member_abilities',{p_member_id:id,p_task_ids:ids,p_expected_version:m.abilitiesVersion,p_operator_name:operatorName()});
-      const {error}=result;
-      if(error)throw error;
-      const [{data:memberRow,error:memberError},{data:abilityRows,error:abilityError}]=await Promise.all([
-        db.from('guild_members').select('*').eq('id',id).single(),
-        db.from('member_abilities').select('*').eq('guild_id',app.guild.id).eq('member_id',id)
-      ]);
-      if(memberError)throw memberError;
-      if(abilityError)throw abilityError;
-      const memberIndex=app.members.findIndex(x=>x.id===id);
-      if(memberIndex>=0)app.members[memberIndex]=memberRow;
-      app.abilities=app.abilities.filter(x=>x.member_id!==id).concat(abilityRows||[]);
-      abilityDraft=new Set((abilityRows||[]).map(x=>Number(x.task_id)));
-      abilityDraftMemberId=id;
-      abilityDirty=false;
-      syncAbilityCount();
-      const memberSearch=document.querySelector('.member-list .input')?.value||'';
-      renderMemberList(memberSearch);
-      toast(`能力清单已保存，共${abilityDraft.size}项`);
-    }catch(e){
-      showError(e,'保存失败');
-    }finally{
-      saveButtons.forEach(btn=>{btn.disabled=false;btn.textContent=btn.dataset.oldText||'保存能力清单';delete btn.dataset.oldText});
-    }
-  });
+  await withBusy(async()=>{try{const {error}=await db.rpc('save_member_abilities',{p_member_id:id,p_task_ids:ids,p_expected_version:m.abilitiesVersion,p_operator_name:operatorName()});if(error)throw error;await loadGuildData(app.guild.id);abilityDraft=null;abilityDraftMemberId=null;abilityDirty=false;abilitySheetOpen=false;document.getElementById('abilitySheetRoot')?.remove();toast('能力清单已保存');renderApp(app.role==='admin')}catch(e){showError(e,'保存失败')}});
 }
 
-function resetRecordRequestKey(){recordIdempotencyKey=null}
-function setRecordMode(mode){
-  if(!['single','batch'].includes(mode)||recordMode===mode)return;
-  recordMode=mode;batchSubmitSummary=null;
-  if(mode==='batch')ensureBatchRows();
-  renderRecordPage();
-}
-function setRecordMember(id){
-  if(recordMemberId!==id){recordMemberId=id;recordTaskId=null;recordSearchQuery='';resetRecordRequestKey()}
-  renderRecordPage();
-}
-function setRecordAttempt(type){
-  if(!['free','paid'].includes(type))return;
-  if(recordAttemptType!==type){recordAttemptType=type;resetRecordRequestKey()}
-  renderRecordPage();
-}
-function switchRecordToPaid(){
-  const m=memberById(recordMemberId),c=currentGuild()?.competition;
-  if(!m||!c)return;
-  const paidRem=Math.max(0,c.paidLimit-m.paidUsed);
-  if(paidRem<=0)return toast(`${m.name}的购买次数也已全部登记`);
-  setRecordAttempt('paid');
-}
-function setRecordDoubled(checked){
-  const next=!!checked;if(recordDoubled!==next){recordDoubled=next;resetRecordRequestKey()}
-}
-function chooseRecordTask(id){
-  const next=Number(id);if(recordTaskId!==next){recordTaskId=next;resetRecordRequestKey()}
-  renderRecordPage();
-}
-function recordHistoryHtml(g){
-  return `<section class="card" style="padding:21px"><div class="section-title"><div><h2>最近任务记录</h2><p>误操作可以撤销，助手会退回记录中的积分和次数；游戏内已经消耗的钻石不会返还。</p></div></div><div class="table-wrap"><table class="table"><thead><tr><th>时间</th><th>成员</th><th>任务</th><th>积分</th><th>次数</th><th>状态</th><th>操作</th></tr></thead><tbody>${g.logs.slice(0,100).map(l=>{const mm=memberById(l.memberId);return`<tr><td>${fmtTime(l.time)}</td><td>${esc(mm?.name||'未知')}</td><td>${esc(l.taskName)}</td><td>${l.points}</td><td>${l.attemptType==='paid'?'购买':'免费'}</td><td><span class="pill ${l.reversedAt?'bad':'good'}">${l.reversedAt?'已撤销':l.countsForGuild?'计入公会':'仅个人'}</span></td><td>${l.reversedAt?'—':`<button class="btn btn-sm btn-danger" onclick="confirmReverse('${l.id}')">撤销</button>`}</td></tr>`}).join('')||`<tr><td colspan="7"><div class="empty">还没有任务记录。</div></td></tr>`}</tbody></table></div></section>`;
-}
-function recordModeTabsHtml(){
-  return `<div class="record-mode-tabs"><button class="${recordMode==='single'?'active':''}" onclick="setRecordMode('single')">单次登记</button><button class="${recordMode==='batch'?'active':''}" onclick="setRecordMode('batch')">批量登记</button></div>`;
-}
-function renderRecordPage(){
-  const g=currentGuild(),c=g.competition;
-  document.getElementById('page').innerHTML=`<section class="card paper" style="padding:21px;margin-bottom:16px"><div class="section-title"><div><span class="pill lav">当前第${c.round}轮</span><h2 style="margin-top:10px">登记任务完成</h2><p>单次登记适合随手记录；批量登记适合一次补录多名成员、多项任务。</p></div></div>${recordModeTabsHtml()}<div id="recordPanel"></div></section>${recordHistoryHtml(g)}`;
-  recordMode==='batch'?renderBatchRecordPanel():renderSingleRecordPanel();
-}
-function renderSingleRecordPanel(){
-  const box=document.getElementById('recordPanel');if(!box)return;
-  const g=currentGuild(),c=g.competition,members=g.members.filter(m=>m.active&&m.targetMode!=='inactive');
-  if(!recordMemberId&&members.length)recordMemberId=members[0].id;
-  if(recordMemberId&&!members.some(x=>x.id===recordMemberId)){recordMemberId=members[0]?.id||null;recordTaskId=null;resetRecordRequestKey()}
-  const m=memberById(recordMemberId),allowed=m?tasks().filter(t=>!recordOnlyAbilities||m.abilities.includes(t.id)):[];
-  if(recordTaskId&&!allowed.some(t=>t.id===recordTaskId)){recordTaskId=null;resetRecordRequestKey()}
-  const freeRem=m?Math.max(0,c.freeLimit-m.freeUsed):0,paidRem=m?Math.max(0,c.paidLimit-m.paidUsed):0;
-  const currentRem=recordAttemptType==='paid'?paidRem:freeRem,bothExhausted=!!m&&freeRem<=0&&paidRem<=0,currentExhausted=!!m&&currentRem<=0;
-  const resourceAdvice=!m?'':bothExhausted
-    ?`<div class="advice bad"><b>${esc(m.name)}本轮免费次数和购买次数均已全部登记</b><br>当前无法继续登记，请先核对游戏内和系统中的次数记录。</div>`
-    :recordAttemptType==='free'&&freeRem<=0
-      ?`<div class="advice warn"><b>${esc(m.name)}本轮${c.freeLimit}次免费任务已全部登记</b><br>本次如使用钻石次数，请主动切换为“购买次数”。<div style="margin-top:10px"><button class="btn btn-sm btn-butter" onclick="switchRecordToPaid()">切换为购买次数</button></div></div>`
-      :recordAttemptType==='paid'&&paidRem<=0
-        ?`<div class="advice bad"><b>${esc(m.name)}本轮${c.paidLimit}次购买任务已全部登记</b><br>${freeRem>0?'仍有免费次数，可切换回“免费次数”。':'当前无法继续登记。'}${freeRem>0?`<div style="margin-top:10px"><button class="btn btn-sm btn-soft" onclick="setRecordAttempt('free')">切换为免费次数</button></div>`:''}</div>`
-        :`<div class="advice ${recordAttemptType==='paid'?'warn':'good'}"><b>本次使用${recordAttemptType==='paid'?'购买次数':'免费次数'}</b><br>${recordAttemptType==='paid'?'该类型会消耗游戏内钻石，请确认后再登记。':'当前仍可登记 '+freeRem+' 次免费任务。'}</div>`;
-  box.innerHTML=members.length?`<div class="grid grid-4" style="margin-bottom:14px"><div class="person-stat"><b>${m?.freeUsed||0}/${c.freeLimit}</b><span>免费已用</span></div><div class="person-stat"><b>${freeRem}</b><span>免费剩余</span></div><div class="person-stat"><b>${m?.paidUsed||0}/${c.paidLimit}</b><span>购买已用</span></div><div class="person-stat"><b>${paidRem}</b><span>购买剩余</span></div></div><div class="grid grid-3"><div><label class="label">完成成员</label><select id="recordMember" class="select" onchange="setRecordMember(this.value)">${members.map(x=>`<option value="${x.id}" ${x.id===recordMemberId?'selected':''}>${esc(x.name)}</option>`).join('')}</select></div><div><label class="label">次数类型</label><select id="recordAttempt" class="select" onchange="setRecordAttempt(this.value)"><option value="free" ${recordAttemptType==='free'?'selected':''}>免费次数</option><option value="paid" ${recordAttemptType==='paid'?'selected':''}>购买次数</option></select></div><div><label class="label">积分翻倍</label><label class="input" style="display:flex;gap:10px;align-items:center"><input id="recordDoubled" type="checkbox" ${recordDoubled?'checked':''} onchange="setRecordDoubled(this.checked)"> 本次任务已翻倍</label></div></div>${resourceAdvice}<div style="margin-top:14px"><label class="label">任务</label><div class="row" style="margin-bottom:9px"><button class="btn btn-sm ${recordOnlyAbilities?'btn-soft':'btn-ghost'}" onclick="recordOnlyAbilities=true;recordTaskId=null;resetRecordRequestKey();renderSingleRecordPanel()">只看已登记能力</button><button class="btn btn-sm ${!recordOnlyAbilities?'btn-soft':'btn-ghost'}" onclick="recordOnlyAbilities=false;renderSingleRecordPanel()">查看全部任务</button></div><input class="input" value="${esc(recordSearchQuery)}" placeholder="输入一个字筛选任务" oninput="recordSearchQuery=this.value;renderRecordTaskChoices(this.value)"><div id="recordTaskChoices" class="result-list" style="margin-top:10px;max-height:330px;overflow:auto"></div></div>${recordTaskId?(()=>{const t=taskById(recordTaskId);const award=t.points*(recordDoubled?2:1);return`<div class="advice good"><b>已选择：${esc(t.name)}</b><br>本次预计登记 ${award} 分（${recordDoubled?'已翻倍':'未翻倍'}）。</div>`})():''}<button id="recordSubmitButton" class="btn btn-primary" style="width:100%" onclick="submitTaskCompletion()" ${!recordTaskId||currentExhausted||submitLocked?'disabled':''}>${currentExhausted?'当前次数不可用':submitLocked?'正在登记，请勿重复点击…':'确认完成并同步云端'}</button>`:`<div class="empty">当前没有可参与本轮的有效成员。</div>`;
-  renderRecordTaskChoices(recordSearchQuery);
-}
-function renderRecordTaskChoices(q){
-  const box=document.getElementById('recordTaskChoices');if(!box)return;
-  const m=memberById(recordMemberId);
-  let list=tasks().filter(t=>(!q||norm(t.name).includes(norm(q)))&&(!recordOnlyAbilities||m?.abilities.includes(t.id))).sort((a,b)=>b.points-a.points||a.name.localeCompare(b.name,'zh-CN')).slice(0,80);
-  box.innerHTML=list.length?list.map(t=>`<button class="result-item" style="width:100%;text-align:left;${recordTaskId===t.id?'border-color:#d5b878;background:var(--amber-soft)':''}" onclick="chooseRecordTask(${t.id})"><div class="result-main"><strong>${esc(t.name)} ${taskOriginBadge(t)}</strong><small>${t.points}分 · 翻倍${t.points*2}</small></div><span>›</span></button>`).join(''):`<div class="missing-task-box"><b>没有匹配任务</b><span class="small muted">${recordOnlyAbilities?'可以先切换“查看全部任务”；确认任务库确实没有时再新增。':'填写名称和基础分后，本公会可以立即登记。'}</span><br><button class="btn btn-sm btn-primary" onclick="openGuildTaskSubmissionModal('${esc(q||'')}')">新增缺失任务</button></div>`;
-}
-async function submitTaskCompletion(){
-  if(!ensureMaintain())return;if(submitLocked||!recordTaskId||!recordMemberId)return;
-  const m=memberById(recordMemberId),c=currentGuild().competition;if(!m)return;
-  const remaining=recordAttemptType==='paid'?Math.max(0,c.paidLimit-m.paidUsed):Math.max(0,c.freeLimit-m.freeUsed);
-  if(remaining<=0){renderSingleRecordPanel();return toast(`${m.name}的${recordAttemptType==='paid'?'购买':'免费'}次数已用完`)}
-  if(!recordIdempotencyKey)recordIdempotencyKey=uuid();
-  submitLocked=true;renderSingleRecordPanel();
-  try{
-    const {data,error}=await db.rpc('record_task_completion',{p_member_id:recordMemberId,p_task_id:recordTaskId,p_doubled:recordDoubled,p_attempt_type:recordAttemptType,p_operator_name:operatorName(),p_idempotency_key:recordIdempotencyKey});
-    if(error)throw error;
-    await loadGuildData(app.guild.id,true);recordTaskId=null;recordSearchQuery='';recordIdempotencyKey=null;
-    toast(data.duplicate?'该操作已登记过':'任务已登记并同步');renderRecordPage();
-  }catch(e){
-    const raw=e?.message||String(e||'');
-    try{await loadGuildData(app.guild.id,true)}catch(_){}
-    if(raw.includes('FREE_ATTEMPTS_EXHAUSTED'))toast(`${memberById(recordMemberId)?.name||'该成员'}的免费次数已用完，可切换为购买次数`);
-    else if(raw.includes('PAID_ATTEMPTS_EXHAUSTED'))toast(`${memberById(recordMemberId)?.name||'该成员'}的购买次数已用完`);
-    else showError(e,'登记失败');
-    renderRecordPage();
-  }finally{submitLocked=false}
-}
-
-function newBatchRecordRow(seed={}){
-  const members=currentGuild()?.members.filter(m=>m.active&&m.targetMode!=='inactive')||[];
-  const memberId=seed.memberId&&members.some(m=>m.id===seed.memberId)?seed.memberId:(members[0]?.id||null);
-  return{id:uuid(),memberId,attemptType:seed.attemptType||'free',doubled:seed.doubled??true,taskId:Number(seed.taskId)||null,query:seed.query||'',idempotencyKey:uuid(),error:'',status:'pending'};
-}
-function ensureBatchRows(){if(!batchRecordRows.length)batchRecordRows=[newBatchRecordRow()]}
-function addBatchRecordRow(copyLast=false){
-  ensureBatchRows();const seed=copyLast?batchRecordRows.at(-1):{};batchRecordRows.push(newBatchRecordRow(seed));batchSubmitSummary=null;renderBatchRecordRows();
-}
-function copyBatchRecordRow(id){const row=batchRecordRows.find(x=>x.id===id);if(!row)return;const index=batchRecordRows.findIndex(x=>x.id===id);batchRecordRows.splice(index+1,0,newBatchRecordRow(row));batchSubmitSummary=null;renderBatchRecordRows()}
-function deleteBatchRecordRow(id){if(batchSubmitting)return;batchRecordRows=batchRecordRows.filter(x=>x.id!==id);ensureBatchRows();batchSubmitSummary=null;renderBatchRecordRows()}
-function updateBatchRecordRow(id,field,value){
-  const row=batchRecordRows.find(x=>x.id===id);if(!row||batchSubmitting)return;
-  if(field==='memberId'){row.memberId=value;row.taskId=null;row.query=''}
-  else if(field==='attemptType')row.attemptType=value;
-  else if(field==='doubled')row.doubled=!!value;
-  else if(field==='taskId')row.taskId=Number(value)||null;
-  else if(field==='query')row.query=value;
-  row.idempotencyKey=uuid();row.error='';row.status='pending';batchSubmitSummary=null;renderBatchRecordRows();
-}
-function setBatchOnlyAbilities(value){batchOnlyAbilities=!!value;batchRecordRows.forEach(row=>{const allowed=batchTasksForRow(row);if(row.taskId&&!allowed.some(t=>t.id===row.taskId))row.taskId=null});batchSubmitSummary=null;renderBatchRecordPanel()}
-function batchTasksForRow(row){
-  const m=memberById(row.memberId),q=norm(row.query||'');
-  return tasks().filter(t=>(!batchOnlyAbilities||m?.abilities.includes(t.id))&&(!q||norm(t.name).includes(q))).sort((a,b)=>b.points-a.points||a.name.localeCompare(b.name,'zh-CN'));
-}
-function batchRowErrorText(raw,row){
-  const m=memberById(row.memberId),name=m?.name||'该成员',s=raw?.message||String(raw||'');
-  if(s.includes('FREE_ATTEMPTS_EXHAUSTED'))return`${name}的免费次数已用完`;
-  if(s.includes('PAID_ATTEMPTS_EXHAUSTED'))return`${name}的购买次数已用完`;
-  if(s.includes('TASK_NOT_FOUND_OR_INACTIVE'))return'该任务已停用或不存在';
-  if(s.includes('MEMBER_NOT_FOUND_OR_INACTIVE'))return'该成员已停用或不存在';
-  if(s.includes('CURRENT_ROUND_NOT_FOUND'))return'当前轮次不存在，请刷新后重试';
-  if(s.includes('ACCESS_DENIED'))return'当前账号没有登记权限';
-  return s||'登记失败';
-}
-function validateBatchRecordRows(){
-  const c=currentGuild().competition,freeUse=new Map(),paidUse=new Map();let valid=0;
-  batchRecordRows.forEach((row,index)=>{
-    row.error='';row.status='pending';const m=memberById(row.memberId),t=taskById(row.taskId);
-    if(!m||!m.active||m.targetMode==='inactive')row.error='请选择有效的本轮参与成员';
-    else if(!t||t.disabled)row.error='请选择仍在使用的任务';
-    else if(!['free','paid'].includes(row.attemptType))row.error='请选择次数类型';
-    if(!row.error){
-      const map=row.attemptType==='paid'?paidUse:freeUse,used=row.attemptType==='paid'?m.paidUsed:m.freeUsed,limit=row.attemptType==='paid'?c.paidLimit:c.freeLimit;
-      const added=(map.get(m.id)||0)+1;map.set(m.id,added);
-      if(used+added>limit)row.error=`${m.name}本轮${row.attemptType==='paid'?'购买':'免费'}次数不足，当前批次最多还能登记${Math.max(0,limit-used)}项`;
-    }
-    if(row.error)row.status='error';else valid++;
-  });
-  return valid;
-}
-function batchSummaryHtml(){
-  if(batchSubmitProgress)return`<div class="batch-summary warn"><b>${esc(batchSubmitProgress)}</b><br>正在逐项写入云端，请不要关闭页面或重复点击。</div>`;
-  if(!batchSubmitSummary)return'';
-  const s=batchSubmitSummary,cls=s.failed?'warn':'good';
-  return`<div class="batch-summary ${cls}"><b>批量登记完成</b><br>成功登记${s.success}项${s.duplicate?`，其中${s.duplicate}项已登记过`:''}${s.failed?`，失败${s.failed}项。失败项目已保留在下方，可修改后再次提交。`:'。'}</div>`;
-}
-function renderBatchRecordPanel(){
-  ensureBatchRows();const box=document.getElementById('recordPanel');if(!box)return;
-  box.innerHTML=`<div class="row" style="justify-content:space-between"><div class="row"><button class="btn btn-sm ${batchOnlyAbilities?'btn-soft':'btn-ghost'}" onclick="setBatchOnlyAbilities(true)">只看成员能力</button><button class="btn btn-sm ${!batchOnlyAbilities?'btn-soft':'btn-ghost'}" onclick="setBatchOnlyAbilities(false)">查看全部任务</button></div><div class="row"><button class="btn btn-sm btn-ghost" onclick="openGuildTaskSubmissionModal('')">补充缺失任务</button><button class="btn btn-sm btn-ghost" onclick="addBatchRecordRow(false)">新增一项</button><button class="btn btn-sm btn-soft" onclick="addBatchRecordRow(true)">复制上一项</button></div></div><div class="helper" style="margin-top:9px">每一项会单独校验和登记。某一项失败，不会撤销已经成功的其他项目。购买次数和翻倍都可能消耗游戏内钻石，请按实际情况选择。</div><div id="batchSubmitSummary">${batchSummaryHtml()}</div><div id="batchRecordRows" class="batch-record-list"></div><div class="batch-submit-bar"><div><b>共 ${batchRecordRows.length} 项</b><div class="small muted">提交前会检查成员、任务及剩余次数</div></div><button id="batchSubmitButton" class="btn btn-primary" onclick="submitBatchTaskCompletions()" ${batchSubmitting?'disabled':''}>${batchSubmitting?'正在批量登记…':'只提交有效项目'}</button></div>`;
-  renderBatchRecordRows();
-}
-function renderBatchRecordRows(){
-  const box=document.getElementById('batchRecordRows');if(!box)return;const members=currentGuild().members.filter(m=>m.active&&m.targetMode!=='inactive'),c=currentGuild().competition;
-  box.innerHTML=batchRecordRows.map((row,index)=>{
-    const m=memberById(row.memberId),taskList=batchTasksForRow(row),selected=taskById(row.taskId),freeRem=m?Math.max(0,c.freeLimit-m.freeUsed):0,paidRem=m?Math.max(0,c.paidLimit-m.paidUsed):0;
-    const stateClass=row.status==='error'?'error':row.status==='success'?'success':'';
-    return`<div class="batch-record-card ${stateClass}"><div class="batch-record-head"><b><span class="pill lav">第${index+1}项</span>${row.status==='error'?'<span class="pill bad">需要修改</span>':row.status==='success'?'<span class="pill good">已完成</span>':''}</b><button class="btn btn-sm btn-danger" onclick="deleteBatchRecordRow('${row.id}')" ${batchSubmitting?'disabled':''}>删除</button></div><div class="batch-record-grid"><div><label class="label">完成成员</label><select class="select" onchange="updateBatchRecordRow('${row.id}','memberId',this.value)" ${batchSubmitting?'disabled':''}>${members.map(x=>`<option value="${x.id}" ${x.id===row.memberId?'selected':''}>${esc(x.name)}</option>`).join('')}</select><div class="tiny muted" style="margin-top:5px">免费余${freeRem} · 购买余${paidRem}</div></div><div><label class="label">次数类型</label><select class="select" onchange="updateBatchRecordRow('${row.id}','attemptType',this.value)" ${batchSubmitting?'disabled':''}><option value="free" ${row.attemptType==='free'?'selected':''}>免费次数</option><option value="paid" ${row.attemptType==='paid'?'selected':''}>购买次数</option></select></div><div><label class="label">积分翻倍</label><label class="input" style="display:flex;gap:9px;align-items:center"><input type="checkbox" ${row.doubled?'checked':''} onchange="updateBatchRecordRow('${row.id}','doubled',this.checked)" ${batchSubmitting?'disabled':''}> ${row.doubled?'已翻倍':'不翻倍'}</label></div><div class="batch-task-wrap"><label class="label">任务</label><div class="batch-task-field"><input class="input" value="${esc(row.query)}" placeholder="搜索任务" oninput="updateBatchRecordRow('${row.id}','query',this.value)" ${batchSubmitting?'disabled':''}><select class="select" onchange="updateBatchRecordRow('${row.id}','taskId',this.value)" ${batchSubmitting?'disabled':''}><option value="">请选择任务</option>${taskList.slice(0,120).map(t=>`<option value="${t.id}" ${t.id===row.taskId?'selected':''}>${esc(t.name)}（${t.points}分）</option>`).join('')}${selected&&!taskList.some(t=>t.id===selected.id)?`<option value="${selected.id}" selected>${esc(selected.name)}（${selected.points}分）</option>`:''}</select></div></div></div>${row.error?`<div class="advice bad" style="margin:10px 0 0"><b>第${index+1}项未登记</b><br>${esc(row.error)}</div>`:''}<div class="batch-record-actions"><button class="btn btn-sm btn-soft" onclick="copyBatchRecordRow('${row.id}')" ${batchSubmitting?'disabled':''}>复制这一项</button></div></div>`;
-  }).join('');
-  const sum=document.getElementById('batchSubmitSummary');if(sum)sum.innerHTML=batchSummaryHtml();
-  const btn=document.getElementById('batchSubmitButton');if(btn){btn.disabled=batchSubmitting;btn.textContent=batchSubmitting?'正在批量登记…':'只提交有效项目'}
-}
-async function submitBatchTaskCompletions(){
-  if(!ensureMaintain()||batchSubmitting)return;ensureBatchRows();const valid=validateBatchRecordRows();renderBatchRecordRows();
-  if(!valid)return toast('没有可以提交的项目，请先修改标红内容');
-  const paidCount=batchRecordRows.filter(r=>!r.error&&r.attemptType==='paid').length;
-  const doubledCount=batchRecordRows.filter(r=>!r.error&&r.doubled).length;
-  if((paidCount||doubledCount)&&!confirm(`本次将提交${valid}项，其中购买次数${paidCount}项、翻倍${doubledCount}项。\n\n购买次数和翻倍可能消耗游戏内钻石，确认继续吗？`))return;
-  batchSubmitting=true;batchSubmitSummary=null;let success=0,failed=0,duplicate=0,done=0;renderBatchRecordRows();
-  const rows=[...batchRecordRows];
-  for(const row of rows){
-    if(row.error)continue;done++;batchSubmitProgress=`正在登记第${done}/${valid}项`;renderBatchRecordRows();
-    try{
-      const {data,error}=await db.rpc('record_task_completion',{p_member_id:row.memberId,p_task_id:row.taskId,p_doubled:row.doubled,p_attempt_type:row.attemptType,p_operator_name:operatorName(),p_idempotency_key:row.idempotencyKey});
-      if(error)throw error;row.status='success';success++;if(data?.duplicate)duplicate++;
-    }catch(e){row.status='error';row.error=batchRowErrorText(e,row);failed++}
-  }
-  try{await loadGuildData(app.guild.id,true)}catch(e){console.error(e);toast('登记完成，但最新数据同步失败，请稍后刷新')}
-  batchRecordRows=batchRecordRows.filter(r=>r.status!=='success');
-  if(!batchRecordRows.length)batchRecordRows=[newBatchRecordRow()];
-  batchSubmitProgress='';batchSubmitSummary={success,failed,duplicate};batchSubmitting=false;renderRecordPage();
-  toast(failed?`成功${success}项，失败${failed}项`:`批量登记成功，共${success}项`);
-}
-function confirmReverse(id){openModal(`<div class="modal-head"><div><h3>撤销这条任务记录？</h3><p class="muted">助手会退回个人积分、对应次数和公会积分。</p></div><button class="modal-close" onclick="closeModal()">×</button></div><div class="advice bad"><b>请注意</b><br>撤销只修改助手中的登记数据，不会返还游戏内已经消耗的钻石。</div><button class="btn btn-danger" style="width:100%" onclick="reverseTask('${id}')">确认撤销</button>`)}
-async function reverseTask(id){await withBusy(async()=>{try{const {error}=await db.rpc('reverse_task_completion',{p_log_id:id,p_operator_name:operatorName()});if(error)throw error;closeModal();await loadGuildData(app.guild.id,true);toast('任务记录已撤销');renderRecordPage()}catch(e){showError(e,'撤销失败')}})}
+function renderRecordPage(){const g=currentGuild(),members=g.members.filter(m=>m.active&&m.targetMode!=='inactive');if(!recordMemberId&&members.length)recordMemberId=members[0].id;const m=memberById(recordMemberId),allowed=m?tasks().filter(t=>!recordOnlyAbilities||m.abilities.includes(t.id)):[];if(recordTaskId&&!allowed.some(t=>t.id===recordTaskId))recordTaskId=null;document.getElementById('page').innerHTML=`<section class="card paper" style="padding:21px;margin-bottom:16px"><div class="section-title"><div><h2>一键登记任务完成</h2><p>只需选择成员、任务、是否翻倍和次数类型，积分与次数会同步更新。</p></div></div><div class="grid grid-3"><div><label class="label">完成成员</label><select id="recordMember" class="select" onchange="recordMemberId=this.value;recordTaskId=null;renderRecordPage()">${members.map(x=>`<option value="${x.id}" ${x.id===recordMemberId?'selected':''}>${esc(x.name)}</option>`).join('')}</select></div><div><label class="label">次数类型</label><select id="recordAttempt" class="select"><option value="free">免费次数</option><option value="paid">购买次数</option></select></div><div><label class="label">积分翻倍</label><label class="input" style="display:flex;gap:10px;align-items:center"><input id="recordDoubled" type="checkbox" checked> 本次任务已翻倍</label></div></div><div style="margin-top:14px"><label class="label">任务</label><div class="row" style="margin-bottom:9px"><button class="btn btn-sm ${recordOnlyAbilities?'btn-soft':'btn-ghost'}" onclick="recordOnlyAbilities=true;recordTaskId=null;renderRecordPage()">只看已登记能力</button><button class="btn btn-sm ${!recordOnlyAbilities?'btn-soft':'btn-ghost'}" onclick="recordOnlyAbilities=false;renderRecordPage()">查看全部任务</button></div><input class="input" placeholder="输入一个字筛选任务" oninput="renderRecordTaskChoices(this.value)"><div id="recordTaskChoices" class="result-list" style="margin-top:10px;max-height:330px;overflow:auto"></div></div>${recordTaskId?(()=>{const t=taskById(recordTaskId);return`<div class="advice good"><b>已选择：${esc(t.name)}</b><br>基础${t.points}分，翻倍后${t.points*2}分。</div>`})():''}<button class="btn btn-primary" style="width:100%" onclick="submitTaskCompletion()" ${!recordTaskId?'disabled':''}>确认完成并同步云端</button></section><section class="card" style="padding:21px"><div class="section-title"><div><h2>最近任务记录</h2><p>误操作可以撤销，系统会同时退回积分和次数。</p></div></div><div class="table-wrap"><table class="table"><thead><tr><th>时间</th><th>成员</th><th>任务</th><th>积分</th><th>次数</th><th>状态</th><th>操作</th></tr></thead><tbody>${g.logs.slice(0,100).map(l=>{const mm=memberById(l.memberId);return`<tr><td>${fmtTime(l.time)}</td><td>${esc(mm?.name||'未知')}</td><td>${esc(l.taskName)}</td><td>${l.points}</td><td>${l.attemptType==='paid'?'购买':'免费'}</td><td><span class="pill ${l.reversedAt?'bad':'good'}">${l.reversedAt?'已撤销':l.countsForGuild?'计入公会':'仅个人'}</span></td><td>${l.reversedAt?'—':`<button class="btn btn-sm btn-danger" onclick="confirmReverse('${l.id}')">撤销</button>`}</td></tr>`}).join('')||`<tr><td colspan="7"><div class="empty">还没有任务记录。</div></td></tr>`}</tbody></table></div></section>`;renderRecordTaskChoices('')}
+function renderRecordTaskChoices(q){const box=document.getElementById('recordTaskChoices');if(!box)return;const m=memberById(recordMemberId);let list=tasks().filter(t=>(!q||norm(t.name).includes(norm(q)))&&(!recordOnlyAbilities||m?.abilities.includes(t.id))).sort((a,b)=>b.points-a.points||a.name.localeCompare(b.name,'zh-CN')).slice(0,80);box.innerHTML=list.map(t=>`<button class="result-item" style="width:100%;text-align:left;${recordTaskId===t.id?'border-color:#d5b878;background:var(--butter-soft)':''}" onclick="recordTaskId=${t.id};renderRecordPage()"><div class="result-main"><strong>${esc(t.name)}</strong><small>${t.points}分 · 翻倍${t.points*2}</small></div><span>›</span></button>`).join('')||`<div class="empty" style="padding:18px">没有匹配任务。</div>`}
+async function submitTaskCompletion(){if(!ensureMaintain())return;if(submitLocked||!recordTaskId||!recordMemberId)return;submitLocked=true;try{const {data,error}=await db.rpc('record_task_completion',{p_member_id:recordMemberId,p_task_id:recordTaskId,p_doubled:document.getElementById('recordDoubled').checked,p_attempt_type:document.getElementById('recordAttempt').value,p_operator_name:operatorName(),p_idempotency_key:uuid()});if(error)throw error;await loadGuildData(app.guild.id);toast(data.duplicate?'该操作已登记过':'任务已登记并同步');renderApp(app.role==='admin')}catch(e){showError(e,'登记失败')}finally{submitLocked=false}}
+function confirmReverse(id){openModal(`<div class="modal-head"><div><h3>撤销这条任务记录？</h3><p class="muted">个人积分、次数和公会积分会一起退回。</p></div><button class="modal-close" onclick="closeModal()">×</button></div><div class="advice bad">撤销操作会保留在审计记录中。</div><button class="btn btn-danger" style="width:100%" onclick="reverseTask('${id}')">确认撤销</button>`)}
+async function reverseTask(id){await withBusy(async()=>{try{const {error}=await db.rpc('reverse_task_completion',{p_log_id:id,p_operator_name:operatorName()});if(error)throw error;closeModal();await loadGuildData(app.guild.id);toast('任务记录已撤销');renderApp(app.role==='admin')}catch(e){showError(e,'撤销失败')}})}
 
 function renderPersonalPage(){
   const g=currentGuild();document.getElementById('page').innerHTML=`<section class="card paper" style="padding:21px;margin-bottom:16px"><div class="section-title"><div><h2>个人目标总览</h2><p>每名成员可选择冲1400、只做免费次数、正常参与、自定义目标或本轮不参与。</p></div><input class="input" style="max-width:300px" placeholder="搜索成员" oninput="renderPersonalCards(this.value)"></div></section><div id="personalCards" class="grid grid-2"></div>`;renderPersonalCards('');
@@ -1740,75 +914,15 @@ async function applyLeaderboardOcr(){
 }
 
 async function saveLeaderboardSnapshot(){if(!ensureMaintain())return;await withBusy(async()=>{try{const {error}=await db.rpc('save_leaderboard_snapshot',{p_operator_name:operatorName(),p_note:'',p_guild_id:app.role==='admin'?app.guild.id:null});if(error)throw error;await loadGuildData(app.guild.id);toast('本次榜单已保存');renderApp(app.role==='admin')}catch(e){showError(e,'保存榜单失败')}})}
-
-function battleBranchesHtml(x){
-  const opponentName=x.opponent?.name||'主要对手';
-  const firstMax=Math.max(0,x.freeBuffer),secondMax=Math.max(firstMax,x.personalBuffer);
-  const firstText=firstMax>0?`若${esc(opponentName)}在未来${x.observeHours}小时内增分不超过${fmt(firstMax)}分`:`若${esc(opponentName)}在未来${x.observeHours}小时内基本没有继续增分`;
-  const secondStart=firstMax+1,secondText=secondMax>=secondStart?`若增分在${fmt(secondStart)}至${fmt(secondMax)}分之间`:`若对手增分已经超过免费资源可覆盖范围`;
-  return `<div class="branch-list"><div class="branch-item"><b>${firstText}</b>继续优先清免费次数，暂不购买。${x.freeBuffer>0?`当前免费方案在参考目标之上还有约${fmt(x.freeBuffer)}分空间。`:''}</div><div class="branch-item"><b>${secondText}</b>按“超出免费缓冲的分数 ÷ 当前平均每次${fmt(x.avgAward)}分”计算购买次数，分批补回参考线，不一次用完全部资源。</div><div class="branch-item"><b>若增分超过${fmt(secondMax)}分且仍在加速</b>重新保存排行榜并重算参考目标。第一批只补回安全线，确认对手是否继续加速后再决定下一批。</div></div>`;
-}
-function battleMemberPlansHtml(x){
-  const g=currentGuild(),missingGoal=Math.max(0,x.activeCount-x.goalConfigured),missingAbility=Math.max(0,x.activeCount-x.abilityConfigured);
-  return `${x.memberRecommendations.length?`<div class="member-plan-list">${x.memberRecommendations.map((r,i)=>`<div class="member-plan-item"><div><b>${i+1}. ${esc(r.member.name)}</b><small>${esc(r.reasons.join('；'))}</small></div><span class="pill ${r.highRare.length?'high':r.freeRem?'good':'blue'}">${r.freeRem>0?`免费余${r.freeRem}`:r.paidRem>0?`购买余${r.paidRem}`:'次数已清'}</span></div>`).join('')}</div>`:`<div class="empty">暂时没有可推荐成员，请先补充成员目标和能力。</div>`}${missingGoal||missingAbility?`<div class="data-quality" style="margin-top:10px">当前${x.activeCount}名参与成员中，${missingGoal?`${missingGoal}人仍使用“正常参与”或未明确目标；`:''}${missingAbility?`${missingAbility}人尚未登记能力。`:''}成员推荐会根据现有数据生成，不会假装已经覆盖全员。</div>`:''}`;
-}
-function renderTrendHtmlV2(trend){
-  if(!trend?.available)return`<div class="empty">至少保存两次榜单快照后，才会显示真实增分趋势和加速变化。</div>`;
-  const max=Math.max(1,...trend.changes.map(x=>x.perHour));
-  return `<div class="trend-list">${trend.changes.sort((a,b)=>b.perHour-a.perHour).map(x=>`<div class="trend-row ${x.is_self?'self':''}"><div><b>${esc(x.name)}</b><div class="small muted">最近${fmt(trend.hours)}小时增加 ${fmt(x.add)} 分${x.previousPerHour!==null?` · 上阶段约${fmt(x.previousPerHour)}/小时`:''}</div></div><div><div class="progress"><i style="width:${Math.max(4,100*x.perHour/max)}%"></i></div><div class="tiny muted" style="margin-top:5px">${esc(x.accelerationLabel||'数据不足')}</div></div><span class="pill ${x.accelerationLabel?.includes('加速')?'high':x.accelerationLabel?.includes('放缓')?'good':x.is_self?'lav':'blue'}">约 ${fmt(x.perHour)}/小时${x.is_self?' · 我方':''}</span></div>`).join('')}</div><div class="helper" style="margin-top:11px">“近期速度延伸参考”只根据最近快照计算，不代表最终成绩，也不直接作为购买次数依据。</div>`;
-}
-function setBattleObserveHours(v){battleObserveHours=Number(v)||2;renderGuildPage()}
-function setMemberNearThreshold(v){memberNearThreshold=Number(v)||200;renderGuildPage()}
-
 function renderGuildPage(){
   const g=currentGuild(),c=g.competition,x=competitionCalc();
-  const modes=[{v:'promote',icon:'flag',d:'追赶第一名；已经第一时，计算对第二名的参考领先线'},{v:'avoid',icon:'shield',d:'关注第四、第五名分差，优先守住不降段'},{v:'steady',icon:'guild',d:'保持当前名次，达到参考线后减少不必要消耗'},{v:'save',icon:'gem',d:'优先免费次数，判断是否真的需要购买'},{v:'custom',icon:'target',d:'按照管理员填写的目标积分推进'}];
-  const planClass=p=>p.key==='personal'?'resource-plan recommended':'resource-plan';
-  const outcomeClass=x.conclusion==='insufficient'?'bad':x.conclusion==='paid'?'high':'good';
-  const trendNote=x.opponentTrend?`${esc(x.opponentTrend.name)}当前约${fmt(x.opponentTrend.perHour)}/小时，${esc(x.opponentTrend.accelerationLabel)}。`:'尚无足够快照判断主要对手速度。';
-  document.getElementById('page').innerHTML=`
-  <section class="card battle-decision paper">
-    <span class="pill ${outcomeClass}">现在怎么做</span>
-    <h2>${esc(x.actionTitle)}</h2>
-    <div class="lead">${esc(x.actionText)} 当前参考目标为 <b>${fmt(x.targetScore)}分</b>，其中包含管理员填写的 <b>${fmt(x.buffer)}分预留缓冲</b>。</div>
-    <div class="battle-summary-row">
-      <div class="battle-summary-cell"><b>第${x.rank}名</b><span>当前排名</span></div>
-      <div class="battle-summary-cell"><b>${fmt(x.targetGap)}分</b><span>${esc(x.targetLabel)}</span></div>
-      <div class="battle-summary-cell"><b>${x.freeRem}次</b><span>剩余免费次数</span></div>
-      <div class="battle-summary-cell"><b>${x.observeHours}小时后</b><span>建议再次观察</span></div>
-    </div>
-    <div class="row" style="margin-top:14px"><button class="btn btn-primary" onclick="saveLeaderboardSnapshot()">保存当前排行榜快照</button><label class="row small muted">观察间隔<select class="select observe-select" onchange="setBattleObserveHours(this.value)"><option value="1" ${x.observeHours===1?'selected':''}>1小时</option><option value="2" ${x.observeHours===2?'selected':''}>2小时</option><option value="4" ${x.observeHours===4?'selected':''}>4小时</option></select></label></div>
-  </section>
-
-  <div class="battle-actions-grid">
-    <section class="card battle-action-panel"><div class="section-title"><div><h2>下一次怎么做</h2><p>${trendNote}</p></div></div>${battleBranchesHtml(x)}</section>
-    <section class="card battle-action-panel"><div class="section-title"><div><h2>先安排这些成员</h2><p>优先参考距目标较近、免费次数和稀缺任务能力。</p></div><select class="select observe-select" onchange="setMemberNearThreshold(this.value)"><option value="100" ${memberNearThreshold===100?'selected':''}>距目标100分</option><option value="200" ${memberNearThreshold===200?'selected':''}>距目标200分</option><option value="300" ${memberNearThreshold===300?'selected':''}>距目标300分</option><option value="500" ${memberNearThreshold===500?'selected':''}>距目标500分</option></select></div>${battleMemberPlansHtml(x)}</section>
-  </div>
-
-  <details class="battle-details" open><summary>查看资源方案与计算依据</summary><div class="battle-details-body">
-    <div class="resource-plan-grid">${x.plans.map(p=>`<div class="${planClass(p)}"><span>${esc(p.label)}</span><b>${fmt(p.final)}分</b><span>预计新增${fmt(p.add)}分 · 共${p.count}次</span><span>免费${p.freeCount}次${p.paidCount?` · 购买${p.paidCount}次`:''}</span>${p.key==='personal'?'<span class="pill lav" style="margin-top:9px">默认参考</span>':''}</div>`).join('')}</div>
-    <div class="simple-divider"></div>
-    <div class="grid grid-3"><div><label class="label">平均任务分来源</label><div class="input" style="background:#fbf5fb">${esc(x.averageSource)}</div></div><div><label class="label">本轮平均基础分</label><div class="input" style="background:#fbf5fb">${fmt(x.avgBase)}分</div></div><div><label class="label">本轮实际平均得分</label><div class="input" style="background:#fbf5fb">${fmt(x.avgAward)}分</div></div></div>
-    <div class="data-quality" style="margin-top:12px">已登记${x.sampleCount}条有效任务，翻倍占比约${fmt(x.doubleRate*100)}%。${x.sampleCount===0?'当前使用管理员手动估值。':x.sampleCount<10?'当前样本较少，结果会随登记记录增加而变化。':'当前使用本轮真实记录计算。'} 翻倍需要游戏内钻石，本工具只按已经登记的实际比例估算，不会自动建议全部翻倍。</div>
-    <div class="simple-divider"></div>
-    <h3>最近榜单变化</h3>${renderTrendHtmlV2(x.trend)}
-  </div></details>
-
-  <details class="battle-details"><summary>排行榜与本轮目标设置</summary><div class="battle-details-body">
-    <div class="section-title"><div><h2>本轮排行榜</h2><p>更新五个公会后保存快照，系统才会计算真实增分变化。</p></div><div class="ocr-actions"><input id="leaderboardOcrFile" class="hidden" type="file" accept="image/*" onchange="handleLeaderboardOcrFile(this)"><button class="btn btn-soft" onclick="document.getElementById('leaderboardOcrFile').click()">上传榜单截图</button><button class="btn btn-primary" onclick="saveLeaderboardSnapshot()">保存本次榜单</button></div></div>
-    <div class="grid grid-2" style="margin-bottom:12px"><div><label class="label">预计结束时间</label><input class="input" type="datetime-local" value="${toLocalDateTimeValue(c.scheduledEndAt)}" onchange="updateRoundField('scheduled_end_at',this.value||null)"></div><div><label class="label">已保存快照</label><div class="input" style="background:#fbf5fb">${app.snapshots.length}次${app.snapshots[0]?` · 最近 ${fmtTime(app.snapshots[0].captured_at)}`:''}</div></div></div>
-    <div class="table-wrap"><table class="table"><thead><tr><th>公会</th><th>当前积分</th><th>先到达序号</th><th>名次</th></tr></thead><tbody>${c.competitors.map(row=>{const r=x.rows.findIndex(z=>z.id===row.id)+1;return`<tr><td><input value="${esc(row.name)}" ${row.isSelf?'readonly':''} onchange="updateCompetitor('${row.id}','name',this.value)"></td><td><input type="number" min="0" value="${row.score}" onchange="updateCompetitor('${row.id}','score',this.value)"></td><td><input type="number" min="1" max="5" value="${row.arrival}" onchange="updateCompetitor('${row.id}','arrival',this.value)"></td><td><span class="pill ${row.isSelf?'high':'blue'}">第${r}名${row.isSelf?' · 我方':''}</span></td></tr>`}).join('')}</tbody></table></div>
-    <div class="simple-divider"></div>
-    <div class="section-title"><div><h2>选择本轮目标</h2><p>预留缓冲分是管理员自己的风险选择，可以填写0。</p></div><button class="btn btn-sm btn-ghost" onclick="showAllModes()">查看说明</button></div>
-    <div class="mode-scroller">${modes.map(m=>`<button class="mode-card ${c.goalMode===m.v?'active':''}" onclick="confirmGoalMode('${m.v}')"><b>${icon(m.icon)} ${goalModeLabel(m.v)}</b><small>${m.d}</small>${c.goalMode===m.v?'<span class="pill lav" style="margin-top:9px">当前目标</span>':''}</button>`).join('')}</div>
-    <div class="grid grid-2" style="margin-top:12px"><div><label class="label">预留缓冲分</label><input class="input" type="number" min="0" value="${c.safetyMargin}" onchange="updateRoundField('safety_margin',this.value)"><div class="helper" style="margin-top:6px">当前排行榜只代表这一刻。填写1000表示在当前对手分数之上再预留1000分，不是预测，也不是必须立刻打出。</div></div><div><label class="label">自定义目标积分</label><input class="input" type="number" min="0" value="${c.customGoalScore}" onchange="updateRoundField('custom_goal_score',this.value)"></div></div>
-  </div></details>
-
-  <details class="battle-details"><summary>赛季路线与估值设置</summary><div class="battle-details-body">
-    <div class="grid grid-3"><div><label class="label">当前赛段</label><select class="select" onchange="updateRoundField('current_stage',this.value)">${g.stageNames.map((s,i)=>`<option value="${i+1}" ${c.currentStage===i+1?'selected':''}>${esc(s)}</option>`).join('')}</select></div><div><label class="label">目标赛段</label><select class="select" onchange="updateRoundField('target_stage',this.value)">${g.stageNames.map((s,i)=>`<option value="${i+1}" ${c.targetStage===i+1?'selected':''}>${esc(s)}</option>`).join('')}</select></div><div><label class="label">当前轮次</label><div class="input" style="background:#fbf5fb">第${c.season}赛季 · 第${c.round}轮</div></div></div>
-    <div class="advice ${x.needPromotions<=x.chances?'good':'warn'}"><b>路线判断</b><br>本赛季还剩${x.chances}次升段机会。连续拿第一时，理论最高可到“${esc(g.stageNames[x.maxStage-1]||DEFAULT_STAGE_NAMES[x.maxStage-1])}”。${x.needPromotions<=x.chances?'当前目标理论上仍可在本赛季达成。':`目标还需${x.needPromotions}次晋升，无法在本赛季内全部完成。`}</div>
-    <div class="grid grid-2"><div><label class="label">无真实记录时的预计平均基础分</label><input class="input" type="number" min="1" max="99" step="0.5" value="${c.avgBase}" onchange="updateRoundField('estimated_avg_base',this.value)"></div><div><label class="label">无真实记录时的预计翻倍比例</label><input class="input" type="number" min="0" max="100" value="${c.doubleRate}" onchange="updateRoundField('estimated_double_rate',this.value)"></div></div>
-  </div></details>`;
+  const modes=[{v:'promote',icon:'flag',d:'追赶第一名；已经第一时，继续计算安全领先线'},{v:'avoid',icon:'shield',d:'关注第四、第五名分差，先守住保级安全线'},{v:'steady',icon:'guild',d:'保持当前名次，达到安全线后减少不必要消耗'},{v:'save',icon:'gem',d:'优先免费次数，判断是否真的需要购买次数'},{v:'custom',icon:'target',d:'自行填写目标积分和安全分'}];
+  document.getElementById('page').innerHTML=`<div class="grid grid-4" style="margin-bottom:16px"><div class="card kpi"><span>当前排名</span><b>第${x.rank}名</b></div><div class="card kpi"><span>${x.targetLabel}</span><b>${fmt(x.targetGap)}</b></div><div class="card kpi"><span>公会有效任务余量</span><b>${x.capRem}</b></div><div class="card kpi"><span>当前风险</span><b>${x.risk}</b><span>成员剩余${x.totalRem}次</span></div></div>
+  <section class="card paper" style="padding:21px;margin-bottom:16px"><div class="section-title"><div><h2>选择本轮打榜模式</h2><p>手机端可左右滑动。点击卡片后才会切换模式。</p></div><button class="btn btn-sm btn-ghost" onclick="showAllModes()">查看全部模式</button></div><div class="mode-scroller">${modes.map(m=>`<button class="mode-card ${c.goalMode===m.v?'active':''}" onclick="confirmGoalMode('${m.v}')"><b>${icon(m.icon)} ${goalModeLabel(m.v)}</b><small>${m.d}</small>${c.goalMode===m.v?'<span class="pill lav" style="margin-top:9px">当前模式</span>':''}</button>`).join('')}</div><div class="grid grid-2" style="margin-top:12px"><div><label class="label">安全领先值</label><input class="input" type="number" min="0" value="${c.safetyMargin}" onchange="updateRoundField('safety_margin',this.value)"></div><div><label class="label">自定义目标积分</label><input class="input" type="number" min="0" value="${c.customGoalScore}" onchange="updateRoundField('custom_goal_score',this.value)"></div></div><div class="advice ${c.goalMode==='save'?'warn':'lav'}"><b>${goalModeLabel(c.goalMode)}</b><br>${c.goalMode==='save'?`按正常完成情景，剩余免费次数预计可增加 ${fmt(x.freePotential)} 分。${x.targetGap<=x.freePotential?'当前守位目标可先不购买次数。':`若仍要达到守位线，理论上至少还需约 ${x.paidNeeded} 次购买任务。`}`:`${x.targetLabel} ${fmt(x.targetGap)} 分。对手后续增分尚未计入当前差值。`}</div></section>
+  <section class="card" style="padding:21px;margin-bottom:16px"><div class="section-title"><div><h2>本轮排行榜</h2><p>更新五个公会后保存快照，系统才会计算增分变化。</p></div><div class="ocr-actions"><input id="leaderboardOcrFile" class="hidden" type="file" accept="image/*" onchange="handleLeaderboardOcrFile(this)"><button class="btn btn-soft" onclick="document.getElementById('leaderboardOcrFile').click()">上传榜单截图（本地识别）</button><button class="btn btn-primary" onclick="saveLeaderboardSnapshot()">保存本次榜单</button></div></div><div class="ocr-note">截图只在当前浏览器中识别，不会上传到 Supabase。识别结果会先进入可编辑确认页，确认后才写入公会名称与积分。</div><div class="grid grid-2" style="margin-bottom:12px"><div><label class="label">预计结束时间</label><input class="input" type="datetime-local" value="${toLocalDateTimeValue(c.scheduledEndAt)}" onchange="updateRoundField('scheduled_end_at',this.value||null)"></div><div><label class="label">已保存快照</label><div class="input" style="background:#fbf5fb">${app.snapshots.length}次${app.snapshots[0]?` · 最近 ${fmtTime(app.snapshots[0].captured_at)}`:''}</div></div></div><div class="table-wrap"><table class="table"><thead><tr><th>公会</th><th>当前积分</th><th>先到达序号</th><th>名次</th></tr></thead><tbody>${c.competitors.map(row=>{const r=x.rows.findIndex(z=>z.id===row.id)+1;return`<tr><td><input value="${esc(row.name)}" ${row.isSelf?'readonly':''} onchange="updateCompetitor('${row.id}','name',this.value)"></td><td><input type="number" min="0" value="${row.score}" onchange="updateCompetitor('${row.id}','score',this.value)"></td><td><input type="number" min="1" max="5" value="${row.arrival}" onchange="updateCompetitor('${row.id}','arrival',this.value)"></td><td><span class="pill ${row.isSelf?'high':'blue'}">第${r}名${row.isSelf?' · 我方':''}</span></td></tr>`}).join('')}</tbody></table></div></section>
+  <section class="card soft-panel" style="margin-bottom:16px"><div class="section-title"><div><h2>最近两次榜单变化</h2><p>只展示已录入的真实变化，不生成虚假的胜率。</p></div></div>${renderTrendHtml(x.trend)}</section>
+  <section class="card" style="padding:21px;margin-bottom:16px"><div class="section-title"><div><h2>赛季路线</h2><p>每赛季4轮，每轮第1名升段，第5名降段。</p></div></div><div class="grid grid-3"><div><label class="label">当前赛段</label><select class="select" onchange="updateRoundField('current_stage',this.value)">${g.stageNames.map((s,i)=>`<option value="${i+1}" ${c.currentStage===i+1?'selected':''}>${esc(s)}</option>`).join('')}</select></div><div><label class="label">目标赛段</label><select class="select" onchange="updateRoundField('target_stage',this.value)">${g.stageNames.map((s,i)=>`<option value="${i+1}" ${c.targetStage===i+1?'selected':''}>${esc(s)}</option>`).join('')}</select></div><div><label class="label">当前轮次</label><div class="input" style="background:#fbf5fb">第${c.season}赛季 · 第${c.round}轮</div></div></div><div class="advice ${x.needPromotions<=x.chances?'good':'warn'}"><b>路线判断</b><br>本赛季还剩${x.chances}次升段机会。连续拿第一时，理论最高可到“${esc(g.stageNames[x.maxStage-1]||DEFAULT_STAGE_NAMES[x.maxStage-1])}”。${x.needPromotions<=x.chances?'当前目标理论上仍可在本赛季达成。':`目标还需${x.needPromotions}次晋升，无法在本赛季内全部完成。`}</div></section>
+  <section class="card" style="padding:21px"><div class="section-title"><div><h2>本公会剩余积分估算</h2><p>只计算本公会剩余资源，不代表对手最终得分。</p></div></div><div class="grid grid-3"><div><label class="label">预计平均基础分</label><input class="input" type="number" min="10" max="30" step="0.5" value="${c.avgBase}" onchange="updateRoundField('estimated_avg_base',this.value)"></div><div><label class="label">预计翻倍比例</label><input class="input" type="number" min="0" max="100" value="${c.doubleRate}" onchange="updateRoundField('estimated_double_rate',this.value)"></div><div><label class="label">可计公会积分次数</label><div class="input" style="background:#fbf5fb"><b>${x.effectiveRem}</b>次</div></div></div><div class="grid grid-3" style="margin-top:16px">${x.scenarios.map((s,i)=>`<div class="card kpi"><span>${['保守','正常','全力'][i]}情景</span><b>${fmt(s.final)}</b><span>预计新增 ${fmt(s.add)}</span></div>`).join('')}</div><div class="advice"><b>估算边界</b><br>任务刷新、成员在线和对手后续操作都会变化，结果用于判断资源潜力，不承诺最终排名。</div></section>`;
 }
 
 function confirmGoalMode(mode){
@@ -1823,26 +937,10 @@ function showAllModes(){
 async function updateRoundField(column,value){if(!ensureMaintain())return;const numeric=['current_stage','target_stage','safety_margin','custom_goal_score','estimated_avg_base','estimated_double_rate'].includes(column);const patch={[column]:numeric?Number(value):(column==='scheduled_end_at'&&value?new Date(value).toISOString():value)};try{const {data,error}=await db.from('competition_rounds').update(patch).eq('id',app.round.id).eq('row_version',app.round.row_version).select().maybeSingle();if(error)throw error;if(!data)throw new Error('本轮设置已被其他人修改，请刷新后重试');app.round=data;toast('设置已同步');renderGuildPage()}catch(e){showError(e,'保存失败');await loadGuildData(app.guild.id);renderGuildPage()}}
 async function updateCompetitor(id,key,value){if(!ensureMaintain())return;const row=app.competitors.find(x=>x.id===id),map={name:'name',score:'score',arrival:'arrival_order'},val=['score','arrival'].includes(key)?Number(value):value;try{const {data,error}=await db.from('round_competitors').update({[map[key]]:val}).eq('id',id).eq('row_version',row.row_version).select().maybeSingle();if(error)throw error;if(!data)throw new Error('积分表已被其他人修改，请刷新后重试');Object.assign(row,data);renderGuildPage()}catch(e){showError(e,'保存失败');await loadGuildData(app.guild.id);renderGuildPage()}}
 
-function renderSettingsPage(){
-  const g=currentGuild(),c=g.competition;
-  document.getElementById('page').innerHTML=`<section class="card paper" style="padding:21px;margin-bottom:16px"><div class="section-title"><div><h2>本轮规则参数</h2><p>不同赛段规则可能不同，因此18+6和1400都可以调整。</p></div></div><div class="grid grid-4"><div><label class="label">免费次数</label><input class="input" type="number" min="0" value="${c.freeLimit}" onchange="updateRule('free_limit',this.value)"></div><div><label class="label">购买次数</label><input class="input" type="number" min="0" value="${c.paidLimit}" onchange="updateRule('paid_limit',this.value)"></div><div><label class="label">默认个人目标</label><input class="input" type="number" min="0" value="${c.personalTarget}" onchange="updateRule('personal_target',this.value)"></div><div><label class="label">公会任务完成上限</label><input class="input" type="number" min="0" value="${c.taskCap}" onchange="updateRule('guild_task_cap',this.value)"></div></div><div class="grid grid-2" style="margin-top:12px"><div><label class="label">本轮公会已完成有效任务</label><input class="input" type="number" min="0" max="${c.taskCap}" value="${c.guildTasksCompleted}" onchange="updateRule('guild_tasks_completed',this.value)"></div><div><label class="label">任务库信息</label><div class="input" style="background:#fbf5f0">版本 ${esc(app.taskLibrary.version)} · 更新 ${fmtTime(app.taskLibrary.updatedAt)}</div></div></div></section>
-  <section class="card" style="padding:21px;margin-bottom:16px"><div class="section-title"><div><h2>赛段名称</h2><p>修改后一次性保存，避免多人同时编辑覆盖。</p></div><button class="btn btn-primary" onclick="saveStageNames()">保存8个名称</button></div><div class="grid grid-4">${g.stageNames.map((s,i)=>`<div><label class="label">${esc(s)}</label><input id="stageName${i}" class="input" value="${esc(s)}"></div>`).join('')}</div></section>
-  <section class="card" style="padding:21px;margin-bottom:16px"><div class="section-title"><div><h2>数据导出与备份</h2><p>可分别导出成员、能力、本轮登记和排行榜快照，方便核对。</p></div></div><div class="export-grid"><button class="btn btn-primary" onclick="exportGuildData()">导出JSON完整备份</button><button class="btn btn-ghost" onclick="exportGuildCsv('members')">导出成员名单</button><button class="btn btn-ghost" onclick="exportGuildCsv('abilities')">导出成员能力</button><button class="btn btn-ghost" onclick="exportGuildCsv('logs')">导出本轮任务记录</button><button class="btn btn-ghost" onclick="exportGuildCsv('snapshots')">导出排行榜快照</button><button class="btn btn-ghost" onclick="exportGuildCsv('tasks')">导出当前可用任务</button></div><div class="helper" style="margin-top:12px">为防止误覆盖，联网版暂不开放一键导入。需要恢复时由小妙管理员处理。</div></section>
-  <section class="card" style="padding:21px;margin-bottom:16px"><div class="section-title"><div><h2>开始新一轮</h2><p>旧轮次会归档，成员名单和能力清单永久保留。</p></div></div><button class="btn btn-soft" onclick="openResetRoundModal()">开始新一轮</button><div class="helper" style="margin-top:12px">云端已保存 ${app.archivedCount} 份历史轮次。</div></section>
-  <section class="card" style="padding:21px"><div class="section-title"><div><h2>最近操作记录</h2><p>记录操作者、修改时间和主要动作，方便排查误操作。</p></div></div><div class="audit-list">${g.auditLogs.length?g.auditLogs.map(a=>`<div class="audit-item"><b>${esc(a.action)} · ${esc(a.detail)}</b><small>${fmtTime(a.time)} · ${esc(a.operator)}</small></div>`).join(''):`<div class="empty">还没有操作记录。</div>`}</div></section>`;
-}
+function renderSettingsPage(){const g=currentGuild(),c=g.competition;document.getElementById('page').innerHTML=`<section class="card paper" style="padding:21px;margin-bottom:16px"><div class="section-title"><div><h2>本轮规则参数</h2><p>不同赛段规则可能不同，因此18+6和1400都可以调整。</p></div></div><div class="grid grid-4"><div><label class="label">免费次数</label><input class="input" type="number" min="0" value="${c.freeLimit}" onchange="updateRule('free_limit',this.value)"></div><div><label class="label">购买次数</label><input class="input" type="number" min="0" value="${c.paidLimit}" onchange="updateRule('paid_limit',this.value)"></div><div><label class="label">默认个人目标</label><input class="input" type="number" min="0" value="${c.personalTarget}" onchange="updateRule('personal_target',this.value)"></div><div><label class="label">公会任务完成上限</label><input class="input" type="number" min="0" value="${c.taskCap}" onchange="updateRule('guild_task_cap',this.value)"></div></div><div class="grid grid-2" style="margin-top:12px"><div><label class="label">本轮公会已完成有效任务</label><input class="input" type="number" min="0" max="${c.taskCap}" value="${c.guildTasksCompleted}" onchange="updateRule('guild_tasks_completed',this.value)"></div><div><label class="label">任务库信息</label><div class="input" style="background:#fbf5f0">版本 ${esc(app.taskLibrary.version)} · 更新 ${fmtTime(app.taskLibrary.updatedAt)}</div></div></div></section><section class="card" style="padding:21px;margin-bottom:16px"><div class="section-title"><div><h2>赛段名称</h2><p>修改后一次性保存，避免多人同时编辑覆盖。</p></div><button class="btn btn-primary" onclick="saveStageNames()">保存8个名称</button></div><div class="grid grid-4">${g.stageNames.map((s,i)=>`<div><label class="label">${esc(s)}</label><input id="stageName${i}" class="input" value="${esc(s)}"></div>`).join('')}</div></section><section class="card" style="padding:21px;margin-bottom:16px"><div class="section-title"><div><h2>数据备份</h2><p>导出的是当前云端快照，可用于人工核查和恢复。</p></div></div><div class="row"><button class="btn btn-primary" onclick="exportGuildData()">导出JSON备份</button><span class="helper">为防止误覆盖，联网版暂不开放一键导入。需要恢复时由小妙管理员处理。</span></div></section><section class="card" style="padding:21px;margin-bottom:16px"><div class="section-title"><div><h2>开始新一轮</h2><p>旧轮次会归档，成员名单和能力清单永久保留。</p></div></div><button class="btn btn-soft" onclick="openResetRoundModal()">开始新一轮</button><div class="helper" style="margin-top:12px">云端已保存 ${app.archivedCount} 份历史轮次。</div></section><section class="card" style="padding:21px"><div class="section-title"><div><h2>最近操作记录</h2><p>记录操作者、修改时间和主要动作，方便排查误操作。</p></div></div><div class="audit-list">${g.auditLogs.length?g.auditLogs.map(a=>`<div class="audit-item"><b>${esc(a.action)} · ${esc(a.detail)}</b><small>${fmtTime(a.time)} · ${esc(a.operator)}</small></div>`).join(''):`<div class="empty">还没有操作记录。</div>`}</div></section>`}
 async function updateRule(column,value){if(!ensureMaintain())return;const patch={[column]:Number(value)};try{const {data,error}=await db.from('competition_rounds').update(patch).eq('id',app.round.id).eq('row_version',app.round.row_version).select().maybeSingle();if(error)throw error;if(!data)throw new Error('规则参数已被其他人修改，请刷新后重试');app.round=data;toast('规则已同步');renderSettingsPage()}catch(e){showError(e,'保存失败');await loadGuildData(app.guild.id);renderSettingsPage()}}
 async function saveStageNames(){if(!ensureMaintain())return;const names=DEFAULT_STAGE_NAMES.map((fallback,i)=>document.getElementById(`stageName${i}`).value.trim()||fallback);try{const {error}=await db.rpc('update_guild_stage_names_v2',{p_stage_names:names,p_expected_version:app.guild.row_version,p_operator_name:operatorName(),p_guild_id:app.role==='admin'?app.guild.id:null});if(error)throw error;await loadGuildData(app.guild.id);toast('赛段名称已保存');renderApp(app.role==='admin')}catch(e){showError(e,'保存失败')}}
 function exportGuildData(){const data={type:'guildBidAssistantCloudBackup',version:3,exportedAt:new Date().toISOString(),guild:app.guild,round:app.round,members:app.members,abilities:app.abilities,stats:app.stats,competitors:app.competitors,logs:app.logs,audits:app.audits,taskLibrary:app.taskLibrary};const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`${app.guild.name}_竞标赛助手云端备份_${new Date().toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(a.href)}
-
-function exportGuildCsv(type){
-  const g=currentGuild(),date=new Date().toISOString().slice(0,10);
-  if(type==='members')return downloadCsv(`${g.name}_成员名单_${date}.csv`,['成员ID','姓名','在会','状态','目标模式','目标积分','当前积分','免费已用','购买已用','备注'],g.members.map(m=>[m.id,m.name,m.active?'是':'否',m.status,targetModeLabel(m.targetMode),m.goal,m.currentPoints,m.freeUsed,m.paidUsed,m.note]));
-  if(type==='abilities')return downloadCsv(`${g.name}_成员能力_${date}.csv`,['成员','任务ID','任务名称','基础分'],g.members.flatMap(m=>m.abilities.map(id=>{const t=taskById(id);return[m.name,id,t?.name||'已失效任务',t?.points??'']})));
-  if(type==='logs')return downloadCsv(`${g.name}_第${g.competition.round}轮任务记录_${date}.csv`,['时间','成员','任务','基础分','是否翻倍','实际得分','次数类型','是否计入公会','是否撤销','操作者'],g.logs.map(l=>[fmtTime(l.time),memberById(l.memberId)?.name||'未知',l.taskName,l.basePoints,l.doubled?'是':'否',l.points,l.attemptType==='paid'?'购买':'免费',l.countsForGuild?'是':'否',l.reversedAt?'是':'否',l.operator]));
-  if(type==='snapshots')return downloadCsv(`${g.name}_排行榜快照_${date}.csv`,['快照时间','公会','积分','是否我方','备注'],app.snapshots.flatMap(s=>(s.competitors||[]).map(r=>[fmtTime(s.captured_at),r.name,r.score,r.is_self?'是':'否',s.note||''])));
-  if(type==='tasks')return downloadCsv(`${g.name}_当前可用任务_${date}.csv`,['任务ID','任务名称','基础分','翻倍分','来源','审核状态'],tasks().map(t=>[t.id,t.name,t.points,t.points*2,t.visibility==='guild'?'本公会补充':'公共任务',t.reviewStatus]));
-}
 function openResetRoundModal(){const g=currentGuild();openModal(`<div class="modal-head"><div><h3>开始新一轮</h3><p class="muted">系统会把当前轮次归档，不会删除成员能力。</p></div><button class="modal-close" onclick="closeModal()">×</button></div><div class="advice warn"><b>会重置</b><br>当前积分、已用次数、临时状态、五个公会积分和本轮任务完成数。</div><div class="advice good"><b>会保留</b><br>成员名单、可完成任务、备注、任务明细历史和操作记录。</div><label class="label">下一轮所在赛段</label><select id="nextStage" class="select">${g.stageNames.map((s,i)=>`<option value="${i+1}" ${g.competition.currentStage===i+1?'selected':''}>${esc(s)}</option>`).join('')}</select><div style="height:12px"></div><label class="label">输入“开始新一轮”确认</label><input id="resetText" class="input" placeholder="开始新一轮"><button class="btn btn-primary" style="width:100%;margin-top:14px" onclick="resetRound()">确认开始</button>`)}
 async function resetRound(){if(!ensureMaintain())return;if(document.getElementById('resetText').value.trim()!=='开始新一轮')return toast('请按提示输入确认文字');await withBusy(async()=>{try{const {error}=await db.rpc('start_new_round_v2',{p_next_stage:Number(document.getElementById('nextStage').value),p_operator_name:operatorName(),p_guild_id:app.role==='admin'?app.guild.id:null});if(error)throw error;closeModal();await loadGuildData(app.guild.id);toast('新一轮已开始，旧数据已归档');renderApp(app.role==='admin')}catch(e){showError(e,'开始新一轮失败')}})}
 
