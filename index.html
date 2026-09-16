@@ -85,7 +85,9 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.hidden{display:
 .guard-title{font-size:16px;overflow-wrap:anywhere}
 .guard-sub{margin-top:8px;color:var(--muted);font-size:12px;line-height:1.65;overflow-wrap:anywhere}
 .guard-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:16px}
-@media(max-width:900px){.guard-admin-item{grid-template-columns:1fr}.guard-admin-actions{justify-content:flex-start}.guard-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.guard-admin-filter-grid{grid-template-columns:1fr 1fr}.guard-admin-filter-grid .guard-search-field{grid-column:1/-1}.guard-admin-filter-grid .guard-clear-filter{grid-column:1/-1;width:100%}}
+.guard-issue-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-bottom:18px}
+.guard-issue-card{padding:20px;min-width:0}.guard-issue-card h3{margin:0 0 5px}.guard-issue-code-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:9px;align-items:end}.guard-code-input{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-weight:800;letter-spacing:.45px}.guard-issue-note{margin-top:8px;font-size:12px;color:var(--muted);line-height:1.6}.guard-batch-result{width:100%;min-height:250px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;line-height:1.8;white-space:pre}
+@media(max-width:900px){.guard-admin-item{grid-template-columns:1fr}.guard-admin-actions{justify-content:flex-start}.guard-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.guard-admin-filter-grid{grid-template-columns:1fr 1fr}.guard-admin-filter-grid .guard-search-field{grid-column:1/-1}.guard-admin-filter-grid .guard-clear-filter{grid-column:1/-1;width:100%}.guard-issue-grid{grid-template-columns:1fr}}
 @media(max-width:580px){.guard-kpis{grid-template-columns:1fr}.guard-admin-filter-grid{grid-template-columns:1fr}.guard-admin-filter-grid .guard-search-field,.guard-admin-filter-grid .guard-clear-filter{grid-column:auto}}
 
 /* 主应用 */
@@ -489,12 +491,17 @@ function renderAdminGuard(){
     return;
   }
   const invites=ga.invites||[],registered=invites.filter(i=>i.guild_name&&i.server_name),active7=registered.filter(i=>isWithinDays(i.last_seen_at,7)),guild2=invites.filter(i=>i.guild_allowed);
-  box.innerHTML=`<section class="card paper" style="padding:21px;margin-bottom:18px"><div class="section-title"><div><h2>生成保安邀请码</h2><p>邀请码与公会竞标赛助手授权分开管理。生成后请立即复制；系统只保留邀请码尾号用于核对。</p></div><button class="btn btn-ghost" onclick="loadGuardAdminData()">刷新数据</button></div><div class="grid grid-4"><div><label class="label">邀请码备注</label><input id="guardIssueLabel" class="input" maxlength="100" placeholder="例如：妙不可言 / 测试授权"></div><div><label class="label">有效天数</label><input id="guardIssueDays" class="input" type="number" min="1" max="3650" value="90"></div><div><label class="label">公会2.0权限</label><select id="guardIssueGuildAllowed" class="select" onchange="toggleGuardGuildSelect()"><option value="false">普通保安</option><option value="true">允许公会2.0</option></select></div><div><label class="label">关联2.0公会</label><select id="guardIssueGuildId" class="select" disabled><option value="">请选择公会</option>${(ga.guilds||[]).map(g=>`<option value="${esc(g.id)}">${esc(g.name)} · ${esc(g.code||'')}</option>`).join('')}</select></div></div><button class="btn btn-primary" style="margin-top:15px" onclick="generateGuardInvite()">生成邀请码</button></section>
-  <div class="guard-kpis"><div class="card kpi"><span>邀请码记录</span><b>${invites.length}</b></div><div class="card kpi"><span>已注册公会</span><b>${registered.length}</b></div><div class="card kpi"><span>近7日活跃</span><b>${active7.length}</b></div><div class="card kpi"><span>公会2.0授权</span><b>${guild2.length}</b></div></div>
+  box.innerHTML=`<div class="section-title"><div><h2>生成保安邀请码</h2><p>定向邀请码按公会名称自动生成拼音首字母前缀；通用邀请码固定使用 XMDYG。完整邀请码只在生成成功时显示一次。</p></div><button class="btn btn-ghost" onclick="loadGuardAdminData()">刷新数据</button></div>
+  <div class="guard-issue-grid">
+    <section class="card paper guard-issue-card"><span class="pill lav">定向生成</span><h3 style="margin-top:10px">按公会名称生成</h3><p class="muted small">输入“妙不可言”后，会自动得到类似 MBKY-7K3P9A。邀请码可以手动修改，随机码固定为 6 位。</p><div style="height:12px"></div><label class="label">公会名称</label><input id="guardDirectedGuildName" class="input" maxlength="60" placeholder="例如：妙不可言" oninput="syncGuardDirectedCode()"><div style="height:11px"></div><label class="label">邀请码</label><div class="guard-issue-code-row"><input id="guardDirectedCode" class="input guard-code-input" maxlength="20" placeholder="输入公会名后自动生成" oninput="this.value=this.value.toUpperCase().replace(/\\s/g,'')"><button class="btn btn-ghost" onclick="rerollGuardDirectedCode()">换随机码</button></div><div class="guard-issue-note">前缀自动取拼音首字母，也允许直接手动修改。例如：妙不可言 → MBKY-XXXXXX。</div><div class="grid grid-2" style="margin-top:14px"><div><label class="label">有效天数</label><input id="guardDirectedDays" class="input" type="number" min="1" max="3650" value="90"></div><div><label class="label">公会竞标赛系统 2.0 权限</label><select id="guardDirectedGuildAllowed" class="select" onchange="toggleGuardGuildSelect('directed')"><option value="false">普通保安</option><option value="true">允许系统 2.0</option></select></div></div><div style="height:11px"></div><label class="label">关联系统 2.0 公会</label><select id="guardDirectedGuildId" class="select" disabled><option value="">请选择公会</option>${(ga.guilds||[]).map(g=>`<option value="${esc(g.id)}">${esc(g.name)} · ${esc(g.code||'')}</option>`).join('')}</select><button class="btn btn-primary" style="width:100%;margin-top:15px" onclick="generateDirectedGuardInvite()">生成定向邀请码</button></section>
+    <section class="card paper guard-issue-card"><span class="pill high">批量生成</span><h3 style="margin-top:10px">XMDYG 通用邀请码</h3><p class="muted small">适合一次准备一批未指定公会的邀请码。格式固定为 XMDYG-XXXXXX，每条随机码独立且自动查重。</p><div style="height:12px"></div><label class="label">固定前缀</label><input class="input guard-code-input" value="XMDYG" readonly><div class="grid grid-2" style="margin-top:14px"><div><label class="label">生成数量</label><input id="guardBatchCount" class="input" type="number" min="1" max="200" value="20"></div><div><label class="label">有效天数</label><input id="guardBatchDays" class="input" type="number" min="1" max="3650" value="90"></div></div><div style="height:11px"></div><label class="label">批次备注</label><input id="guardBatchLabel" class="input" maxlength="80" value="XMDYG通用邀请码" placeholder="例如：9月第二批"><div class="advice" style="margin-top:14px">批量通用码默认只开通小妙竞标保安。需要关联“公会竞标赛系统 2.0”的邀请码，请使用左侧定向生成。</div><button class="btn btn-primary" style="width:100%;margin-top:15px" onclick="generateGuardBatchInvites()">批量生成邀请码</button></section>
+  </div>
+  <div class="guard-kpis"><div class="card kpi"><span>邀请码记录</span><b>${invites.length}</b></div><div class="card kpi"><span>已注册公会</span><b>${registered.length}</b></div><div class="card kpi"><span>近7日活跃</span><b>${active7.length}</b></div><div class="card kpi"><span>系统 2.0 授权</span><b>${guild2.length}</b></div></div>
   <section class="card guard-admin-tools"><div class="section-title"><div><h2>查询保安注册情况</h2><p>支持按公会名、区服、会长、邀请码备注或版本搜索。官服/渠道服分类将在新版注册页填写后自动进入对应分类。</p></div></div><div class="guard-admin-filter-grid"><div class="guard-search-field"><label class="label">搜索</label><input class="input" value="${esc(adminGuardSearch)}" placeholder="输入公会、区服、会长、备注或版本" oninput="adminGuardSearch=this.value;renderGuardAdminList()"></div><div><label class="label">类型</label><select class="select" onchange="adminGuardPlatformFilter=this.value;renderGuardAdminList()"><option value="all" ${adminGuardPlatformFilter==='all'?'selected':''}>全部类型</option><option value="official" ${adminGuardPlatformFilter==='official'?'selected':''}>官服</option><option value="channel" ${adminGuardPlatformFilter==='channel'?'selected':''}>渠道服</option><option value="unclassified" ${adminGuardPlatformFilter==='unclassified'?'selected':''}>未分类</option></select></div><div><label class="label">状态</label><select class="select" onchange="adminGuardStatusFilter=this.value;renderGuardAdminList()"><option value="all" ${adminGuardStatusFilter==='all'?'selected':''}>全部状态</option><option value="registered" ${adminGuardStatusFilter==='registered'?'selected':''}>已注册公会</option><option value="unregistered" ${adminGuardStatusFilter==='unregistered'?'selected':''}>未注册邀请码</option><option value="enabled" ${adminGuardStatusFilter==='enabled'?'selected':''}>授权有效</option><option value="disabled" ${adminGuardStatusFilter==='disabled'?'selected':''}>停用/过期</option><option value="active7" ${adminGuardStatusFilter==='active7'?'selected':''}>近7日活跃</option></select></div><button class="btn btn-ghost guard-clear-filter" onclick="clearAdminGuardFilters()">清除筛选</button></div></section>
   <div class="admin-guild-summary"><div><h2 style="margin:0">保安授权记录</h2><p id="guardAdminCountText" class="muted" style="margin:5px 0 0"></p></div><span class="pill lav">官服 / 渠道服可切换</span></div><div id="guardAdminList"></div>`;
   renderGuardAdminList();
 }
+
 function renderGuardAdminList(){
   const box=document.getElementById('guardAdminList');if(!box)return;
   const list=filteredGuardInvites(),total=(app.guardAdmin.invites||[]).length,count=document.getElementById('guardAdminCountText');
@@ -502,29 +509,76 @@ function renderGuardAdminList(){
   const now=Date.now();
   box.innerHTML=list.length?list.map(i=>{
     const registered=!!i.guild_name&&!!i.server_name,expired=i.expires_at&&new Date(i.expires_at).getTime()<=now,enabled=i.enabled&&!expired;
-    const platform=platformLabel(i.platform_type),hint=i.code_hint?`BA-••••${esc(i.code_hint)}`:'旧邀请码';
+    const platform=platformLabel(i.platform_type),hint=guardInviteHint(i);
     const title=registered?`${esc(i.server_name)} · ${esc(i.guild_name)}`:`${esc(i.label||'未命名邀请码')}`;
     const lease=(app.guardAdmin.leases||[]).find(x=>x.invite_id===i.id);
-    return `<div class="guard-admin-item card"><div><strong class="guard-title">${title}</strong><div class="guard-meta"><span class="pill ${i.platform_type?'lav':'empty'}">${esc(platform)}</span><span class="pill ${enabled?'good':'bad'}">${enabled?'授权有效':expired?'已过期':'已停用'}</span><span class="pill ${registered?'blue':'high'}">${registered?'已注册':'待注册'}</span>${i.guild_allowed?'<span class="pill high">公会2.0</span>':''}${i.device_bound?'<span class="pill good">已绑设备</span>':'<span class="pill empty">未绑设备</span>'}${lease?`<span class="pill ${lease.state==='RUNNING'?'good':'empty'}">${esc(lease.state||'')}</span>`:''}</div><div class="guard-sub">${registered?`会长：${esc(i.leader_name||'—')} · 注册：${fmtTime(i.registered_at)} · 最近使用：${fmtTime(i.last_seen_at)} · 版本：${esc(i.app_version||'—')}`:`备注：${esc(i.label||'—')} · 创建：${fmtTime(i.created_at)} · 到期：${fmtTime(i.expires_at)}`}<br>邀请码：${hint}${registered&&i.label?` · 备注：${esc(i.label)}`:''}</div></div><div class="guard-admin-actions"><button class="btn btn-sm ${i.enabled?'btn-danger':'btn-success'}" onclick="toggleGuardInvite('${i.id}',${!i.enabled})">${i.enabled?'停用邀请码':'恢复邀请码'}</button><button class="btn btn-sm btn-ghost" onclick="resetGuardDevice('${i.id}')">重置设备</button></div></div>`;
+    return `<div class="guard-admin-item card"><div><strong class="guard-title">${title}</strong><div class="guard-meta"><span class="pill ${i.platform_type?'lav':'empty'}">${esc(platform)}</span><span class="pill ${enabled?'good':'bad'}">${enabled?'授权有效':expired?'已过期':'已停用'}</span><span class="pill ${registered?'blue':'high'}">${registered?'已注册':'待注册'}</span>${i.guild_allowed?'<span class="pill high">系统 2.0</span>':''}${i.device_bound?'<span class="pill good">已绑设备</span>':'<span class="pill empty">未绑设备</span>'}${lease?`<span class="pill ${lease.state==='RUNNING'?'good':'empty'}">${esc(lease.state||'')}</span>`:''}</div><div class="guard-sub">${registered?`会长：${esc(i.leader_name||'—')} · 注册：${fmtTime(i.registered_at)} · 最近使用：${fmtTime(i.last_seen_at)} · 版本：${esc(i.app_version||'—')}`:`备注：${esc(i.label||'—')} · 创建：${fmtTime(i.created_at)} · 到期：${fmtTime(i.expires_at)}`}<br>邀请码：${hint}${registered&&i.label?` · 备注：${esc(i.label)}`:''}</div></div><div class="guard-admin-actions"><button class="btn btn-sm ${i.enabled?'btn-danger':'btn-success'}" onclick="toggleGuardInvite('${i.id}',${!i.enabled})">${i.enabled?'停用邀请码':'恢复邀请码'}</button><button class="btn btn-sm btn-ghost" onclick="resetGuardDevice('${i.id}')">重置设备</button></div></div>`;
   }).join(''):`<div class="empty">没有符合当前筛选条件的保安授权记录。</div>`;
 }
-function toggleGuardGuildSelect(){
-  const enabled=document.getElementById('guardIssueGuildAllowed')?.value==='true',sel=document.getElementById('guardIssueGuildId');if(sel)sel.disabled=!enabled;
+function guardInviteHint(i){
+  const hint=String(i?.code_hint||'').trim();
+  if(!hint)return'旧邀请码';
+  if(hint.includes('-')||hint.includes('•'))return esc(hint);
+  return `BA-••••${esc(hint)}`;
 }
-async function generateGuardInvite(){
+const GUARD_CODE_ALPHABET='ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+const GUARD_PINYIN_BOUNDARIES=[['A','阿'],['B','芭'],['C','擦'],['D','搭'],['E','蛾'],['F','发'],['G','噶'],['H','哈'],['J','击'],['K','喀'],['L','垃'],['M','妈'],['N','拿'],['O','哦'],['P','啪'],['Q','期'],['R','然'],['S','撒'],['T','塌'],['W','挖'],['X','昔'],['Y','压'],['Z','匝']];
+const GUARD_PINYIN_COLLATOR=new Intl.Collator('zh-CN-u-co-pinyin');
+let guardDirectedSuffix='',guardBatchCodes=[];
+function guardCharInitial(ch){
+  if(/[A-Za-z0-9]/.test(ch))return ch.toUpperCase();
+  let out='';
+  for(const [letter,boundary] of GUARD_PINYIN_BOUNDARIES){if(GUARD_PINYIN_COLLATOR.compare(ch,boundary)>=0)out=letter;else break}
+  return out;
+}
+function guardGuildPrefix(name){return [...String(name||'')].map(guardCharInitial).join('').replace(/[^A-Z0-9]/g,'').slice(0,12)}
+function randomGuardSuffix(len=6){
+  const bytes=new Uint8Array(len);crypto.getRandomValues(bytes);let out='';
+  for(const b of bytes)out+=GUARD_CODE_ALPHABET[b%GUARD_CODE_ALPHABET.length];
+  return out;
+}
+function syncGuardDirectedCode(){
+  const name=document.getElementById('guardDirectedGuildName')?.value||'',code=document.getElementById('guardDirectedCode');if(!code)return;
+  if(!guardDirectedSuffix)guardDirectedSuffix=randomGuardSuffix();
+  const prefix=guardGuildPrefix(name);code.value=prefix?`${prefix}-${guardDirectedSuffix}`:'';
+}
+function rerollGuardDirectedCode(){guardDirectedSuffix=randomGuardSuffix();syncGuardDirectedCode()}
+function toggleGuardGuildSelect(mode='directed'){
+  const enabled=document.getElementById(mode==='directed'?'guardDirectedGuildAllowed':'guardIssueGuildAllowed')?.value==='true';
+  const sel=document.getElementById(mode==='directed'?'guardDirectedGuildId':'guardIssueGuildId');if(sel)sel.disabled=!enabled;
+}
+function validGuardInviteCode(code){return /^[A-Z0-9]{2,12}-[ABCDEFGHJKMNPQRSTUVWXYZ23456789]{6}$/.test(String(code||'').trim().toUpperCase())}
+async function generateDirectedGuardInvite(){
   await withBusy(async()=>{
-    const label=document.getElementById('guardIssueLabel')?.value.trim()||'',days=clamp(document.getElementById('guardIssueDays')?.value||90,1,3650),guildAllowed=document.getElementById('guardIssueGuildAllowed')?.value==='true',guildId=document.getElementById('guardIssueGuildId')?.value||'';
-    if(!label)return toast('请填写邀请码备注，方便以后查询');
-    if(guildAllowed&&!guildId)return toast('开启公会2.0权限时，请先选择关联公会');
+    const guildName=document.getElementById('guardDirectedGuildName')?.value.trim()||'',code=document.getElementById('guardDirectedCode')?.value.trim().toUpperCase()||'',days=clamp(document.getElementById('guardDirectedDays')?.value||90,1,3650),guildAllowed=document.getElementById('guardDirectedGuildAllowed')?.value==='true',guildId=document.getElementById('guardDirectedGuildId')?.value||'';
+    if(!guildName)return toast('请先填写公会名称');
+    if(!validGuardInviteCode(code))return toast('邀请码格式不正确，应为 前缀-6位随机码');
+    if(guildAllowed&&!guildId)return toast('开启公会竞标赛系统 2.0 权限时，请先选择关联公会');
     try{
-      const {data,error}=await db.rpc('xm_guard_admin',{p_action:'issue',p_args:{label,days,guild_allowed:guildAllowed,guild_id:guildId}});
-      if(error)throw error;
-      const code=data?.code;if(!code)throw new Error('没有收到邀请码');
-      await loadGuardAdminData(true);
-      openModal(`<div class="modal-head"><div><span class="pill good">生成成功</span><h3 style="margin-top:9px">保安邀请码</h3><p class="muted">请现在复制保存。为了安全，刷新页面后只显示尾号，不能还原完整邀请码。</p></div><button class="modal-close" onclick="closeModal()">×</button></div><div class="guard-code-box">${esc(code)}</div><button class="btn btn-primary" style="width:100%;margin-top:14px" onclick="copyText('${esc(code)}')">复制邀请码</button>`);
-    }catch(e){showError(e,'生成邀请码失败')}
+      const {data,error}=await db.rpc('xm_guard_admin',{p_action:'issue_named',p_args:{code,label:guildName,days,guild_allowed:guildAllowed,guild_id:guildId}});if(error)throw error;
+      const issued=data?.code;if(!issued)throw new Error('没有收到邀请码');
+      guardDirectedSuffix=randomGuardSuffix();await loadGuardAdminData(true);
+      openModal(`<div class="modal-head"><div><span class="pill good">生成成功</span><h3 style="margin-top:9px">${esc(guildName)} · 定向邀请码</h3><p class="muted">请现在复制保存。后台刷新后只保留脱敏提示，不能还原完整邀请码。</p></div><button class="modal-close" onclick="closeModal()">×</button></div><div class="guard-code-box">${esc(issued)}</div><button class="btn btn-primary" style="width:100%;margin-top:14px" onclick="copyText('${esc(issued)}')">复制邀请码</button>`);
+    }catch(e){showError(e,'生成定向邀请码失败')}
   });
 }
+async function generateGuardBatchInvites(){
+  await withBusy(async()=>{
+    const count=clamp(document.getElementById('guardBatchCount')?.value||20,1,200),days=clamp(document.getElementById('guardBatchDays')?.value||90,1,3650),label=document.getElementById('guardBatchLabel')?.value.trim()||'XMDYG通用邀请码';
+    try{
+      const {data,error}=await db.rpc('xm_guard_admin',{p_action:'issue_batch',p_args:{prefix:'XMDYG',count,days,label}});if(error)throw error;
+      guardBatchCodes=Array.isArray(data?.codes)?data.codes:[];if(!guardBatchCodes.length)throw new Error('没有收到邀请码');
+      await loadGuardAdminData(true);
+      openModal(`<div class="modal-head"><div><span class="pill good">批量生成成功</span><h3 style="margin-top:9px">共 ${guardBatchCodes.length} 个邀请码</h3><p class="muted">完整邀请码只在本次生成结果中显示，请先复制或下载 TXT 保存。</p></div><button class="modal-close" onclick="closeModal()">×</button></div><textarea class="textarea guard-batch-result" readonly>${esc(guardBatchCodes.join('\n'))}</textarea><div class="row" style="margin-top:14px"><button class="btn btn-primary grow" onclick="copyGuardBatchCodes()">一键复制全部</button><button class="btn btn-ghost grow" onclick="downloadGuardBatchCodes()">下载 TXT</button></div>`);
+    }catch(e){showError(e,'批量生成邀请码失败')}
+  });
+}
+function copyGuardBatchCodes(){copyText(guardBatchCodes.join('\n'))}
+function downloadGuardBatchCodes(){
+  if(!guardBatchCodes.length)return toast('没有可导出的邀请码');
+  const blob=new Blob([guardBatchCodes.join('\r\n')],{type:'text/plain;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`XMDYG_邀请码_${new Date().toISOString().slice(0,10)}.txt`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+
 async function toggleGuardInvite(id,value){
   await withBusy(async()=>{try{const {error}=await db.rpc('xm_guard_admin',{p_action:'toggle',p_args:{id,value}});if(error)throw error;await loadGuardAdminData(true);toast(value?'邀请码已恢复':'邀请码已停用')}catch(e){showError(e,'授权操作失败')}})
 }
